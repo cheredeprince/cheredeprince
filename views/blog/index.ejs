@@ -1,0 +1,17 @@
+<div class="text-place">
+  <div class="cadre">
+    <h1> Les derniers articles </h1>
+  
+      <% arts.forEach(function(art){%>
+	<div class="art-info">
+	  <a href="/blog/show/<%=art.name%>">
+	  <h2><%= art.title %></h2>
+	  <div class="art-date"><%=art.publishedAt%></div>
+	  <img src="/images/blog/<%-art.name%>/s/original.svg" alt="<%=art.altSticker%>" />
+	  <div class="art-presentation" ><%-art.presentationHTML%></div>
+	  </a>
+	</div>
+	<%})%>
+
+  </div>
+</div>

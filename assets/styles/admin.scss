@@ -1,0 +1,92 @@
+$base-font-size: 16px;
+
+@function em($px, $base: $base-font-size) {
+    @return ($px / $base) * 1em;   
+}
+
+
+$s-breakpoint:  em(640px);
+$m-breakpoint: em(1024px);
+$l-breakpoint:  em(1440px);
+
+$head-height: 40px;
+$s-menu-width: em(213.33333px);
+$m-menu-width: em(256px);
+$l-menu-width: em(360px);
+
+
+
+html,body{
+    padding:0;
+    margin:0;
+    overflow-x: hidden;
+    height:100%;
+}
+
+.background{
+    background-color: black;
+    position:relative;
+    width: 100%;
+    height:100%;
+}
+
+#page{
+    position: absolute;
+    top:$head-height;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color: white;
+}
+
+.nudedList{
+    margin:0;
+    padding:0;
+    list-style:none;
+    li{
+	margin: 0;
+	padding:0;	   
+    }
+}
+
+
+.admin-nav{
+    display:inline;
+    li{
+	display:inline;
+    }
+}
+
+.user-info{
+    position:absolute;
+    top:0;
+    right:0;
+    width: 6em;
+}
+
+.admin-option{
+    margin-top: 40px;
+}
+.user-info,.admin-nav li,.admin-option li{
+    
+    color:white;
+    a{
+	color: white;
+	text-decoration: none;
+    }
+}
+
+#sandwich-menu:checked ~ #page{
+    left: 100%;
+    @media(min-width: $s-breakpoint){
+	left: $s-menu-width;
+    }
+    @media(min-width: $m-breakpoint){
+	left: $m-menu-width;
+    }
+    @media(min-width: $l-breakpoint){
+	left: $l-menu-width;
+    }
+    
+}
+

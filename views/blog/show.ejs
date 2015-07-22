@@ -1,0 +1,22 @@
+<div class="text-place">
+  <div class="article">
+    <h1><%=art.title %></h1>
+    <h2><%=art.category%></h2>
+    <%if(art.banner){%>
+      <div class="banner">
+	<!-- <img  src="/images/blog/<%=art.name%>/b/original.svg"/> -->
+
+
+	<object data="/images/blog/<%=art.name%>/b/original.svg" type="image/svg+xml">
+	  <div class="fallback">
+	    <%=art.altBanner%>
+	  </div>
+	</object>
+
+	
+      </div>
+    <%}%>
+	<div  class="intro"> <%-art.introHTML%></div>
+	<div class="text"><%-art.textHTML%> </div>
+  </div>
+</div>

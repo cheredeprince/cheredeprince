@@ -1,0 +1,76 @@
+h1{
+    display: block;
+    text-align: center;
+    font-family: BigNoodleTitling,Headline One;
+    color: #212121;    
+    font-size: 3em;
+}
+
+.cadre h1{
+    display: block;
+    text-align: center;
+    font-family: BigNoodleTitling,Headline One;
+    color: #FFFFFF;
+    font-size: 3em;
+}
+
+.cadre{
+    background-color: #FF5722;
+    border-radius: .5em;
+}
+
+.text-place{
+    margin: auto;
+    max-width: 50em;
+}
+
+.text-info{
+    margin: 0 auto;
+    text-align: center;
+    max-width: 40em;
+    color: #212121;
+    font-family: serif;
+}
+
+
+.btn-space{
+    display: block;
+    text-align: center;
+    padding: 3em;
+}
+
+.btn{
+    font-family: Liberation Sans;
+    font-weight: bold;
+    color: #FFFFFF;
+    padding: .5em;
+    border-radius: .5em;
+    text-decoration: none;
+    border: none;
+}
+.btn:hover{
+    box-shadow: 0 0 15px #E64A19;
+}
+
+
+.btn-green{
+  background-color:#009688;
+}
+
+.form-entry{
+    display:block;
+    width: 50%;
+    margin: 0  auto 1em;
+    border: 1px solid #b6b6b6;
+    color: #212121;    
+}
+
+img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.sample-img{
+    max-width: 200px;
+}

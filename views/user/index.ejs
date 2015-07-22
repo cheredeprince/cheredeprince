@@ -1,0 +1,44 @@
+<div class="text-place">
+  <div class="cadre">
+    <h1> Les utilisateurs </h1>
+  
+    <table style="width:100%">
+      <tr>
+	<th>En ligne</th>
+	<th>Nom</th>
+	<th>Email</th>
+	<th>Admin</th>
+	<th></th>
+	<th></th>
+	<th></th>
+      </tr>
+      <% users.forEach(function(user){%>
+	<tr data-id="<%=user.id%>" data-model="user">
+	  <td style="color:<%=(user.online)? 'green': 'gray'%>" data-attr="loggedIn">●</td>
+	  <td data-attr="name"><%=user.name%></td>
+	  <td data-attr="email"><%=user.email%></td>
+	  <td style="color:<%=(user.admin)? 'green': 'gray'%>" data-attr="admin">●</td>
+	  <td>
+	    <div class="btn-space">
+              <a href="/user/show/<%= user.id%>" class="btn btn-green">Voir </a>
+            </div>
+	  </td>
+	   <td>
+	    <div class="btn-space">
+              <a href="/user/edit/<%= user.id%>" class="btn btn-green">Éditer</a>
+            </div>
+	   </td>
+	   <td>
+	     <form action="/user/destroy/<%= user.id%>" method="POST" >
+	       <input type ="hidden" name="_method" value="delete" />
+	       <div class="btn-space">
+		  <input type="submit" value="Supprimer" class="btn btn-red"/>
+               </div>
+	       <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+	       </form>
+	  </td>
+	</tr>
+	<%})%>
+    </table>
+  </div>
+</div>

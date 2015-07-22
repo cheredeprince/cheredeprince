@@ -1,0 +1,91 @@
+<div class="text-place">
+  <div class="cadre">
+    <h1>Édite l'article: <%= art.title %> </h1>
+    <% if(flash && flash.err) {%>
+      <ul class="place-info">
+	<% flash.err.forEach( function(error){%>
+	  <li>
+            <%= error.message %>
+	  </li>
+      </ul>
+	<%})%>
+    <% } %>
+    
+    <% if(art.banner){%>
+      <p>
+	<a href="/blog/newBanner/<%=art.name%>"><%=art.altBanner%></a>
+      </p>
+      <div class="sample-img">
+	<object data="/images/blog/<%=art.name%>/b/original.svg" type="image/svg+xml">
+	  <div class="fallback">
+	    <%=art.altBanner%>
+	  </div>
+	</object>
+      </div>
+      <%}else{%>
+	<a href="/blog/newBanner/<%=art.name%>">Ajouter une bannière</a>
+    <%}%>
+    
+    <% if(art.sticker){%>
+      <p>
+	<a href="/blog/newSticker/<%=art.name%>"><%=art.altSticker%></a>
+      </p>
+      <div class="sample-img">
+	<object data="/images/blog/<%=art.name%>/s/original.svg" type="image/svg+xml">
+	  <div class="fallback">
+	    <%=art.altSticker%>
+	  </div>
+	</object>
+      </div>
+      <%}else{%>
+	<a href="/blog/newSticker/<%=art.name%>">Ajouter une vignette</a>
+    <%}%>
+
+    
+    <% if(art.images){
+    Object.keys(art.images).forEach(function(image){%>
+      <p>
+	 <%=image%> : <%=art.images[image].alt%>
+      </p>
+      <form action="/blog/deleteImage" method="POST">
+	<input type="hidden" name="id" value="<%=art.id%>" />
+	<input type="hidden" name="name" value="<%=image%>" />
+	<input type="submit" value="supprimer"/>
+	<input type="hidden" name="_csrf" value="<%= _csrf%>"/>
+	</form>
+      <div class="sample-img">
+	<img src="/images/blog/<%=art.name%>/<%=image%><% switch(art.images[image].ext){
+			       case 'svg' : %>.svg<% break;
+			      case 'png': %>-little.png<% break;
+			case 'jpg' : %>-little.jpg<% break;
+}%>" alt="<%=art.images[image].alt%>">
+      </div>
+    <%})}%>
+      <a href="/blog/newImage/<%=art.name%>">Ajouter une Image</a>
+      
+      <form action="/blog/update/<%= art.id%>" method="POST" class="form">
+	<label for="title">Titre</label>
+	<input name="title" placeholder="Titre" class="form-entry" value="<%= art.title %>"/>
+	<label for="name">URL</label>
+        <input name="name" placeholder="Nom" class="form-entry" value="<%= art.name %>"/>
+	<label for="published">Publié</label>
+	<input type="checkbox" name="published"  class="form-entry" <%=(art.published)?"checked":""%>/>
+	<label for="category">Catégorie</label>
+	<select name="category" class="form-entry">
+	  <option value="trip">Voyage</option>
+	  <option value="event">Évenement</option>
+	  <option value="life">Ma vie, mon histoire</option>
+	</select>
+	<label for="presentationBB">Presentation</label>
+	<textarea name="presentationBB" placeholder="Dans cette case, on vend l'article" class="form-entry" ><%= art.presentationBB %></textarea>
+	<label for="introBB">Introduction</label>
+	<textarea name="introBB" placeholder="Ici j'introduis mon sujet" class="form-entry"><%= art.introBB %></textarea>
+	<label for="textBB">Texte</label>
+	<textarea name="textBB" placeholder="Là je discute sérieusement de mon sujet ou pas ..." class="form-entry"><%= art.textBB %></textarea>
+        <div class="btn-space">
+          <input type="submit" class="btn btn-green"/>
+        </div>
+	<input type="hidden" name="_csrf" value="<%= _csrf%>"/>
+      </form>
+  </div>
+</div>

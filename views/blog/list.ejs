@@ -1,0 +1,47 @@
+<div class="text-place">
+  <div class="cadre">
+    <h1> Les articles </h1>
+  
+    <table style="width:100%">
+      <tr>
+	<th>Publié</th>
+	<th>Titre</th>
+	<th>Date de création</th>
+	<th>Date de Publication</th>
+	<th></th>
+	<th></th>
+	<th></th>
+      </tr>
+      <% arts.forEach(function(art){%>
+	<tr data-id="<%=art.id%>" data-model="art">
+	  <td style="color:<%=(art.published)? 'green': 'gray'%>" data-attr="published">●</td>
+	  <td data-attr="title"><%=art.title%></td>
+	  <td data-attr="createdAt"><%=art.createdAt.toISOString().slice(0, 10)%></td>
+	  <td data-attr="publishedAt">
+	    <%if(art.publishedAt){%><%=art.publishedAt.toISOString().slice(0, 10)%><%}else{%>-<%}%> </td>
+	  <td>
+	    <div class="btn-space">
+              <a href="/blog/show/<%= art.name%>" class="btn btn-green">Voir</a>
+            </div>
+	  </td>
+	   <td>
+	    <div class="btn-space">
+              <a href="/blog/edit/<%= art.name%>" class="btn btn-green">Éditer</a>
+            </div>
+	   </td>
+	   <td>
+	     <form action="/blog/destroy/<%= art.id%>" method="POST" >
+	       <input type="hidden" name="_method" value="delete" />
+	       <label for="confirm">Confirmation</label>
+	       <input type="checkbox" name="confirm"/>
+	       <div class="btn-space">
+		  <input type="submit" value="Supprimer" class="btn btn-red"/>
+               </div>
+	       <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+	       </form>
+	  </td>
+	</tr>
+	<%})%>
+    </table>
+  </div>
+</div>
