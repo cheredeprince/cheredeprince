@@ -1,0 +1,26 @@
+<div class="page" id="page">
+  {{> organisms-header }}
+  <div role="main">
+    <div class="l-two-col">
+      <div class="l-main">
+	<article class="article">
+	  {{>molecules-article-header}}
+	  <div class="b-border">
+	    <div class="text block">
+	      {{> organisms-article-body }}
+	      {{> organisms-article-footer}}
+	    </div>
+	  </div>
+	</article><!--end .article-->
+	{{> organisms-comment-thread }}
+      </div><!--end l-main-->
+
+      <div class="l-sidebar">
+	{{> organisms-a-propos}}
+	{{> organisms-related-posts }}
+	{{>organisms-tags-list}}
+      </div><!--end l-sidebar-->
+    </div><!--end l-two-col-->	
+  </div><!--End role=main-->
+  {{> organisms-footer }}
+</div>

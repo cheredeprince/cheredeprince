@@ -1,12 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
-    <title>New Sails App</title>
-
     <!-- Viewport mobile tag for sensible mobile support -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
 
-    
+    <link rel="shortcut icon" href="http://cheredeprince.net/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="http://cheredeprince.net/favicon.ico" />
+    <link rel="icon" type="image/png" href="http://cheredeprince.net/favicon.png" />
+    <link rel="apple-touch-icon" href="http://cheredeprince.net/favicon.png" />
+     
+    <%if(typeof page !== 'undefined'){%>
+
+      <title><%=page.title%> - Chère de Prince</title>
+
+      <%if(page.section == 'blog' && page.name=='show'){%>
+    <!-- Blog show head -->
+      
+    <link rel="alternate" type="application/rss+xml" title="Chère de Prince - RSS" href="http://cheredeprince.net/rss/rss.xml" />
+    <!--Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@CheredePrince">
+    <meta name="twitter:site" content="@CheredePrince">
+    <meta name="twitter:title" content="<%=art.title%>">
+    <meta name="twitter:description" content="<%=art.presentation%>">
+    <meta name="twitter:image:src" content="http://cheredeprince.net/images/blog/<%=art.name%>/s/original.png">
+
+    <meta property="og:url"                content="http://cheredeprince.net" />
+    <meta property="og:site_name"          content="http://cheredeprince.net" />
+    <meta property="og:type"               content="website" />
+    <meta property="og:title"              content="<%=art.title%>" />
+    <meta property="og:description"        content="<%=art.presentation%>" />
+    <meta property="og:image"              content="http://cheredeprince.net/images/blog/<%=art.name%>/s/original.png" />
+    <%}%>
+
+    <%}else{%>
+    <title>Chère de Prince</title>
+    <%}%>
+
+    <%if(session.User){%>
+	    <link rel="stylesheet" href="/styles/admin/admin.css">    
+    <%}%>
     <!--  
     Stylesheets and Preprocessors
     ==============================
@@ -30,9 +64,8 @@
 
     <!--STYLES-->
     <link rel="stylesheet" href="/styles/importer.css">
-    <link rel="stylesheet" href="/styles/main.css">
     <!--STYLES END-->
-    <%if(_csrf){%>
+    <%if(typeof _csrf != 'undefined'){%>
       <script>
       window.cdp = {
 	      csrf: "<%=_csrf%>" 
@@ -43,103 +76,125 @@
     // Picture element HTML5 shiv
     document.createElement( "picture" );
     </script>
-    <script src="/js/picturefill.min.js" async></script>
+    <script src="/js/head/picturefill.min.js" async></script>
     
   </head>
 
   <body>
-    
+    <%-partial('templates/sprites-inline',{})%>
 
     <% if(session.User){ %>
       <div class="background">
-      <input type="checkbox" id="sandwich-menu" unchecked>
-      
-      <ul class="admin-nav nudedList">
-	<% if(session.User.admin){%>
-	  <li>
-	    <a href="/user">Utilisateurs</a>
-	  </li>
-	<%}%>
-	<li>
-	  <a href="/blog/list">Blog</a>
-	</li>
-      </ul>
-      <% if(session.authentificated){%>
-	<div class="user-info">
-	  <a href="/user/show/<%- session.User.id%>"><%= session.User.name %></a>
-	  <a href="/session/destroy">Déconnection</a>
-	</div>
-	<ul class="admin-option nudedList">
-	  <%if(session.modelUse == 'blog'){%>
-	  <li><a href="/blog/new">Créer un article</a></li>
-	  <li><a href="/blog/">Liste des tags</a></li>
-	  <li><a href="/blog/">Créer un tag</a></li>
+	<input type="checkbox" id="sandwich-menu" unchecked>
+	
+	<ul class="admin-nav nudedList info-text">
+	  <% if( session.User.admin){%>
+	    <li>
+	      <a href="/user">Utilisateurs</a>
+	    </li>
 	  <%}%>
-	  </ul>
-	<div id="page">
-      <% }} %>
-      
-      <%- body %>
+	  <li>
+	    <a href="/blog/list">Blog</a>
+	  </li>
+	  <li>
+	    <a href="/leadin">Accroches</a>
+	  </li>
+	  <li>
+	    <a href="/comment">Commentaires</a>
+	  </li>
+	  <li>
+	    <img src="/images/admin/io-ok.png" id="io-status-icon" width="20px" style="display:inline"/>
+	  </li>
+	</ul>
+	<% if(session.authentificated){%>
+	  <div class="user-info info-text">
+	    <a href="/user/show/<%- session.User.id%>"><%= session.User.name %></a>
+	    <a href="/session/destroy">Déconnection</a>
+	  </div>
+	<%}%>
+	<ul class="admin-option nudedList info-text">
+	  <%if(session.modelUse == 'blog'){%>
+	    <li><a href="/blog/new">Créer un article</a></li>
+	    <li><a href="/tag/">Liste des tags</a></li>
+	    <li><a href="/tag/new">Créer un tag</a></li>
+	  <%}%>
+	</ul>
+	<ul id="admin-shortcuts" class="nudedList inline-list info-text">
+	  
+	</ul>
+	<div id="page" class="paper-background">
+    <% } %>
 
-      <%if(session.authentificated){%>
+   
+    <%- partial('templates/organisms/global/header',{page_name:session.modelUse}) %> 
+    
+    <%- body %>
+
+    <%if(session.authentificated){%>
 	</div>
       </div>
-	<%}%>
+    <%}%>
 
-      <!--
-      Client-side Templates
-      ========================
+    <!--
+    Client-side Templates
+    ========================
 
-      HTML templates are important prerequisites of modern, rich client applications.
-      To work their magic, frameworks like Backbone, Angular, Ember, and Knockout require
-      that you load these templates client-side.
+    HTML templates are important prerequisites of modern, rich client applications.
+    To work their magic, frameworks like Backbone, Angular, Ember, and Knockout require
+    that you load these templates client-side.
 
-      By default, your Gruntfile is configured to automatically load and precompile
-      client-side JST templates in your `assets/templates` folder, then
-      include them here automatically (between TEMPLATES and TEMPLATES END).
-      
-      To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
-      For example, here are a few things you could do:
+    By default, your Gruntfile is configured to automatically load and precompile
+    client-side JST templates in your `assets/templates` folder, then
+    include them here automatically (between TEMPLATES and TEMPLATES END).
+    
+    To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
+    For example, here are a few things you could do:
 
-      + Import templates from other directories
-      + Use a different template engine (handlebars, jade, dust, etc.)
-      + Internationalize your client-side templates using a server-side
-      stringfile before they're served.
-      -->
+    + Import templates from other directories
+    + Use a different template engine (handlebars, jade, dust, etc.)
+    + Internationalize your client-side templates using a server-side
+    stringfile before they're served.
+    -->
 
-      <!--TEMPLATES-->
-      
-      <!--TEMPLATES END-->
+    <!--TEMPLATES-->
+    
+    <!--TEMPLATES END-->
 
 
-      <!--
+    <!--
 
-      Client-side Javascript
-      ========================
+    Client-side Javascript
+    ========================
 
-      You can always bring in JS files manually with `script` tags, or asynchronously
-      on the client using a solution like AMD (RequireJS).  Or, if you like, you can 
-      take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
+    You can always bring in JS files manually with `script` tags, or asynchronously
+    on the client using a solution like AMD (RequireJS).  Or, if you like, you can 
+    take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
 
-      By default, files in your `assets/js` folder are included here
-      automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
-      CoffeeScript (.coffee) are supported. In production, your scripts will be minified
-      and concatenated into a single file.
-      
-      To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
-      For example, here are a few things you could do:
-      
-      + Change the order of your scripts
-      + Import scripts from other directories
-      + Use a different preprocessor, like TypeScript
+    By default, files in your `assets/js` folder are included here
+    automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
+    CoffeeScript (.coffee) are supported. In production, your scripts will be minified
+    and concatenated into a single file.
+    
+    To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+    For example, here are a few things you could do:
+    
+    + Change the order of your scripts
+    + Import scripts from other directories
+    + Use a different preprocessor, like TypeScript
 
-      -->
+    -->
 
-      <!--SCRIPTS-->
-      <script src="/js/dependencies/sails.io.js"></script>
-      <script src="/js/app.js"></script>
-      <script src="/js/jquery.js"></script>
-      <script src="/js/picturefill.min.js"></script>
-      <!--SCRIPTS END-->
+    <!--SCRIPTS-->
+    <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/dependencies/jquery.js"></script>
+    <script src="/js/comment-gestion.js"></script>
+    <!--SCRIPTS END-->
+
+    <%if(session.User){%>
+      <script src="/js/admin/bbCodeParser.min.js"></script>
+      <script src="/js/admin/BBCodeGenerator.js"></script>
+      <script src="/js/admin/app.js"></script>
+      <script src="/js/admin/blog-shortcut.js"></script>
+    <%}%>
   </body>
 </html>

@@ -1,0 +1,23 @@
+<%- partial('../templates/one-col-head',{title: "J'édite une accroche"}) %>
+<% include ../templates/info-block %>
+<div class="edit-entry">
+  <div class="entry">
+    <form action="/leadin/update" method="POST" class="form">
+      <textarea name="contentBB" data-entry="bbcode" data-option="intro" placeholder="Contenu" class="form-entry" rows=2><%- leadin.contentBB%></textarea>
+      <label>Aperçu</label>
+            <p data-output="bbcode" data-entry-name="contentBB"  class="form-entry text"><%-leadin.contentHTML%></p>
+      <label for="pages">Pages</label>
+      <fieldset>
+	<input type="checkbox" name="pages" value="accueil" <%=(leadin.pages.indexOf("accueil") !=-1)?"checked":""%>> Accueil <br/>
+	<input type="checkbox" name="pages" value="math" <%=(leadin.pages.indexOf("math") !=-1)?"checked":""%>> Math <br/>
+	<input type="checkbox" name="pages" value="blog" <%=(leadin.pages.indexOf("blog") !=-1)?"checked":""%>> Blog <br/>
+	<input type="checkbox" name="pages" value="contact" <%=(leadin.pages.indexOf("contact") !=-1)?"checked":""%>> Contact <br/>
+      </fieldset>
+
+      <input type="submit" class="btn sucess" value="Modifer"/>
+      <input type="hidden" name="id" value="<%=leadin.id%>">
+      <input type="hidden" name="_csrf" value="<%= _csrf%>"/>
+    </form>
+  </div>
+</div>
+<%include ../templates/one-col-foot %>

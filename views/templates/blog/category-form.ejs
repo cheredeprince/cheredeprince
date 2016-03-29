@@ -1,0 +1,6 @@
+	<label for="category">Catégorie</label>
+	<select name="category" class="form-entry">
+	  <% Object.keys(categoriesList).forEach(function(categoryKey){%>
+	  <option value="<%=categoryKey%>" <%=(categorySelected == categoryKey)?"selected":""%>><%=categoriesList[categoryKey]%></option>
+	 <% })%>
+	</select>

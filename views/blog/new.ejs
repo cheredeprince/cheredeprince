@@ -1,29 +1,18 @@
-<div class="text-place">
-  <div class="cadre">
-    <h1>Nomme ton nouvel article</h1>
-    <% if(flash && flash.err) {%>
-      <ul class="place-info">
-	<%console.log(flash.err); flash.err.forEach( function(error){%>
-	  <li>
-            <%= error.message %>
-	</li>
-      </ul>
-	<%})%>
-    <% }%>
-    <p>
-      <form action="/blog/create" method="POST" class="form">
-        <input name="title" placeholder="Titre" class="form-entry"/>
-	<input name="name" placeholder="URL"  class="form-entry"/>
-	<label for="category">Catégorie</label>
-        <select name="category" class="form-entry">
-	  <option value="trip">Voyage</option>
-	  <option value="event">Évenement</option>
-	  <option value="life">Ma vie, mon histoire</option>
-	</select>
-        <div class="btn-space">
-          <input type="submit" class="btn btn-green"/>
-        </div>
-	<input type="hidden" name="_csrf" value="<%= _csrf%>"/>
-      </form>
+<%- partial('../templates/one-col-head',{title: "Je crée un article"}) %>
+<% include ../templates/info-block %>
+<div class="edit-entry">
+  <div class="entry">
+    <form action="/blog/create" method="POST" class="form">
+      	<label for="title">Titre</label>
+	<input name="title" placeholder="Titre" class="form-entry"  data-entry="URI" />
+	<label for="name">URL</label>
+        <input name="name" placeholder="Nom" class="form-entry"  data-output="URI" data-entry-name="title"/>
+	<%- partial('templates/category-form',{}) %>
+      <div class="btn-space">
+        <input type="submit" class="btn sucess" value="Créer"/>
+      </div>
+      <input type="hidden" name="_csrf" value="<%= _csrf%>"/>
+    </form>
   </div>
 </div>
+<%include ../templates/one-col-foot %>

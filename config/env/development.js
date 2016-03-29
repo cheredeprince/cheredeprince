@@ -20,5 +20,9 @@ module.exports = {
   // models: {
   //   connection: 'someMongodbServer'
   // }
-
+    variables:{
+	general:{
+	    host: 'localhost:1337'
+	}
+    }
 };

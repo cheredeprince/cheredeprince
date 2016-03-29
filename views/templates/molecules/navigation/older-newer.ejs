@@ -1,0 +1,10 @@
+<nav class="old-new">
+  <ul>
+    <%if(hasOlder){%>
+      <li class="old"><a href="/blog<%=(typeof pageName !== 'undefined')? '/'+pageName:''%><%=(typeof subjectName !== 'undefined')?'/'+ subjectName:''%>/page/<%=pageNumber +1%>" class="text-btn">Articles plus agés</a></li>
+    <%}
+    if(hasNewer){%>
+    <li class="new"><a href="/blog<%=(typeof pageName !== 'undefined')? '/'+pageName:''%><%=(typeof subjectName !== 'undefined')?'/'+ subjectName:''%><%=(pageNumber == 2)? '':'/page/'+(pageNumber -1)%>" class="text-btn">Articles plus frais</a></li>
+      <%}%>
+  </ul>
+</nav>

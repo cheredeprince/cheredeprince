@@ -1,0 +1,75 @@
+/*------------------------------------*\
+    $NAVIGATION
+\*------------------------------------*/
+
+.nav {
+    
+    padding: 0 $pad-quarter;
+    
+    
+    .nav-list{
+	font-size:0;
+    }
+    li{
+	font-size:1.12*$font-size-initial;
+	display: block;
+	width: 25%;
+	text-align: center;
+	vertical-align:bottom;
+	@media all and (max-width: $bp-small-2){
+	    font-size: $font-size-initial;
+	}
+	a{
+	    color: $text-color;
+	}
+	
+	a:hover,a:active{
+		    border-bottom: $space-quarter solid $red;
+		    text-decoration: none;
+		}
+	a.active{
+	    border-bottom: $space-quarter solid $red-dark;   
+	}
+    }
+}
+
+.old-new{
+    margin: $space-half 0;
+    ul{
+	clear: both;
+	line-height: $space;
+	height: $space + 2*$pad-half;
+	li{
+	    padding: $pad-half;
+	}
+	.old{
+	    float: left;
+	}
+	.new{
+	    float: right;
+	    text-align: right;
+	}
+    }
+    
+}
+
+
+
+
+/* //Pagination */
+/* .pagination { */
+/*     overflow: hidden; */
+
+/*     li { */
+/* 	float: left; */
+/* 	border-right: 1px solid $gray-light-2; */
+
+/* 	&:last-child { */
+/* 	    border: 0; */
+/* 	} */
+/*     } */
+
+/*     a { */
+/* 	padding: $pad; */
+/*     } */
+/* } */

@@ -64,6 +64,14 @@ module.exports.connections = {
     // password: 'password',
      database: 'begin'
   },
+    old: {
+	adapter: 'sails-mongo',
+	host: 'localhost',
+	port: 27017,
+	// user: 'username',
+	// password: 'password',
+	database: 'becasse'
+  },
     becasseMongodbServer: {
     adapter: 'sails-mongo',
     host: 'localhost',

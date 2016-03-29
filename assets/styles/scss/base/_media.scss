@@ -1,0 +1,90 @@
+/*------------------------------------*\
+  $MEDIA ELEMENTS
+  \*------------------------------------*/
+
+/* Flexible Media */
+img, video, object {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+iframe {
+    margin-bottom: $space;
+}
+
+figure {
+    margin-bottom: $space;
+    text-align:center;
+    img{
+	margin: 0 auto $space-half auto;
+	@extend .photo-border
+   }
+}
+
+figcaption {
+    font-size:$font-size-small-2;
+    font-family: $font-secondary;
+}
+
+svg{
+    display: block;
+    width:100%;
+    height: auto;
+}
+
+picture{
+    display: block;
+}
+
+
+/* Sticker*/
+.sticker{
+    background: $green-background;
+    @extend .photo-border;
+}
+
+/* Bordure photo*/
+
+.photo-border{
+    border: $pad-quarter solid $green-background-dark;
+    background: $green-background-dark;
+    @media all and (min-width: $bp-small-3) and (max-width: $bp-large) {
+	border: $pad-half solid $green-background-dark;
+    }
+}
+
+
+/*
+ * Sprites
+*/
+
+/*Separation*/
+
+.sprite-icon{
+        font-size:1rem;
+    background: url($iconSpriteLink);
+}
+
+.separation{
+    background-position: 0px -.9375em;
+    height: 0.9375em; //15pxx
+    width: 12.5em; //200px
+    max-width:100%;
+    margin: $space-half auto;
+}
+
+.arrow{
+    position:relative;
+    line-height: .75em;
+    &:before{
+	display: inline;
+	position:absolute;
+	left: -1.875em;
+	content:"";
+	background-position: 0 -1.875em; //30px
+	height: .75em;
+	width: 1.875em;
+	@extend .sprite-icon
+    }
+}

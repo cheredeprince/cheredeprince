@@ -1,0 +1,22 @@
+<%- partial('../templates/one-col-head',{title: "Je crée une accroche"}) %>
+<% include ../templates/info-block %>
+<div class="edit-entry">
+  <div class="entry">
+    <form action="/leadin/create" method="POST" class="form">
+      <textarea name="contentBB" placeholder="Contenu" class="form-entry" rows=2></textarea>
+      
+      <label for="pages">Pages</label>
+      <fieldset>
+	<input type="checkbox" name="pages" value="accueil" checked> Accueil <br/>
+	<input type="checkbox" name="pages" value="math" checked> Math <br/>
+	<input type="checkbox" name="pages" value="blog" checked> Blog <br/>
+	<input type="checkbox" name="pages" value="contact" checked> Contact <br/>
+      </fieldset>
+      
+      <input type="submit" class="btn sucess" value="Créer"/>
+
+      <input type="hidden" name="_csrf" value="<%= _csrf%>"/>
+    </form>
+  </div>
+</div>
+<% include ../templates/one-col-foot %>

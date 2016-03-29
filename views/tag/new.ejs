@@ -1,0 +1,18 @@
+<%- partial('../templates/one-col-head',{title: 'Je crée un tag'}) %>
+
+<div class="edit-entry">
+  <div class="entry">
+<% include ../templates/info-block %>
+
+      <form action="/tag/create" method="POST" class="form">
+	<input name="name" placeholder="Nom"  class="form-entry"/>
+        <div class="btn-space">
+          <input type="submit" class="btn sucess" value="Créer"/>
+        </div>
+	
+	<input type="hidden" name="_csrf" value="<%= _csrf%>"/>
+      </form>
+  </div>
+</div>
+
+<% include ../templates/one-col-foot %>

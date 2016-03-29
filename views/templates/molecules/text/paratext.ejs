@@ -1,0 +1,14 @@
+<div class="paratext">
+  <div>
+  <p class="category-display text">
+    <a href="/blog/category/<%=category%>" itemprop="articleSection"><%=categoryDisplay%></a>
+  </p>
+  <svg>
+    <use xlink:href="#separator-icon"></use>
+  </svg>
+  <p>
+    <%- partial('../../atoms/text/time', { textTime: timeDisplay, dateTime:timeData,timeShema: 'datePublished'})%>
+  </p>
+  </div>
+</div>
+

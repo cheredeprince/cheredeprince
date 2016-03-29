@@ -1,0 +1,20 @@
+<%- partial('../templates/one-col-head',{title: "Je liste les commentaires"}) %>
+
+<table>
+  <tr>
+    <th>État</th>
+    <th>Contenu</th>
+    <th>Auteur</th>
+    <th>Date</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% arts.forEach(function(art){%>
+    <tr><th colspan="5"><h3><a href="/blog/show/<%=art.name%>"><%=art.title%></h3></th></tr>
+    <% art.comments.forEach(function(comment){%>
+      <%-partial('templates/row-admin',{comment:comment})%>
+    <%})%>	  
+ <% })%>
+
+</table>
+<%include ../templates/one-col-foot %>

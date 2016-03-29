@@ -1,0 +1,54 @@
+//Article
+
+.article{
+    margin-bottom: $space;
+    .block{
+	padding: $pad-half;
+    }
+}
+.article-header{
+
+    margin-bottom: $pad-half;
+    .head{
+    }
+
+    .banner{
+	margin-bottom: $pad;
+    }
+
+    h1{
+	font-size: 2.3em;
+	margin-bottom: $pad-half; 
+    }
+    .byline-container{
+	margin-bottom: $pad-half;
+    }
+}
+
+/*
+.article-footer{
+    
+}*/
+
+
+//Social Share
+.social-share {
+    overflow: hidden;
+    margin-bottom: $space;
+
+    li {
+	float: left;
+	margin-right: $space-half;
+    }
+
+    a {
+	background: $gray-dark;
+	color: $white;
+	display: block;
+	padding: $pad-half;
+
+	&:hover {
+	    background: $gray;
+	}
+    }
+}

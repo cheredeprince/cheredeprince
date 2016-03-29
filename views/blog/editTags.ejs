@@ -1,0 +1,23 @@
+<div role="main" class="b-border">
+  <div class="block">
+    <h1 class="section-title big-title">Édite les tags de l'article: <%= art.title %> </h1>
+    <div class="edit-entry">
+    <%include ../templates/info-block %>
+    
+      <form action="/blog/updateTags/<%= art.name%>" method="POST" class="form">
+	<fieldset>
+      <% tags.forEach(function(tag){%>
+	<div class="field-container">
+	  <label for="<%=tag.name%>"><%=tag.name%></label>
+          <input type="checkbox" name="idTag"  class="form-entry" value="<%= tag.id %>" <%=(art.tagsUp[tag.name])?"checked":""%>/>
+        </div>
+      <%})%>
+    </fieldset>
+      <input type="submit" class="btn sucess" value="Enregistrer"/>
+    
+      <input type="hidden" name="_csrf" value="<%= _csrf%>"/>
+      
+    </form>
+    </div>
+  </div>
+</div>

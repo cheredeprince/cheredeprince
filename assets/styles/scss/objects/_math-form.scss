@@ -1,0 +1,34 @@
+.math-search-comp{
+    z-index: 10;
+    background : $green-background;
+    border: 1px solid $green;
+    border-top: none;
+}
+
+.math-search-comp-sugg, .math-search-comp-category{
+    padding-left: $pad-half;
+    padding-top: $space-quarter;
+    line-height: 1.5 * $space;
+}
+
+.math-search-comp-category{
+    font-family: $font-secondary;
+    font-style: italic;
+}
+
+.math-elt-mini{
+    clear:both;
+    .elt-dot-type{
+	float:left; 
+    }
+    .elt-title{
+	margin-left: $pad-quarter;
+    }
+    .elt-name{
+	margin-left: $pad-quarter;
+    }
+}
+
+.ui-state-focus{
+    background: $green-background-dark;
+}

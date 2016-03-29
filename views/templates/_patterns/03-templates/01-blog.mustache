@@ -1,0 +1,18 @@
+<div class="page" id="page">
+  {{> organisms-header }}
+  <div role="main">
+    <h1 class="section-title big-title">BLOG</h1>
+    <div class="l-two-col">
+      <div class="l-main">
+	{{> organisms-latest-posts }}
+      </div><!--end l-main-->
+
+      <div class="l-sidebar">
+	{{>organisms-a-propos}}
+	{{>organisms-categories-list}}
+	{{>organisms-tags-list}}
+      </div><!--end l-sidebar-->
+    </div><!--end two-col-->
+  </div><!--End role=main-->
+  {{> organisms-footer }}
+</div>

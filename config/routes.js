@@ -32,9 +32,36 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'admin/index'
-  }
+    'GET /': 'IndexController',
+
+    'GET /blog/list': 'BlogController.list',
+    'GET /blog/show': 'BlogController.show',
+    'GET /blog/new': 'BlogController.new',
+    'GET /blog/category/:id/page/:page': 'BlogController.category',
+    'GET /blog/tag/:id/page/:page': 'BlogController.tag',
+    'GET /blog/page/:page': 'BlogController.index',
+    'GET /blog/:id': 'BlogController.show',
+
+    'GET /math/elt/:id': 'MathController.elt',
+    'GET /math/completion': 'MathController.completion',
+    'GET /math/search': 'MathController.search',
+    'GET /math/find': 'MathController.find',
+    'GET /math/load': 'MathController.load',
+    'GET /math/graph': 'MathController.graph',
+    'GET /math/admin_data': 'MathController.admin_data',
+    'GET /math/completion_tag': 'MathController.completion_tag',
+    'GET /math/completion_mention': 'MathController.completion_mention',
+    'GET /math/subscribe': 'MathController.subscribe',
+    'GET /math/:id': 'MathController.index',
+
+
+    'GET /images/blog/:name/:file': 'ImagesController.blog',
+    'GET /images/blog/:name/b/:file': 'ImagesController.banner',
+    'GET /images/blog/:name/s/:file': 'ImagesController.sticker',
+    '/rss': '/rss/rss.xml',
+    '/feed': '/rss/rss.xml',
+    'GET /sitemap': 'SitemapController.index'
+
 
   /***************************************************************************
   *                                                                          *

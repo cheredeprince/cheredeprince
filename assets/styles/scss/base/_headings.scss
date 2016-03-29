@@ -1,0 +1,41 @@
+/* Headings */
+/*Further Reading: http:/csswizardry.com/2012/02/pragmatic-practical-font-sizing-in-css/ */
+h1, .alpha   { 
+    line-height: 1.2;
+    font-family: $font-title;
+    font-weight: normal;
+    color: $red;
+    text-align: center;
+}
+
+h2, .beta    { 
+    line-height: 1.2;
+    font-family: $font-secondary;
+    margin-bottom: $space;
+    color: $red;
+    text-align: center;
+}
+
+h3, .gamma   { 
+    line-height: 1.2;
+    margin-bottom: $space;
+    padding-left: 1.5*$pad;
+}
+
+h4, .delta   {
+    
+}
+
+h5, .epsilon { 
+    
+}
+
+h6, .zeta    { 
+    
+}
+
+/* Subheadings */
+.subheading {
+    font-family: $font-secondary;
+    font-weight: normal;
+}

@@ -1,0 +1,84 @@
+/*------------------------------------*\
+  $BUTTONS
+  \*------------------------------------*/
+
+
+@mixin btn-type($color-light,$color,$color-dark,$color-dark-2){
+    background: $color;
+    border: $pad*0.1 solid $color-dark;
+    &:hover{
+	text-decoration: none;
+	background: $color-dark;
+	color: $white;  /* empêche la couleur du hover des liens*/
+    }
+
+    &:focus{
+	border: $pad*0.1 solid $color-dark-2;
+	color: $white;
+    }
+    
+    &:active{
+	background: $color-dark-2;
+    }
+
+    &.disabled {
+	background: $color-light;
+	color: $color;
+    }
+}
+
+.btn {
+    display: inline-block;
+    width: auto;
+    color: $white;
+    line-height: 1;
+    font-family:$font-secondary;
+    font-weight: bold;
+    padding: $pad*0.9;
+    @include rounded(0.4em);
+    text-align: center;
+    @include btn-type($gray-light,$gray,$gray-dark,$gray-dark-2)
+}
+
+.btn.sucess{
+    @include btn-type($green-light,$green,$green-dark,$green-dark-2)
+}
+.btn.alt{
+    @include btn-type($blue-light,$blue,$blue-dark,$blue-dark-2)
+}
+
+.btn.danger{
+    @include btn-type($red-light,$red,$red-dark,$red-dark-2)
+}
+
+.btn-small {
+    padding: $pad-half;
+}
+
+.btn-large {
+    padding: $pad-half;
+    text-transform: uppercase;
+    background: $gray;
+    font-size: 1.4rem;
+    font-weight: normal;
+}
+
+
+.text-btn {
+    font-family:$font-secondary;
+    font-size: $font-size-small-2;
+    font-weight: bold;
+    color: $blue-dark;
+    &:hover{
+	text-decoration: underline;
+	color:$blue-dark;
+    }
+}
+
+/*icon button */
+
+.icon-button{
+    cursor: pointer;
+    background: $green;
+    border: 1px solid $green-dark;
+}

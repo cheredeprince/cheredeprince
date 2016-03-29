@@ -1,0 +1,147 @@
+.math-box{
+    background: $green-background;
+    font-size: $font-size-med-2;
+    
+    .object{
+	position: relative;
+	padding: $space-half  $space;
+	.math-box-para{
+	    margin-bottom:$space;
+	}
+	.elt-type-container{
+	    position: relative;
+	    .elt-dot-type{
+		position:absolute;
+		left: -0.75em;
+	    }
+	}
+    }
+
+    .math-box-content{
+	p{
+	    margin-bottom: $space-half;
+	}
+    }
+}
+
+
+.elt-title-container{
+    display: inline;
+    cursor: pointer;
+    &:hover{
+	.elt-title{
+	    text-decoration: underline;
+	}
+    }
+    
+    .elt-name{
+	margin-left:$space-half;
+    }
+}
+
+.math-box-related-info{
+    margin-bottom: $space;
+}
+
+
+.math-elt-list-mini{
+    padding-left: $pad-half;
+}
+
+.math-box-footer{
+    .math-box-icon-mini{
+	display:inline-block;
+	margin-left: $space-and-half;
+
+	&:first-child{
+	    margin-left:0;
+	}
+	
+	.math-box-number{
+	    line-height: $space-and-half;
+	    display: inline-block;
+	    vertical-align: middle;
+	    margin-left: $space-half;
+	}
+	.math-box-icon{
+	    display: inline-block;
+	    vertical-align: middle;
+	    width: $space-and-half;
+	    height: $space-and-half;
+	}
+    }
+}
+
+.math-box-icon{
+    cursor:pointer;
+    width: $space-and-half;
+    height: $space-and-half;
+    &:hover{
+	background: $green-background-dark;
+    }
+}
+
+.math-box-delete-btn{
+    position: absolute;
+    z-index: 2;
+    right: $space;
+    top:$space-half;
+}
+
+.math-box-family{
+    width: 100%;
+    margin-bottom: $space;
+    
+    .math-box-family-check-c,.math-box-family-check-p{
+	position: absolute;
+	opacity: 0;
+    }
+
+    .math-box-family-label{
+	cursor: pointer;
+	padding: 0;
+    }
+
+
+    .math-box-family-list{
+	clear:both;
+	height:0;
+	overflow: hidden;
+    }
+
+    .math-box-family-check-c:checked{
+	& ~ .math-box-family-children{
+	    height: initial;
+	}
+    }
+
+    .math-box-family-check-p:checked{
+	& ~ .math-box-family-parents{
+	    height: initial;
+	}
+    }
+
+    .math-box-family-title >*:hover{
+	.elt-family-name{
+	    text-decoration: underline;
+	}
+    }
+
+    .elt-children-info,.elt-parents-info{
+	width:50%;
+	text-align: center;
+	border-bottom: 1px solid $gray-light-2;
+    }
+
+    .elt-parents-info{
+	border-right: 1px solid $gray-light-2;
+	float: left;
+    }
+    .elt-children-info{
+	float: right;
+    }
+    
+    .math-box-family-open{
+	background: $green-background-dark;
+    }
+}

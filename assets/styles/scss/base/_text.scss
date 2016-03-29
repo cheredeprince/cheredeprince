@@ -1,0 +1,35 @@
+/* Text-Related Elements */ 
+p {
+	margin-bottom: $space;
+}
+
+/* Blockquote */
+blockquote {
+    font-style:italic;
+    border-left: 1px solid $blue-light;
+    color: $gray-dark-2;
+    padding-left: 1.5*$pad;
+    margin-bottom: $space;
+    cite{
+	padding-left: $pad;
+    }
+}
+
+/* Horizontal Rule */ 
+hr {
+	border: 0;
+    height: 2px;
+    background: $gray-light-2;
+    margin: $space-double 0;
+}
+
+abbr {
+    border-bottom: 1px dotted $gray;
+    cursor: help;
+}
+
+/* Time */
+/*Visibility*/
+.hidden{
+    display:none;
+}

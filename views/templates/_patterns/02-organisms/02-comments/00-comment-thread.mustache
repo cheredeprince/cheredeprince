@@ -1,0 +1,22 @@
+<section id="comments-form" class="comments-form section">
+  <div class="b-border">
+    <div class="block">
+      <div>
+	<h2 class="section-title" id="comment-form-title" >Laisse un commentaire</h2>
+      {{> molecules-comment-form }}
+    </div>
+  </div>
+</section>
+
+<section class="comments section">
+  <div class="b-border comments-container" id="comments-container">
+    <div class="block">
+      <h2 class="section-title">Les commentaires</h2>
+      <ul class="comment-list">
+	{{# listItems.one }}
+	  {{> molecules-single-comment }} 
+	{{/ listItems.one }}
+      </ul>
+    </div>
+  </div>
+</section>

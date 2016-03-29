@@ -1,0 +1,125 @@
+$base-font-size: 16px;
+
+@function em($px, $base: $base-font-size) {
+    @return ($px / $base) * 1em;   
+}
+
+
+$s-breakpoint:  em(640px);
+$m-breakpoint: em(1024px);
+$l-breakpoint:  em(1440px);
+
+$head-height: 40px;
+$s-menu-width: em(213.33333px);
+$m-menu-width: em(256px);
+$l-menu-width: em(360px);
+
+
+
+html,body{
+    padding:0;
+    margin:0;
+    height:100%;
+    overflow-x: hidden;
+}
+
+.background{
+    background-color: black;
+    position:relative;
+    width: 100%;
+    height:100%;
+}
+
+@mixin calc($property, $expression) {
+    #{$property}: -webkit-calc(#{$expression});
+    #{$property}: calc(#{$expression});
+} 
+
+#page{
+    position: absolute;
+    top:$head-height;
+    left:0;
+    width:100%;
+    height:92%;
+    @include calc(height, "100% - 40px");
+    background-color: white;
+    overflow:scroll;
+}
+
+.nudedList{
+
+    
+    @media(min-width: $s-breakpoint){
+	width: $s-menu-width;
+    }
+    @media(min-width: $m-breakpoint){
+	width: $m-menu-width;
+    }
+    @media(min-width: $l-breakpoint){
+	width: $l-menu-width;
+    }
+
+}
+
+
+.admin-nav{
+    display:inline;
+    li{
+	display:inline;
+    }
+}
+
+.user-info{
+    position:absolute;
+    top:0;
+    right:0;
+    width: 6em;
+}
+
+.text-info{
+    margin: 0 auto;
+    text-align: center;
+    max-width: 40em;
+    color: #212121;
+    font-family: serif;
+}
+
+.admin-option{
+    margin-top: 40px;
+}
+.user-info,.admin-nav li,.admin-option li{
+    color:white;
+}
+
+#sandwich-menu:checked ~ #page{
+    left: 100%;
+    @media(min-width: $s-breakpoint){
+	left: $s-menu-width;
+	@include calc(width, "100% -"$s-menu-width);
+    }
+    @media(min-width: $m-breakpoint){
+	left: $m-menu-width;
+	@include calc(width, "100% -"$m-menu-width);
+    }
+    @media(min-width: $l-breakpoint){
+	left: $l-menu-width;
+	@include calc(width, "100% -"$l-menu-width);
+    }
+    
+}
+
+
+.edit-entry{
+    text-align:center;
+    h3{
+	margin-bottom: 0.5em;
+    }
+    .entry{
+	margin: 2em auto;
+
+	figure{
+	    margin: .5em auto;
+	    max-width: 500px;
+	}
+    }
+}

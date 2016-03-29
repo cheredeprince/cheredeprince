@@ -1,0 +1,50 @@
+html{
+}
+
+.space{
+    background-color: #131313;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
+}
+
+.points,.math-wait-please-img{
+    max-width: 100%;
+    display:block;
+    margin: auto;
+}
+
+
+
+.math-wait-please-img{
+    width: 80%;
+    height: auto;
+}
+
+h3{
+    height: 20%;
+    text-align: center;   
+    text-decoration:none;
+    color: white;
+}
+
+.points{
+    height:20%;
+}
+
+.math-wait-please{
+    margin:auto;
+    height: 50%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
+    
+    @media all and (max-width
+}

@@ -1,0 +1,29 @@
+<tr data-id="<%=comment.id%>" data-model="comment">
+  <td data-attr="status" style="color:<%=(comment.status == 'valid')? 'green':(comment.status == 'waiting')?'orangered': 'gray'%>">●</td>
+  
+  <td data-attr="contentHTML" class="text" style="text-align:left; padding-left: <%=comment.level%>em"><p style="background:white"><%-comment.contentHTML%></td>
+  <td data-attr="pseudo" class="text"><%-comment.pseudo%></td>
+  <td data-attr="createdAt"><%=comment.createdAtDisplay%></td>
+  <td>
+    <div class="btn-space">
+      <a href="/comment/valid/<%= comment.id%>" class="btn sucess <%=(comment.status == 'valid')?'disabled':''%>">Vld</a>
+    </div>
+  </td>
+  <td>
+    <div class="btn-space">
+      <a href="/comment/refuse/<%= comment.id%>" class="btn <%=(comment.status == 'refused')?'disabled':''%>">Rfs</a>
+    <div>
+  </td>
+  <td>
+    <form action="/comment/destroy/<%= comment.id%>" method="POST" >
+      <input type="hidden" name="_method" value="delete" />
+      <div class="btn-space">
+	<input type="submit" value="Suppr" class="btn danger"/>
+      </div>
+      <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+    </form>
+  </td>
+</tr>
+<% comment.responses.forEach(function(response){%>
+  <%-partial('./row-admin',{comment:response})%>
+<%})%>

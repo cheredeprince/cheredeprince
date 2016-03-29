@@ -1,0 +1,12 @@
+.math-admin-new,.math-admin-save{
+    text-align: center;
+}
+.math-admin-btn{
+    min-width : 50%;
+}
+.math-admin-edit-btn{
+    z-index:2;
+    position: absolute;
+    right: $space-double + $space;
+    top: $space-half;
+}

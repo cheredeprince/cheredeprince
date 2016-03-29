@@ -1,0 +1,11 @@
+/* Links */ 
+a {
+    text-decoration: none;
+    outline: 0;
+    color: $text-color;
+    
+    &:hover, &:focus {
+		 text-decoration: underline;
+		 color: $gray-light;
+	     }
+}

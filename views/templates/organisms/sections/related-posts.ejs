@@ -1,0 +1,18 @@
+<section class="section related-posts b-border"> 
+  <div class="block">
+    <h3 class="section-title">À un battement d'aile de cette page</h3>
+    <ul>
+      <%posts.forEach(function(post){%>
+	<li>
+	  <a href="/blog/show/<%=post.name%>">
+	    <picture class="sticker">
+	      <source type="image/svg+xml" srcset="/images/blog/<%=post.name%>/s/original.svg">
+	      <img src="/images/blog/<%=post.name%>/s/original.png" alt="<%=post.stickerAlt%>">
+	    </picture>
+	    <h4><%=post.title%></h4>
+	  </a>
+	</li>
+      <%})%>
+    </ul>
+  </div>
+</section>

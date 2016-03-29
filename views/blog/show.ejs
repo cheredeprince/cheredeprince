@@ -1,22 +1,59 @@
-<div class="text-place">
-  <div class="article">
-    <h1><%=art.title %></h1>
-    <h2><%=art.category%></h2>
-    <%if(art.banner){%>
-      <div class="banner">
-	<!-- <img  src="/images/blog/<%=art.name%>/b/original.svg"/> -->
-
-
-	<object data="/images/blog/<%=art.name%>/b/original.svg" type="image/svg+xml">
-	  <div class="fallback">
-	    <%=art.altBanner%>
+<div class="page">
+  <div role="main" >
+    <div class="l-two-col">
+      <div class="l-main">
+	<article class="article" itemscope itemtype="http://schema.org/Article"  itemprop="articleBody">
+	  <header class="article-header">
+	    <div class="head">
+	      <div class="banner">
+		<picture>
+		  <source type="image/svg+xml" srcset="/images/blog/<%=art.name%>/b/original.svg">
+		  <img  itemprop="image" src="/images/blog/<%=art.name%>/b/original.png" alt="banner">
+		</picture>
+	      </div>
+	    </div>
+	    <%- partial('../templates/molecules/text/paratext',{category:art.category,categoryDisplay: art.categoryDisplay, timeDisplay: art.publishedAtDisplay, timeData: art.publishedAtData, timeShema:'datePublished'})%>
+	    <h1 itemprop="headline"><%=art.title%></h1>
+	    <%if(art.author){%>
+	      <div class="byline-container">
+		<%-partial('../templates/molecules/text/byline',{authorName:art.author.name})%>
+	      </div>
+	    <%}%>
+	  </header>
+	  <div class="b-border">
+	    <div class="block">
+	      <div class="text" itemprop="text">
+		<p class="intro" itemprop="description"><%-art.introHTML%></p>
+		<%-art.textHTML%>
+	      </div>
+	      <footer class="article-footer">
+		<div class="separation sprite-icon"></div>
+		<div class="related-tags">
+		  <span class="info-text">Tags associés :</span>
+		  <ul class="inline-list" itemprop="keywords" >
+		    <%art.tags.forEach(function(tag){%>
+		    <li><a href="/blog/tag/<%=tag.name%>"><%=tag.name%></a></li>
+		    <%})%>
+		  </ul>
+		</div>
+	      </footer>
+	    </div>
 	  </div>
-	</object>
-
-	
+	</article>
+	<%-partial('../templates/organisms/comments/comment-thread',{articleName: art.name,comments:comments}) %>
       </div>
-    <%}%>
-	<div  class="intro"> <%-art.introHTML%></div>
-	<div class="text"><%-art.textHTML%> </div>
+      <div class="l-sidebar">
+	<%-partial('../templates/organisms/sections/a-propos',{})%>
+	<%-partial('../templates/organisms/sections/related-posts',{posts:relatedArts})%>	
+	<%-partial('../templates/organisms/sections/tags-list',{list:tagsList})%>
+      </div>
+    </div>
+    <%-partial('../templates/organisms/global/footer',{})%>
   </div>
 </div>
+
+
+
+
+
+

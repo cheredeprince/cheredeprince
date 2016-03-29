@@ -1,0 +1,22 @@
+
+	<!--DO NOT REMOVE-->
+	{% pattern-lab-foot %}
+<script src="../../js/jquery-2.0.0b2.js"></script>
+<script>
+$(".response-event").click(function(e){
+
+	$("#comment-input-container").append('<input id="input-is-response" type="hidden" name="is-response" value="true"/><input type="hidden" id="input-comment-id" name="commment-id" value="'+$(e.target).attr('data-commentid')+'"> ')
+		$("#comment-form-title").html('Pondre une réponse pour ' + $(e.target).attr('data-name')+ '<span class="text-info"> (<a href="#comment-form" id="response-cancel" class="text-btn">annuler</a>)</span> ' );
+	$("#comment-submit-btn").attr("value","(Ré)Pondre")
+	
+	$("#response-cancel").click(function(e){
+		$("#input-is-response").remove()
+		$("#input-comment-id").remove()
+			$("#comment-form-title").text("Dépose ton commentaire")
+			$("#comment-submit-btn").attr("value","Déposer")
+	})
+})
+
+</script>
+	</body>
+</html>

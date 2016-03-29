@@ -1,0 +1,9 @@
+    <% if(flash && flash.err) {%>
+      <ul class="place-info info-text">
+	<% flash.err.forEach( function(error){%>
+	  <li>
+            <%= error.message %>
+	  </li>
+      </ul>
+	<%})%>
+    <% } %>

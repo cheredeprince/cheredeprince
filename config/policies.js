@@ -26,21 +26,21 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-    '*': ['flash','getModel'],
+    '*': ['flash','getModel','clientPage'],
+    '404': 'clientPage',
     'session':{
-	'destroy':  ['flash','authentificated']
+	'destroy':  ['flash','authentificated','clientPage']
     },
     'user':{
-	'*': ['flash','authentificated','selfProfile'],
-	'new': 'flash',
-	'create': 'flash',
-	'subscribe': 'flash',
-	'index': ['flash','admin']
+	'*': ['flash','authentificated','selfProfile','clientPage'],
+	'new': ['flash','clientPage'],
+	'create': ['flash','clientPage'],
+	'subscribe': ['flash','clientPage'],
+	'index': ['flash','admin','clientPage']
     },
     'blog':{
-	'*':['flash','authentificated','getModel'],
-	'index': ['flash','getModel'],
-	'show': ['flash','getModel']
+	'index': ['flash','getModel','clientPage'],
+	'show': ['flash','getModel','clientPage']
     }
 
   /***************************************************************************

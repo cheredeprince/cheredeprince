@@ -1,0 +1,32 @@
+<%- partial('../templates/one-col-head',{title: "Je liste les accroches"}) %>
+    <a href="/leadin/new" class="text-btn">Créer une accroche</a>
+    <table>
+      <tr>
+	<th>Contenu</th>
+	<th>Date de création</th>
+	<th></th>
+	<th></th>
+      </tr>
+      <% leadIns.forEach(function(leadIn){%>
+	<tr data-id="<%=leadIn.id%>" data-model="leadin">
+	  
+	  <td data-attr="contentHTML" class="text"><%-leadIn.contentHTML%></td>
+	  <td data-attr="createdAt"><%=leadIn.createdAtDisplay%></td>
+	    <td>
+	      <div class="btn-space">
+		<a href="/leadin/edit/<%= leadIn.id%>" class="btn sucess">Éditer</a>
+              </div>
+	    </td>
+	    <td>
+	      <form action="/leadin/destroy/<%= leadIn.id%>" method="POST" >
+		<input type="hidden" name="_method" value="delete" />
+		<div class="btn-space">
+		  <input type="submit" value="Supprimer" class="btn danger"/>
+		</div>
+		<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+	      </form>
+	    </td>
+	</tr>
+      <%})%>
+    </table>
+     <%include ../templates/one-col-foot %>

@@ -1,0 +1,186 @@
+//Passages of text
+.text {
+    text-align:left;
+    line-height: 1.5em;
+    p{
+	@include hyphens(auto);
+    }
+    a{
+	color:$blue;
+	&:hover,&:focus{
+	    color:$blue;
+	    text-decoration: underline;
+	}
+	&:focus{
+	    border: 1px dotted $blue;}
+    }
+
+    ul {
+	list-style: none;
+	margin: 0 0 $space 1.5em;
+	li{
+	    margin-bottom: $space-half;
+	    position:relative;
+	    &:before{
+		/*display: block;*/
+		position: absolute;
+		/*top: 1em;*/
+		font-size: 0.5em;
+		/*left: -1.5/0.5 *1em;*/
+		left:-1.5em;
+		content: "■";
+		font-weight: bold;
+	    }
+	}
+	ul {
+	    margin-bottom: 0;
+	    margin-top: $space-half;
+	}
+    }
+
+    ol {
+	counter-reset:item;
+	list-style: none;
+	margin: 0 0 $space 1.5em;
+	li{
+	    position:relative;
+	    margin-bottom:$space-half;
+	}
+	li:before{
+	    /*display: block*/
+	    position: absolute;
+	    left: -1.5em;
+	    content: counter(item, decimal) ". ";
+	    counter-increment: item;
+	    font-family:$font-secondary;
+	    font-weight: bold;
+	}
+	
+	ol {
+	    margin-bottom: 0;
+	    margin-top: $space-half;
+	    li:before{
+		font-weight: normal;
+	    }
+	}
+    }
+}
+
+//Intro text
+.intro {
+    font-size: $font-size-med-2;
+    font-weight: bold;
+}
+
+//Pullquote
+.pullquote {
+    font-family: $font-secondary;
+    font-size: $font-size-large;
+}
+
+//Caption 
+.caption {
+    font-style: italic;
+}
+
+//Paratext
+.paratext{
+    font-weight: bold;
+    font-style: italic;
+    font-familly: $font;
+    font-size: $font-size-small-2;
+    text-align: center;    
+    margin-bottom: $space-half;
+
+    p{
+	margin-bottom: $space-quarter;
+    }
+    svg{
+	display:none;
+    }
+    .category-display{
+	text-align:center;
+    }
+    @media all and (min-width: $bp-small-2) {
+	display: table;
+	width: 100%;
+	&>div{
+	    width:100%;
+	    display: table-row;
+	}	
+	p{
+	    width:50%;
+	    text-align:left;
+	    padding:0 0.5*$space+$space-half;
+	    display: table-cell;
+	    margin-left:-0.5*$space;
+	}
+	.category-display{
+	    margin-right: -0.5*$space;
+	    text-align: right;
+	}
+	svg{
+	    display:table-cell;
+	    width:$space;
+	    height:$space;
+	}
+    }
+}
+
+
+//Byline
+
+.byline{
+    text-align:center;
+    font-size: $font-size-small-2;
+    .author{
+	font-size:$font-size-med-2;
+	font-weight: bold;
+    }
+}
+
+//Info
+
+.info-text{
+    font-size: $font-size-small;
+    font-family: $font-secondary;
+}
+
+.appear-box{
+    background: $blue-light;
+    color: white;
+    font-size: $font-size-large;
+    text-align: center;
+}
+
+// Lead-in 
+.lead-in{
+    text-align: center;
+    font-family: $font-secondary;
+    font-size: $font-size-small;
+    color: $gray-light;
+    text-align: center;
+    line-height: 1;
+    margin:0;
+}
+
+//Site name
+
+.site-name{
+    display: block;
+    text-align: center;
+    font-size: $font-size-small;
+    font-style: italic;
+    padding: $pad-quarter;
+}
+
+
+// Related Tags
+
+.related-tags{
+    ul{
+	margin:0;
+	display: inline;
+	font-size: $font-size-small;
+    }
+}

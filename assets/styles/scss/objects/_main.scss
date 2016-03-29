@@ -1,0 +1,20 @@
+/*------------------------------------*\
+    $MAIN CONTENT AREA
+\*------------------------------------*/
+[role=main] {
+	padding: 0px $pad-half $pad-double;
+	@extend .lc;
+	@extend .cf;
+}
+
+
+body{
+    background-image: url($backgroundLink);
+}
+.paper-background{
+    	background-image: url($backgroundLink);
+}
+
+#page{
+    overflow-x: hidden;
+}

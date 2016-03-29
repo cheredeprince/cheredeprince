@@ -1,0 +1,26 @@
+/*------------------------------------*\
+  $Table
+  \*------------------------------------*/
+table {
+    border-collapse: collapse; 
+    border-spacing: 0; 
+    width: 100%;
+    display:block;
+}
+th {
+    text-align: center;
+    font-family: $font-secondary;
+    font-size: 1em;
+    font-weight:normal;
+    border-bottom: 2px solid $gray-dark;
+    padding: 0.2em;
+}
+td {
+    text-align: center;
+    border: 1px solid $gray-light;
+    padding: 0.2em;
+}
+
+tr:nth-child(2n){
+    background: $red-light-2;
+}

@@ -1,0 +1,6 @@
+<label for="category">Catégorie</label>
+<select name="category" class="form-entry" data-save="auto">
+  <% Object.keys( sails.config.variables.blog.categories).forEach(function(categoryKey){%>
+    <option value="<%=categoryKey%>" <%=(typeof categorySelected != 'undefined' && categorySelected == categoryKey)?"selected":""%>><%=sails.config.variables.blog.categories[categoryKey]%></option>
+  <% })%>
+</select>

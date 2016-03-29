@@ -1,0 +1,40 @@
+<%if(comment.status !=='refused'){%>
+  <li class="comment-container">
+    <div class="comment-meta">
+      <div>
+	<img src="<%=comment.avatar%>" alt="L'avatar de <%=comment.pseudo%>"/>
+	<div class="meta-text">
+	  <h4 class="comment-name" itemprop="name">
+	    <%if(comment.site){%>
+	      <a href="<%=comment.site%>" target="_blank" itemprop="url"><%=comment.pseudo%></a>
+	    <%}else{%>
+	      <%=comment.pseudo%>
+	    <%}%>
+	  </h4>
+	  <p class="comment-time">
+	    <%-partial('../../atoms/text/time',{textTime:comment.createdAtDisplay,dateTime:comment.createdAtData,timeShema:"commentTime"})%>
+	  </p>
+	</div>
+      </div>
+    </div>
+    <div class="comment-text">
+      <div class="text" itemprop="commentText">
+	<p><%-comment.contentHTML%></p>
+      </div>
+      <% if(comment.level != 3 && comment.status !== 'waiting'){%>
+	<p class="arrow response-btn">
+	  <a href="#comments-form"  data-name="<%=comment.pseudo%>" data-commentid="<%=comment.id%>" class="text-btn response-event">Répondre</a>
+	</p>
+      <%}%>
+
+    </div>
+    <div class="sprite-icon separation"> </div>
+
+    <ul class="comments-list responses">
+      <% comment.responses.forEach(function(response){%>
+	<%-partial('./single-comment',{comment:response})%>
+      <%})%>
+    </ul>
+  </li>
+<%}%>
+

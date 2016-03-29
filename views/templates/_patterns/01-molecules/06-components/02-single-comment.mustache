@@ -1,0 +1,119 @@
+<li class="comment-container">
+  <div class="comment-meta">
+    <div>
+      {{> atoms-avatar }}
+      <div class="meta-text">
+	<h4 class="comment-name"><a href="#">{{ name.first }} {{ name.last }}</a></h4>
+	<p class="comment-time">
+	  {{> atoms-time}}
+	</p>
+      </div>
+    </div>
+  </div>
+  <div class="comment-text">
+    <div class="text">
+      <p>{{ description}}</p>
+    </div>
+    <p class="arrow response-btn">
+      <a href="#comments-form"  data-name="{{ name.first }} {{ name.last }}" data-commentid="1" class="text-btn response-event">Répondre</a>
+    </p>
+  </div>
+  <div class="sprite-icon separation"> </div>
+
+  <ul class="comments-list responses">
+    <li class="comment-container">
+      <div class="comment-meta">
+	<div>
+	  {{> atoms-avatar }}
+	  <div class="meta-text">
+	    <h4 class="comment-name"><a href="#">{{ name.first }} {{ name.last }}</a></h4>
+	    <p class="comment-time">
+	      {{> atoms-time}}
+	    </p>
+	  </div>
+	</div>
+      </div>
+      <div class="comment-text">
+	<div class="text">
+	  <p>{{ description}}</p>
+	</div>
+	<p class="arrow response-btn">
+      <a href="#comments-form"  data-name="{{ name.first }} {{ name.last }}" data-commentid="1" class="text-btn response-event">Répondre</a>
+	</p>
+      </div>
+      <div class="sprite-icon separation"> </div>
+
+      <ul class="comments-list responses">
+	<li class="comment-container">
+	  <div class="comment-meta">
+	    <div>
+	      {{> atoms-avatar }}
+	      <div class="meta-text">
+		<h4 class="comment-name"><a href="#">{{ name.first }} {{ name.last }}</a></h4>
+		<p class="comment-time">
+		  {{> atoms-time}}
+		</p>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="comment-text">
+	    <div class="text">
+	      <p>{{ description}}</p>
+	    </div>
+	    <p class="arrow response-btn">
+      <a href="#comments-form"  data-name="{{ name.first }} {{ name.last }}" data-commentid="1" class="text-btn response-event">Répondre</a>
+	    </p>
+	  </div>
+	  <div class="sprite-icon separation"> </div>
+
+	  <ul class="comments-list responses">
+	    <li class="comment-container">
+	      <div class="comment-meta">
+		<div>
+		  {{> atoms-avatar }}
+		  <div class="meta-text">
+		    <h4 class="comment-name"><a href="#">{{ name.first }} {{ name.last }}</a></h4>
+		    <p class="comment-time">
+		      {{> atoms-time}}
+		    </p>
+		  </div>
+		</div>
+	      </div>
+	      <div class="comment-text">
+		<div class="text">
+		  <p>{{ description}}</p>
+		</div>
+
+	      </div>
+	      <div class="sprite-icon separation"> </div>
+	    </li>
+	  </ul>
+	  <li class="comment-container">
+	    <div class="comment-meta">
+	      <div>
+		{{> atoms-avatar }}
+		<div class="meta-text">
+		  <h4 class="comment-name"><a href="#">{{ name.first }} {{ name.last }}</a></h4>
+		  <p class="comment-time">
+		    {{> atoms-time}}
+		  </p>
+		</div>
+		</div>
+	    </div>
+	    <div class="comment-text">
+	      <div class="text">
+		<p>{{ description}}</p>
+	      </div>
+	      <p class="arrow response-btn">
+      <a href="#comments-form"  data-name="{{ name.first }} {{ name.last }}" data-commentid="1" class="text-btn response-event">Répondre</a>
+	      </p>
+	    </div>
+	    <div class="sprite-icon separation"> </div>
+	  </li>
+	</li>
+      </ul>
+      
+    </li>
+  </ul>
+
+</li>

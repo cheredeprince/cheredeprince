@@ -1,0 +1,44 @@
+/*------------------------------------*\
+    $FOOTER
+\*------------------------------------*/
+.footer {
+    clear: both;
+    overflow: hidden;
+    padding: $pad-half;
+    background: $blue-dark-2;
+    font-size: $font-size-small-2;
+    color: $green-light-2;
+    text-align: center;
+    line-height: 1.2;
+    a{
+	color: $green;
+    }
+    p:last-child{
+	margin:0;
+    }
+}
+
+//Footer Nav
+.nav-footer {
+    margin: (-$pad) (-$pad) $space;
+
+    li {
+	border-bottom: 1px solid $gray-dark;
+
+	@media all and (min-width: $bp-med) {
+	    border: 0;
+	    float: left;
+	}
+    }
+
+    a {
+	display: block;
+	padding: $pad;
+    }
+}
+
+.licence {
+    @media all and (min-width: $bp-med) {
+	float: right;
+    }
+}

@@ -1,0 +1,50 @@
+<section id="comments-form" class="comments-form section">
+  <div class="b-border">
+    <div class="block">
+      <div>
+	<h2 class="section-title" id="comment-form-title" >Laisse un commentaire</h2>
+	 <p class="info-text">Les champs indiqué par un astérisque sont requis.</p> 
+	<%include ../../info-block %>
+	<form method="post" action="/comment/create" class="comment-form">
+	  <fieldset id="comment-input-container">
+	    <div class="field-container">
+	      <label for="comment-pseudo">Ton nom*</label>
+	      <input id="comment-pseudo" name="pseudo" type="text" placeholder="Ton nom" required/>
+	    </div>
+	    <div class="field-container">
+	      <label for="comment-email">Ton email*<span class ="info-text"> Jamais, je partagerai ton adresse</span></label>
+	      <input id="comment-email" name="email" type="email" placeholder="Ton email" required/>
+	    </div>
+	    <div class="field-container">
+	      <label for="comment-site">URL</label>
+	      <input id="comment-site" name="site" type="url" placeholder="Lien vers ton site" />
+	    </div>
+	    <div class="field-container">
+	      <label for="comment-contentBB">Commentaire</label>
+	      <textarea id="comment-contentBB" name="contentBB" rows="5" placeholder="Bonne rédaction"></textarea>
+	    </div>
+	  </fieldset>
+	  <div class="button-container">
+	    <input type="submit" id="comment-submit-btn" class="btn alt" value="Déposer" >
+	  </div>
+	  <input type="hidden" name="article" value="<%=articleName%>"/>
+	  <input type="hidden" name="_csrf" value="<%= _csrf%>"/>
+	</form>
+      </div>
+    </div>
+</section>
+
+<%if(comments.length !==0){%>
+<section class="comments section">
+  <div class="b-border comments-container" id="comments-container">
+    <div class="block">
+      <h2 class="section-title">Les commentaires</h2>
+      <ul class="comments-list" itemscope itemtype="http://schema.org/UserComments">
+	<% comments.forEach(function(comment){%>
+		<%-partial('../../molecules/components/single-comment',{comment:comment})%>
+	<%})%>
+      </ul>
+    </div>
+  </div>
+</section>
+<%}%>

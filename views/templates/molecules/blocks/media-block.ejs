@@ -1,0 +1,20 @@
+<div class="b-border">
+  <div class="block block-thumb">
+    {{>molecules-paratext}}
+    <a href="{{ url }}" class="a-title">
+      <h2 class="b-title">{{ headline.short }}</h2>
+    </a>
+    <div class="byline-container">
+      <%-partial('../text/byline',{authorName:authorName})%>
+    </div>
+    <div class="b-inner">
+      <div class="b-thumb">
+	{{> atoms-sticker }}
+      </div>
+
+      <div class="b-text text">
+	<p>{{ excerpt.medium }}</p>
+      </div>
+    </div>
+  </div>
+</div>

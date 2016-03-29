@@ -1,0 +1,112 @@
+$logo-ratio: 0.171428;
+$logo-width-small: $logo-ratio* $bp-small;
+
+.header {
+    background: $white;
+    padding: 0;
+    border-bottom: 1px solid $red-dark;
+    margin-bottom: $space;
+    
+    .nav-container{
+	margin-bottom:-1px; // pour inclure la bordure du header	    
+    }
+
+
+    .logo-lead-in{
+	margin: 0 $space-quarter $space-half $space-quarter;
+	transition: margin 2s;
+
+
+
+	.logo {
+	    display: block;
+	    width: $logo-ratio* 100%;
+	    max-width: $logo-width-small; 
+	    margin: 0 auto $space-quarter auto;
+
+
+	}
+
+	.lead-in-container{
+	    text-align:center;
+	    position: relative;
+
+	    .stroke{
+		position: absolute;
+		left:50% + $logo-ratio*0.5*0.75*100%;
+		top: -.9375em;
+		width: 6.25em; //100px
+			       height: .9375em; // 15px
+
+	    }
+	}
+    }
+}
+
+.header-large{
+    .nav-container{
+	@media all and (min-width: $bp-large){
+	    width: $bp-large;
+	    margin: 0 auto;
+	}
+    }
+    .logo-lead-in{
+	transition: margin 2s;
+	@media all and (min-width: $bp-small-2){
+	    display:table;
+	    margin: 0 auto $space-half auto;
+	    width: $logo-width-small+ 2*$phi * $logo-width-small;
+	    &>div{
+		display: table-row;
+	    }
+	    
+	    @media all and (min-width: $bp-xl){
+		margin: -1*$font-size-med 0  -1*$font-size-med $space-quad;
+	    }  
+	}
+
+
+	.logo {
+	    @media all and (min-width: $bp-small-2) {
+		display: table-cell;
+		margin:0;
+		width: $logo-width-small;
+		
+	    }
+	}
+
+	.lead-in-container{
+
+	    @media all and (min-width: $bp-small-2){
+		display: table-cell;
+		width: 2*$phi * $logo-width-small;
+		vertical-align:middle;
+	    }
+	    .stroke{
+		@media all and (min-width: $bp-small-2){
+		    position: static;	
+		    transform: rotateX(180deg);
+		}   
+	    }
+	}
+    }
+}
+
+
+.nav-toggle {
+    float: right;
+    display: block;
+    padding: 0.9rem 1rem 0.7rem;
+    font-size: 1.3rem;
+    line-height: 1;
+    border-left: 1px solid #dbdbdb;
+
+    @media all and (min-width: $bp-med) {
+	display: none;
+    }
+
+    @media all and (max-width: 17em) {
+	padding-left: 0.2rem;
+	padding-right: 0.2rem;
+    }
+}

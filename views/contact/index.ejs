@@ -1,0 +1,52 @@
+<div class="page" id="page">
+  <div role="main">
+    <div class="l-one-col">
+      <div class="l-main">
+	<article class="article">
+	  <% if(flash && flash.err) {%>
+	    <ul class="place-info appear-box">
+	      <% flash.err.forEach( function(error){%>
+		<li class="info-text">
+		  <%= error.message %>
+		</li>
+	    </ul>
+	      <%})%>
+	  <% }%>
+	  <section id="comments-form" class="comments-form section">
+	    <div class="b-border">
+	      <div class="block">
+		<div>
+		  <h2 class="section-title" id="comment-form-title" >Contactez-moi</h2>
+		  <p class="info-text">Les champs indiqué par un astérisque sont requis.</p>
+		  <form method="post" action="/contact/envoi" class="comment-form">
+		    <fieldset id="comment-input-container">
+		      <div class="field-container">
+			<label for="contact-name">Tu t'appelles&nbsp;*</label>
+			<input name="contact-name" id="contact-name" type="text" placeholder="Ton nom" value="<%=(contact.name)?contact.name:""%>" />
+		      </div>
+		      <div class="field-container">
+			<label for="contact-email">Je peux te joindre à l'adresse&nbsp;* <span class ="info-text">(Jamais, je ne la partagerai)</span></label>
+			<input name="contact-email" id="contact-email" type="email" placeholder="Ton email" value="<%=(contact.email)?contact.email:""%>" />
+		      </div>
+		      <div class="field-container">
+			<label for="contact-url">Si tu as un site, son URL&nbsp;:</label>
+			<input name="contact-url" id="contact-url" type="url" placeholder="Lien vers ton site" value="<%=(contact.url)?contact.url:""%>" />
+		      </div>
+		      <div class="field-container">
+			<label for="contact-message">Ton message</label>
+			<textarea name="contact-message" id="conctact-message" rows="5" placeholder="Bonne rédaction"><%=(contact.message)?contact.message:""%></textarea>
+		      </div>
+		    </fieldset>
+		    <input type="hidden" name="_csrf" value="<%= _csrf%>"/>
+		    <div class="button-container">
+		      <input type="submit" id="comment-submit-btn" class="btn alt" value="Envoyer" />
+		    </div>
+		  </form>
+		</div>
+	      </div>
+	  </section>
+	</article>
+	    </div>
+      </div>
+    </div>
+  </div>

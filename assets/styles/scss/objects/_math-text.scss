@@ -1,0 +1,30 @@
+.math-elt{
+    .elt-info-text{
+	font-family: $font-secondary;
+	color: $gray-light-2;
+	font-size: $font-size-small-2;	
+    }
+    .elt-title{
+	font-family: $font-title;
+    }
+    .elt-name{
+	&:before{
+	    content: '@';
+	}
+    }
+
+    .elt-family-name:hover{
+	text-decoration: underline;
+    }
+
+    .elt-tags{
+	li{
+	    &:before{
+		content: "#";
+	    }
+	    &:hover{
+		text-decoration: underline;
+	    }
+	}
+    }
+}

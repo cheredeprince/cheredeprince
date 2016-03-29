@@ -126,12 +126,11 @@ module.exports = {
 	})
     },
 
-    subscribe: function(req, res){
+    subscribe: function(req, res,next){
 	User.find(function(err,users){
 	    if(err) return next(err)
 	    User.watch(req.socket)
-	    User.subscribe(req.socket, users)
-	    
+	    User.subscribe(req.socket, users)	    
 	})
     }
 };

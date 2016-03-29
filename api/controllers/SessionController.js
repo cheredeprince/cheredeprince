@@ -28,7 +28,6 @@ module.exports = {
 		    }
 		    return res.redirect('/session/new')
 		}
-
 		require("bcrypt").compare(req.param('password'),user.pass,function(err,valid){
 		    if(err) return next(err)
 

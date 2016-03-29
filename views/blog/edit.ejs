@@ -1,91 +1,124 @@
-<div class="text-place">
-  <div class="cadre">
-    <h1>Édite l'article: <%= art.title %> </h1>
-    <% if(flash && flash.err) {%>
-      <ul class="place-info">
-	<% flash.err.forEach( function(error){%>
-	  <li>
-            <%= error.message %>
-	  </li>
-      </ul>
-	<%})%>
-    <% } %>
-    
+<%- partial('../templates/one-col-head',{title: "J'édite un article"}) %>
+
+<% include ../templates/info-block %>
+
+<div class="edit-entry">
+
+  <div class="entry">
+    <h3> La bannière</h3>
+    <a href="/blog/newBanner/<%=art.name%>" class="text-btn">Changer/charger la bannière</a>
     <% if(art.banner){%>
-      <p>
-	<a href="/blog/newBanner/<%=art.name%>"><%=art.altBanner%></a>
-      </p>
-      <div class="sample-img">
-	<object data="/images/blog/<%=art.name%>/b/original.svg" type="image/svg+xml">
-	  <div class="fallback">
-	    <%=art.altBanner%>
-	  </div>
-	</object>
-      </div>
-      <%}else{%>
-	<a href="/blog/newBanner/<%=art.name%>">Ajouter une bannière</a>
+      <figure style="max-width:20em;">
+	<picture>
+	  <source  srcset="/images/blog/<%=art.name%>/b/original.svg" type="image/svg+xml">
+	  <img srcset="/images/blog/<%=art.name%>/b/original.png" alt="<%=art.altBanner%>">
+	</picture>
+	<figcaption><%=art.altBanner%></figcaption>
+      </figure>
     <%}%>
-    
+  </div>
+
+
+  <div class="entry">
+    <h3>La vignette</h3>
+    <a href="/blog/newSticker/<%=art.name%>" class="text-btn">Changer/charger la vignette</a>
     <% if(art.sticker){%>
-      <p>
-	<a href="/blog/newSticker/<%=art.name%>"><%=art.altSticker%></a>
-      </p>
-      <div class="sample-img">
-	<object data="/images/blog/<%=art.name%>/s/original.svg" type="image/svg+xml">
-	  <div class="fallback">
-	    <%=art.altSticker%>
-	  </div>
-	</object>
-      </div>
-      <%}else{%>
-	<a href="/blog/newSticker/<%=art.name%>">Ajouter une vignette</a>
+      <figure style="max-width:10em;">
+	<picture>
+	  <source  srcset="/images/blog/<%=art.name%>/s/original.svg" type="image/svg+xml">
+	  <img srcset="/images/blog/<%=art.name%>/s/original.png" alt="<%=art.altSticker%>">
+	</picture>
+	<figcaption><%=art.altSticker%></figcaption>
+      </figure>
     <%}%>
 
-    
-    <% if(art.images){
-    Object.keys(art.images).forEach(function(image){%>
-      <p>
-	 <%=image%> : <%=art.images[image].alt%>
-      </p>
-      <form action="/blog/deleteImage" method="POST">
-	<input type="hidden" name="id" value="<%=art.id%>" />
-	<input type="hidden" name="name" value="<%=image%>" />
-	<input type="submit" value="supprimer"/>
-	<input type="hidden" name="_csrf" value="<%= _csrf%>"/>
-	</form>
-      <div class="sample-img">
-	<img src="/images/blog/<%=art.name%>/<%=image%><% switch(art.images[image].ext){
-			       case 'svg' : %>.svg<% break;
-			      case 'png': %>-little.png<% break;
-			case 'jpg' : %>-little.jpg<% break;
+  </div>
+  
+
+
+  <h3>Les images</h3>
+  <a href="/blog/newImage/<%=art.name%>" class="text-btn">Ajouter une Image</a>
+  <% if(art.images){
+	  Object.keys(art.images).forEach(function(image){%>
+    <div class="entry">
+      <figure style="max-width:20em;">
+	<picture>
+	  <img srcset="/images/blog/<%=art.name%>/<%=image%><% switch(art.images[image].ext){
+							    case 'svg' : %>.svg
+		       <%  break;
+		       case 'png': %>-little.png
+		       <% break;
+		       case 'jpg' : %>-little.jpg
+		       <% break;
+		       case 'gif' : %>.gif
+		       <% break;
 }%>" alt="<%=art.images[image].alt%>">
-      </div>
-    <%})}%>
-      <a href="/blog/newImage/<%=art.name%>">Ajouter une Image</a>
+	    </picture>
+	    <figcaption>nom : <%=image%><br/>
+	      texte alternatif : <%=art.images[image].alt%></figcaption>
+	  </figure>
+
+	  <form action="/blog/deleteImage" method="POST">
+	    <input type="hidden" name="id" value="<%=art.id%>" />
+	    <input type="hidden" name="name" value="<%=image%>" />
+	    <input type="submit" class="btn danger"  value="supprimer"/>
+	    <input type="hidden" name="_csrf" value="<%= _csrf%>"/>
+	  </form>
+
+	</div>
+<%})}%>
+
+
+<div class="entry">
+  <h3> Les Tags </h3>
+  <a href="/blog/editTags/<%=art.name%>" class="text-btn">Gérer les Tags</a>
+  <% if(art.tags){%>
+    <ul class="tags-list inline-list">
+      <% art.tags.forEach(function(tag){%>
+	<li><%=tag.name%></li>
+      <%})%>
+    </ul>
+  <%}%>
+</div>
       
-      <form action="/blog/update/<%= art.id%>" method="POST" class="form">
+      <form action="/blog/update/<%= art.id%>" method="POST" class="form" data-model="blog" data-id="<%=art.id%>">
 	<label for="title">Titre</label>
-	<input name="title" placeholder="Titre" class="form-entry" value="<%= art.title %>"/>
+	<input name="title" placeholder="Titre" class="form-entry" value="<%= art.title %>" data-save="auto" data-entry="URI" />
 	<label for="name">URL</label>
-        <input name="name" placeholder="Nom" class="form-entry" value="<%= art.name %>"/>
+        <input name="name" placeholder="Nom" class="form-entry" value="<%= art.name %>" data-save="auto" data-output="URI" data-entry-name="title"/>
 	<label for="published">Publié</label>
-	<input type="checkbox" name="published"  class="form-entry" <%=(art.published)?"checked":""%>/>
-	<label for="category">Catégorie</label>
-	<select name="category" class="form-entry">
-	  <option value="trip">Voyage</option>
-	  <option value="event">Évenement</option>
-	  <option value="life">Ma vie, mon histoire</option>
-	</select>
-	<label for="presentationBB">Presentation</label>
-	<textarea name="presentationBB" placeholder="Dans cette case, on vend l'article" class="form-entry" ><%= art.presentationBB %></textarea>
-	<label for="introBB">Introduction</label>
-	<textarea name="introBB" placeholder="Ici j'introduis mon sujet" class="form-entry"><%= art.introBB %></textarea>
-	<label for="textBB">Texte</label>
-	<textarea name="textBB" placeholder="Là je discute sérieusement de mon sujet ou pas ..." class="form-entry"><%= art.textBB %></textarea>
-        <div class="btn-space">
-          <input type="submit" class="btn btn-green"/>
-        </div>
+	<input type="checkbox" name="published"  class="form-entry" <%=(art.published)?"checked":""%> data-save="auto"/>
+	<%- partial('templates/category-form',{categorySelected: art.category}) %>
+	<label for="presentation">Presentation</label>
+	<textarea name="presentation"  placeholder="Dans cette case, on vend l'article" class="form-entry"  rows="5" data-save="auto"><%= art.presentation %></textarea>
+
+
+	<div class="g g-2up">
+	  <div class="gi">
+	    <label for="introBB">Introduction</label>
+	    <textarea id="intro" name="introBB" data-option="intro" placeholder="Ici j'introduis mon sujet" class="form-entry" data-entry="bbcode" rows="5" data-save="auto"><%= art.introBB %></textarea>
+	  </div>
+	  <div class="gi">
+	    <label>Aperçu</label>
+	    <div data-output="bbcode" data-entry-name="introBB"  class="form-entry text"><%-art.introHTML%></div>
+	  </div>
+	</div>
+
+	<div class="g g-2up">
+	  <div class="gi">
+	    <label for="textBB">Texte</label>
+	    <textarea name="textBB" placeholder="Là je discute sérieusement de mon sujet ou pas ..." class="form-entry" data-entry="bbcode" rows="15" data-save="auto"><%= art.textBB %></textarea>
+	  </div>
+	  <div class="gi">
+	    <label>Aperçu</label>
+        <div data-output="bbcode" data-entry-name="textBB"  class="form-entry text"><%-art.textHTML%></div>
+	  </div>
+	</div>
+	
+	<input type="submit" value="Enregistrer" class="btn sucess"/>
+	
 	<input type="hidden" name="_csrf" value="<%= _csrf%>"/>
       </form>
-  </div>
-</div>
+      </div>
+
+<% include ../templates/one-col-foot %>

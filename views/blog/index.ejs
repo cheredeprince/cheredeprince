@@ -1,17 +1,91 @@
-<div class="text-place">
-  <div class="cadre">
-    <h1> Les derniers articles </h1>
-  
-      <% arts.forEach(function(art){%>
-	<div class="art-info">
-	  <a href="/blog/show/<%=art.name%>">
-	  <h2><%= art.title %></h2>
-	  <div class="art-date"><%=art.publishedAt%></div>
-	  <img src="/images/blog/<%-art.name%>/s/original.svg" alt="<%=art.altSticker%>" />
-	  <div class="art-presentation" ><%-art.presentationHTML%></div>
-	  </a>
-	</div>
-	<%})%>
+<div class="page">
+  <div role="main">
+    <h1 class="section-title big-title">BLOG</h1>
+    <div class="l-two-col-equal">
+      <div class="l-main">
+	<section class="section latest-posts">
+	  <h2 class="section-title"><%-(typeof pageName == 'undefined')?'Les articles fraîchement pondus': (pageName == 'category')? 'Dans la catégorie : <em>' +sails.config.variables.blog.categories[subjectName] +'</em>': 'Les articles étiquetés par <em>'+subjectName+ '</em>'%></h2>
+	  <%if(pageNumber != 1){%>
+	  <%-partial('../templates/molecules/navigation/older-newer',{hasNewer:!firstPage,hasOlder:!lastPage,pageNumber:pageNumber,pageName:pageName,subjectName:subjectName})%><% }%>
+	  <ul class="post-list">
+	    <% arts.forEach(function(art){%>
+	      <li itemscope itemtype="http://schema.org/Article">
+		<div class="b-border">
+		  <div class="block block-thumb">
+		    <%-partial('../templates/molecules/text/paratext',{category:art.category,categoryDisplay:art.categoryDisplay,timeData:art.publishedAtData,timeDisplay:art.publishedAtDisplay,timeShema:"datePublished"})%>
+		    <a href="/blog/show/<%=art.name%>" class="a-title" itemprop="url">
+		      <h2 class="b-title" itemprop="headline"><%= art.title %></h2>
+		    </a>
+		    <%if(art.author){%>
+		      <div class="byline-container">
+			<%-partial('../templates/molecules/text/byline',{authorName:art.author.name})%>
+		      </div>
+		    <%}%>
+		    <div class="b-inner">
+		      <div class="b-thumb">
+			<picture class="sticker">
+			  <source type="image/svg+xml" srcset="/images/blog/<%= art.name %>/s/original.svg" />
+			  <img srcset="/images/blog/<%= art.name %>/s/original.png" alt="<%=art.altSticker%>" itemprop="image">
+			</picture>
+		      </div>
+		      <div class="b-text text" itemprop="description">
+			<p><%=art.presentation%></p>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	      </li>
+	    <%})%>	   
+	  </ul>
+	  <%-partial('../templates/molecules/navigation/older-newer',{hasNewer:!firstPage,hasOlder:!lastPage,pageNumber: pageNumber,pageName:pageName,subjectName:subjectName})%>
+	</section>
+      </div>
 
+      <div class="l-sidebar">
+	<%-partial('../templates/organisms/sections/a-propos',{})%>
+
+	<section class="section categories">
+	  <h2 class="section-title">Les catégories</h2>
+	  <ul class="categories-section">
+	    <li>
+	      <div class="block-category">
+		<a href="/blog/category/life">
+		  <picture class=".categorie-picture">
+		    <source srcset="/images/global/timbre_life.svg">
+		    <img srcset="/images/global/timbre_life.png" alt="Mon histoire: Un peu de moi">
+		  </picture>
+		  <span style="display:none;">Mon histoire</span>
+		</a>
+	      </div>
+	    </li>
+	    <li>
+	      <div class="block-category">
+		<a href="/blog/category/event">
+		  <picture class=".categorie-picture">
+		    <source srcset="/images/global/timbre.svg">
+		    <img srcset="/images/global/timbre.png" alt="Un timbre">
+		  </picture>
+		  <span style="display:none;">Événement</span>
+		</a>
+	      </div>
+	    </li>
+	    <li>
+	      <div class="block-category">
+		<a href="/blog/category/trip">
+		  <picture class=".categorie-picture">
+		    <source srcset="/images/global/timbre_trip.svg">
+		    <img srcset="/images/global/timbre_trip.png" alt="Un timbre sur lequel figure une étendue d'eau sur un ciel rouge qui laisse aparaître un rocher.">
+		  </picture>
+		  <span style="display:none;">Vagabondage</span>
+		</a>
+	      </div>
+	    </li>
+	  </ul>
+	</section>
+	<%-partial('../templates/organisms/sections/tags-list',{list:tagsList})%>
+      </div>
+    </div>
+    <%-partial('../templates/organisms/global/footer',{})%>
   </div>
 </div>
+

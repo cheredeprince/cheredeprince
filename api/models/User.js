@@ -51,7 +51,7 @@ module.exports = {
 
     
     beforeValidate: function(values, next){
-	console.log(values)
+
 	User.find({name: values.name}, function(err,records){
 	    uniqueName = !err && (records.length == 0 || records[0].id == values.id);
 	    next();

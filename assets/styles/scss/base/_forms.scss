@@ -1,0 +1,112 @@
+/*------------------------------------*\
+    $FORMS
+\*------------------------------------*/
+form ol, form ul {
+    list-style: none;
+    margin-left: 0;
+}
+
+fieldset {
+    border: 0;
+}
+
+label, legend {
+    display: block;
+    padding-bottom: $space-half;
+    font-family: $font-secondary;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    line-height: 1.7em;
+    font-size: 100%;
+    /*    margin: 0 1px 0;*/
+}
+
+input:not([type=submit]), textarea {
+    width: 100%;
+    border: 1px solid $green;
+    padding: $pad-half 0.65rem;
+    background: $green-background;
+
+    &:invalid{
+	border: 1px solid $green;
+	box-shadow:none;
+    }
+    
+    &:invalid:focus{
+	 border: 1px solid $error;
+    }
+}
+
+textarea{
+    max-width: 100%;
+}
+
+input[type=text], input[type=search], input[type=url], input[type=number], textarea {
+    -webkit-appearance: none;
+}
+
+
+input[type=text], input[type=search], input[type=url], input[type=number],input[type=password] {
+    height: 2*$pad-half + 1.7em;
+}
+
+button, input[type="submit"] {
+    cursor: pointer;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    width: auto;
+    margin-right: 0.3em;
+}
+
+input[type="search"] {
+    -webkit-appearance: none;
+    border-radius: 0;
+    background: $green-background-dark;
+    padding-right: 2*$space-double;
+    &:active,&:focus{
+	background: $green-background;
+    }
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+//Form Field Container
+.field-container {
+    margin-bottom: $space;
+}
+
+.inline-form {
+    fieldset, .inline-container {
+	position: relative;
+    }
+    
+    input[type=submit], button, .btn {
+	font-size: $font-size-small-2;
+	padding: 0.39em 1em;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 1;
+	width: auto;
+	height: 1em*(2*$pad-half + 1.7em)/$font-size-small-2;
+	@include rounded(0);
+	svg{
+	    width: 1.78em;
+	}
+    }
+}
+
+/* Validation */
+.is-error {
+    background-color: $error;
+}
+.is-valid {
+    border-color: $valid;
+}

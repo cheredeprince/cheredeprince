@@ -1,0 +1,12 @@
+<section class="section tags post-it">
+  <h3 class="section-title">Tags à la plume</h3>
+  <ul class="tags-list inline-list">
+    <%list.forEach(function(tag){%>
+    <li>
+      <a href="/blog/tag/<%=tag.name%>" style="font-size:<%=0.9+1.7*tag.weight%>em">
+	<%=tag.name%>
+      </a>
+    </li>
+    <%})%>
+  </ul>
+</section>

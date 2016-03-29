@@ -1,4 +1,5 @@
 module.exports = function(req,res,ok){
+
     if(req.session.User && req.session.User.admin)
 	ok()
     else{

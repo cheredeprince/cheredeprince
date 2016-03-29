@@ -1,0 +1,23 @@
+<form method="post" action="{{ url }}" class="comment-form">
+  <fieldset id="comment-input-container">
+    <div class="field-container">
+      <label for="comment-name">Ton nom</label>
+      <input id="comment-name" type="text" placeholder="Ton nom"/>
+    </div>
+    <div class="field-container">
+      <label for="comment-email">Ton email</label>
+      <input id="comment-email" type="email" placeholder="Ton email" />
+    </div>
+    <div class="field-container">
+      <label for="comment-url">URL</label>
+      <input id="comment-url" type="url" placeholder="Lien vers ton site" />
+    </div>
+    <div class="field-container">
+      <label for="comment-field">Commentaire</label>
+      <textarea id="comment-field" rows="5" placeholder="Bonne rédaction"></textarea>
+    </div>
+  </fieldset>
+  <div class="button-container">
+    <input type="submit" id="comment-submit-btn" class="btn alt" value="Déposer" >
+  </div>
+</form>
