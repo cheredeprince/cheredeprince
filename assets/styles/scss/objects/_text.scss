@@ -2,6 +2,11 @@
 .text {
     text-align:left;
     line-height: 1.5em;
+
+    h3{
+	padding-left: 1.5*$pad;
+    }
+
     p{
 	@include hyphens(auto);
     }
