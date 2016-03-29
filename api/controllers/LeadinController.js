@@ -8,7 +8,7 @@
 module.exports = {
 
     index: function(req,res,next){
-	Leadin.find(function(err,leadIns){
+	Leadin.find().sort('createdAt DESC').exec(function(err,leadIns){
 	    if(err) return next(err)
 	    ModelAssets.arraytoOBJ(leadIns,function(){
 		res.view({leadIns: leadIns});
