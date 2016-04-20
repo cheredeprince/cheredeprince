@@ -84,44 +84,48 @@
     <%-partial('templates/sprites-inline',{})%>
 
     <% if(session.User){ %>
-      <div class="background">
-	<input type="checkbox" id="sandwich-menu" unchecked>
+    <div class="background">
+      <% if(session.User.admin){%>
+      <input type="checkbox" id="sandwich-menu" unchecked>
+      
+      <ul class="admin-nav nudedList info-text">
 	
-	<ul class="admin-nav nudedList info-text">
-	  <% if( session.User.admin){%>
-	    <li>
-	      <a href="/user">Utilisateurs</a>
-	    </li>
-	  <%}%>
-	  <li>
-	    <a href="/blog/list">Blog</a>
-	  </li>
-	  <li>
-	    <a href="/leadin">Accroches</a>
-	  </li>
-	  <li>
-	    <a href="/comment">Commentaires</a>
-	  </li>
-	  <li>
-	    <img src="/images/admin/io-ok.png" id="io-status-icon" width="20px" style="display:inline"/>
-	  </li>
-	</ul>
-	<% if(session.authentificated){%>
-	  <div class="user-info info-text">
-	    <a href="/user/show/<%- session.User.id%>"><%= session.User.name %></a>
-	    <a href="/session/destroy">Déconnection</a>
-	  </div>
+	<li>
+	  <a href="/user">Utilisateurs</a>
+	</li>
+	<li>
+	  <a href="/blog/list">Blog</a>
+	</li>
+	<li>
+	  <a href="/leadin">Accroches</a>
+	</li>
+	<li>
+	  <a href="/comment">Commentaires</a>
+	</li>
+	<li>
+	  <img src="/images/admin/io-ok.png" id="io-status-icon" width="20px" style="display:inline"/>
+	</li>
+      </ul>
+      <%}%>
+      <% if(session.authentificated){%>
+      <div class="user-info info-text">
+	<a href="/user/show/<%- session.User.id%>"><%= session.User.name %></a>
+	<a href="/session/destroy">Déconnection</a>
+      </div>
+      <%}%>
+      <% if(session.User.admin){%>
+      <ul class="admin-option nudedList info-text">
+	<%if(session.modelUse == 'blog'){%>
+	<li><a href="/blog/new">Créer un article</a></li>
+	<li><a href="/tag/">Liste des tags</a></li>
+	<li><a href="/tag/new">Créer un tag</a></li>
 	<%}%>
-	<ul class="admin-option nudedList info-text">
-	  <%if(session.modelUse == 'blog'){%>
-	    <li><a href="/blog/new">Créer un article</a></li>
-	    <li><a href="/tag/">Liste des tags</a></li>
-	    <li><a href="/tag/new">Créer un tag</a></li>
-	  <%}%>
-	</ul>
-	<ul id="admin-shortcuts" class="nudedList inline-list info-text">
-	  
-	</ul>
+      </ul>
+      <ul id="admin-shortcuts" class="nudedList inline-list info-text">
+	
+      </ul>
+      <%}%>
+
 	<div id="page" class="paper-background">
     <% } %>
 
@@ -130,7 +134,7 @@
     
     <%- body %>
 
-    <%if(session.authentificated){%>
+    <% if(session.authentificated){%>
 	</div>
       </div>
     <%}%>

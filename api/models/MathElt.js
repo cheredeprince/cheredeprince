@@ -168,7 +168,9 @@ module.exports = {
 	mathName = values.name == Lodash.snakeCase(values.name) && Twitter.isValidUsername('@'+values.name);
 
 	//on vérifie que le nom est unique
+	console.time('check');
 	MathElt.find({name: values.name}, function(err,records){
+	    console.timeEnd('check');
 	    uniqueName = !err && (records.length == 0 || records[0].id == values.id);
 	    next();
 	});
@@ -187,11 +189,13 @@ module.exports = {
 
 		    setKeywords(values,parentsKeywordsName,function(err){
 			if(err) return next(err);
+			console.time('testc');
 			MathElt.create(values,function(err){
+			    console.timeEnd('testc');
 			    if(err) return next(err);
 			    afterCreateElt(values,next);
 			});
-		    });
+	    });
 		}
 	    } ;
 	    /*mise en place des parents et ancetres */
@@ -224,7 +228,9 @@ module.exports = {
 	});
     },
     updateElt: function(id,values, next){
+		console.time('testb');	
 	beforeCreateOrUpdate(values,function(){
+	    	console.timeEnd('testb');	
 	    MathElt.findOne(id)
 		.populate('tags')
 		.populate('parents')
@@ -239,6 +245,7 @@ module.exports = {
 			oldName = elt.name,
 			removedParents,
 			addedParents;
+
 		    var atEnd = function(){
 			cpt++;
 			if(cpt == length){
@@ -246,7 +253,9 @@ module.exports = {
 				if(err) return next(err);
 				//on précise le id
 				values.id = id;
+				console.time('teste');	
 				MathElt.update(id,values,function(err){
+				    console.timeEnd('teste');	
 				    if(err) return next(err);
 				    afterUpdateElt(values,oldName,removedParents,addedParents,next);
 				});
@@ -327,7 +336,7 @@ var beforeCreateOrUpdate = function(values, next){
 	values.ems = obj.ems;
 	values.strongs = obj.strongs;
 	values.contentHTML = obj.html;
-	next()
+	next();
     })
 
 },
@@ -420,11 +429,11 @@ var beforeCreateOrUpdate = function(values, next){
 	};
 
 
-	
+
 	ConvertString.dropParents(values.content,function(content,parents){
 	    ConvertString.dropTags(content,function(content,tags){
-		MathKeyword.find({},function(err,keywords){
-		    if(err) return next(err);
+//		MathKeyword.find({},function(err,keywords){
+//		    if(err) return next(err);
 
 		    var heritedExprs = _.compact(_.values(ConvertString.searchKeywords(content,parentsKeywordsName)));
 		//	contentExprs = _.compact(_.values(ConvertString.searchKeywords(content,_.pluck(keywords,"name"))));
@@ -448,7 +457,6 @@ var beforeCreateOrUpdate = function(values, next){
 					//subSetter(contentExprs,200,function(err){
 					    if(err) return next(err);
 					    next(null);
-					    
 					//})
 				    })
 				})
@@ -456,6 +464,6 @@ var beforeCreateOrUpdate = function(values, next){
 			})
 		    })
 		})
-	    })
+//	    })
 	})
     }

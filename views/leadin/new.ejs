@@ -3,7 +3,9 @@
 <div class="edit-entry">
   <div class="entry">
     <form action="/leadin/create" method="POST" class="form">
-      <textarea name="contentBB" placeholder="Contenu" class="form-entry" rows=2></textarea>
+      <textarea name="contentBB" data-entry="bbcode" data-option="intro" placeholder="Contenu" class="form-entry" rows=2></textarea>
+      <label>Aperçu</label>
+            <p data-output="bbcode" data-entry-name="contentBB"  class="form-entry text"></p>
       
       <label for="pages">Pages</label>
       <fieldset>

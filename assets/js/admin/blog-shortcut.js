@@ -224,7 +224,6 @@ $(document).ready(function(){
     var CtrlKeyCodes = [93,91,18]
     
     $(document).keydown(function(e){
-	console.log(actionKeyDown);
 	if(CtrlKeyCodes.indexOf(e.keyCode) !== -1){
 	    actionKeyDown = true;
 	    e.preventDefault();
@@ -237,7 +236,6 @@ $(document).ready(function(){
 
     $(document).keyup(function(e){
 	if(CtrlKeyCodes.indexOf(e.keyCode) !== -1){
-	    console.log('r');
 	    e.preventDefault();
 	    actionKeyDown = false;    
 	}

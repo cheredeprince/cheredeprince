@@ -36,32 +36,38 @@ module.exports.policies = {
 	'new': ['flash','clientPage'],
 	'create': ['flash','clientPage'],
 	'subscribe': ['flash','clientPage'],
-	'index': ['flash','admin','clientPage']
+	'index': ['flash','authentificated','clientPage']
     },
     'blog':{
 	'index': ['flash','getModel','clientPage'],
 	'show': ['flash','getModel','clientPage'],
-	'list': ['flash','getModel','clientPage','authentificated'],
-	'edit': ['flash','getModel','clientPage','authentificated'],
-	'destroy': ['flash','getModel','clientPage','authentificated'],
-	'new':  ['flash','getModel','clientPage','authentificated'],
-	'create':  ['flash','getModel','clientPage','authentificated'],
-	'newSticker':  ['flash','getModel','clientPage','authentificated'],
-	'newBanner':  ['flash','getModel','clientPage','authentificated'],
-	'newImage':  ['flash','getModel','clientPage','authentificated'],
-	'deleteSticker':  ['flash','getModel','clientPage','authentificated'],
-	'deleteBanner':  ['flash','getModel','clientPage','authentificated'],
-	'deleteImage':  ['flash','getModel','clientPage','authentificated']
+	'list': ['flash','getModel','clientPage','admin'],
+	'edit': ['flash','getModel','clientPage','admin'],
+	'destroy': ['flash','getModel','clientPage','admin'],
+	'new':  ['flash','getModel','clientPage','admin'],
+	'create':  ['flash','getModel','clientPage','admin'],
+	'newSticker':  ['flash','getModel','clientPage','admin'],
+	'newBanner':  ['flash','getModel','clientPage','admin'],
+	'newImage':  ['flash','getModel','clientPage','admin'],
+	'deleteSticker':  ['flash','getModel','clientPage','admin'],
+	'deleteBanner':  ['flash','getModel','clientPage','admin'],
+	'deleteImage':  ['flash','getModel','clientPage','admin']
     },
     'tag':{
-	'*': ['flash','getModel','clientPage','authentificated']
+	'*': ['flash','getModel','clientPage','admin']
     },
     'leadin':{
-	'*': ['flash','getModel','clientPage','authentificated']
+	'*': ['flash','getModel','clientPage','admin']
     },
     'comment':{
-	'*': ['flash','getModel','clientPage','authentificated'],
+	'*': ['flash','getModel','clientPage','admin'],
 	'create': ['flash','getModel','clientPage']
+    },
+    'math' : {
+	'admin_create' : ['authentificated'],
+	'admin_update' : ['authentificated'],
+	'admin_data' : ['authentificated'],
+	'saveGraph' : ['authentificated']
     }
 
   /***************************************************************************
