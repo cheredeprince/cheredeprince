@@ -131,7 +131,6 @@ module.exports = {
     },
 
     update: function(req,res,next){
-	console.log(req.param('published'))
 	var values = {
 	    id: req.param('id'),
 	    name: req.param('name'),
@@ -193,17 +192,16 @@ module.exports = {
 	Blog.findOne(req.param('id'),function(err,art){
 	    if(err) return next(err)
 	    if(!art){
-		console.log("a")
 		req.session.flash={
 		    err:[{name:'noArticle',message:"Cet article n'existe pas"}]
 		}
 		res.redirect('/blog/new')
 		
 	    }else if(!confirmed){
-		console.log("c")
+
 		res.redirect('/blog/list')
 	    }else if(art.published){
-		console.log("p")
+
 		req.session.flash={
 		    err:[{name:'Published',message:"Cet article est en cours de publication et de ne peut être supprimé"}]
 		}
@@ -267,7 +265,7 @@ module.exports = {
     updateTags: function(req,res,next){
 
 	var idsList = req.param('idTag')
-	//console.log(idsList,idsList.length,[idsList],typeof idsList);
+
 	if(!idsList)
 	    idsListUp = [];
 	else if( typeof idsList != 'object' || !idsList.length )
@@ -495,7 +493,7 @@ module.exports = {
 		}
 		res.redirect('/blog/newImage/'+art.name);
 	    }else{
-		console.log(ConvertString.simply(params.name),params.name);
+
 		var upFile = req.file('image'),
 		    dir = 'assets/images/blog/'+art.name,
 		    formats = ['svg','png','jpg','gif'],
@@ -644,9 +642,9 @@ function UploadImg(req,res,upFile,dir,formats,desName,formLink,options,next){
 		if(err) return next(err);
 		imageObj.size(function(err,size){
 		    if(err) return next(err);
-		    console.log(err,size);
+
 		    var ext = format.toLowerCase();
-		    console.log(ext);
+
 		    //transform jpeg in jpg
 
 		    if(ext == 'jpeg') ext= 'jpg';
@@ -664,7 +662,7 @@ function UploadImg(req,res,upFile,dir,formats,desName,formLink,options,next){
 			// on déplace le fichier 
 			require('fs').rename(file.fd,orignPath,function(err){
 			    if(err) return next(err);
-				console.log(err);
+			    
 				var cptCall = 0;
 				
 				if(options.length == 0)

@@ -152,7 +152,7 @@ $(document).ready(function(){
 	    'url':{
 		key: 89,
 		letter: 'y',
-		value: '[url site=""][/a]',
+		value: '[url site=""][/url]',
 		cursIndent: -6
 	    },
 	    'a':{
