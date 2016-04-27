@@ -43,6 +43,27 @@ math.aside = (function () {
 	    +'</div>'
 	    +'</header>'
 	    +"<p>La petite constellation que tu vois, c'est le résultat d'un projet visant à représenter les relations, existant au sein d'un ensemble d'énoncés mathématiques.</p>"
+
+
+	    +"<h2>L'objectif de <em>Chère de Prince</em></h2>"
+	    +"<p><em>Chère de Prince</em> souhaite devenir un point de rencontre entre les différentes publications parlant de mathématique. Chaque rédacteur du web pourrait faire mention des énoncés, qu'il utilise dans son texte, au sein du graphe. Ainsi, un article mathématique pourrait renseigner précisément son sujet, les énoncés dont il parle. De plus, il serait connecté à un base d'énoncés et articles proches.</p>"
+	    +"<p>D'autre part, <em>Chère de Prince</em> bâtit une structure sémantique sur une base de données pleine d'énoncés mathématiques, pour faciliter leur exploration et leur compréhension. Une telle base de données ne peut naître, que grâce à la contribution d'une communauté active ;). C'est pourquoi, ce site a pour vocation d'être un lieu d'échanges et de discussion.</p>"
+
+	    +"<h2>Qu'est-ce que ce graphe ?</h2>"
+
+	    +"<p>Ce graphe représente les énoncés mathématiques inscrits sur <em>Chère de Prince</em>. En effet, on peut voir des connaissances mathématiques comme un grand réseau. Si chaque énoncé est un sommet, il peut être relié aux sommets représentant des notions qu'il utilise. Par exemple, la définition de sous-groupe utilise la notion du groupe. Tous ces énoncés sont en dépendance les uns envers les autres.</p>"
+
+	+"<img alt=\"définitions (en vert sur le graphe), théorèmes (rouge), propriètés (bleu), lemmes (violet), corollaires (marron), axiomes (jaune). \" src=\"/images/global/legende.svg\"/>"
+	    +"<h2>Comment collaborer ?</h2>"
+
+	    +"<p>Le but de <em>Chère de Prince</em> est d'ouvrir la rédaction à toute personne souhaitant partager et mettre en relation ses connaissances mathématiques. Seulement, le site est aujourd'hui a son commencement, et ne possède pas encore de gestionnaire de contenu pratique pour les contributions. Il est tout de même possible de me <a href=\"/contact\">contacter</a> pour rédiger des énoncés.</p><p>Si tu es plus à l'aise avec le code, qu'avec les mathématiques, une aide informatique est aussi la bienvenue. Je t'invite à consulter mon <a href=\"https://github.com/emixam150/cheredeprince\">Github</a>.</p>"
+
+	    +"<ul>"
+	    +"<li>Twitter : <a href=\"https://twitter.com/CheredePrince\">@CheredePrince</a></li>"
+	    +"<li>Facebook : <a href=\"https://www.facebook.com/cheredeprince\">La Bécasse</a></li>"
+	    +"<li>Github : <a href=\"https://github.com/emixam150/cheredeprince\">le dépot</a></li>"
+	+"</ul>"
+
 	    +'</div>'
 	    +'<div class="math-aside-eltspanel">'
 
