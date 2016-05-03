@@ -106,7 +106,14 @@ module.exports = {
 	keywordsName:{
 	    type: 'array'
 	},
-	
+	version_previous: {
+	    type: 'array',
+	    defaultsTo: []
+	},
+	version_number: {
+	    type: 'integer',
+	    defaultsTo: 0
+	},
 	toOBJ: function(){
 	    //retourne l'objet en élément à envoyer
 	    var elt = this,
@@ -149,6 +156,25 @@ module.exports = {
 	    return(return_obj)
 	},
 
+	toVersion: function(){
+	    //retourne l'objet en élément à inclure dans version
+	    // {id: , name: , title: , type: , content: updatedAt: ,version_number }
+	    var elt = this,
+		obj = this.toObject(),
+		return_obj = {};
+
+	    return_obj.name = obj.name;
+	    return_obj.title = obj.title;
+	    return_obj.type = obj.type;
+	    return_obj.content = obj.content;
+	    return_obj.version_number = (typeof obj.version_number == 'number')? obj.version_number: 0;
+	    // les infos ci-dessous ne sont pas necessaire pour la restauration
+	    return_obj.updatedAt = obj.updatedAt;
+
+	    
+	    return(return_obj)
+	},
+
 	toMiniOBJ: function(){
 	    //retroune une description de l'élément
 	    var elt = this,
@@ -168,9 +194,9 @@ module.exports = {
 	mathName = values.name == Lodash.snakeCase(values.name) && Twitter.isValidUsername('@'+values.name);
 
 	//on vérifie que le nom est unique
-	console.time('check');
+
 	MathElt.find({name: values.name}, function(err,records){
-	    console.timeEnd('check');
+
 	    uniqueName = !err && (records.length == 0 || records[0].id == values.id);
 	    next();
 	});
@@ -189,9 +215,9 @@ module.exports = {
 
 		    setKeywords(values,parentsKeywordsName,function(err){
 			if(err) return next(err);
-			console.time('testc');
+
 			MathElt.create(values,function(err){
-			    console.timeEnd('testc');
+
 			    if(err) return next(err);
 			    afterCreateElt(values,next);
 			});
@@ -228,9 +254,11 @@ module.exports = {
 	});
     },
     updateElt: function(id,values, next){
-		console.time('testb');	
+
+
 	beforeCreateOrUpdate(values,function(){
-	    	console.timeEnd('testb');	
+
+	    // on recherche l'élément à maj
 	    MathElt.findOne(id)
 		.populate('tags')
 		.populate('parents')
@@ -238,14 +266,13 @@ module.exports = {
 		    if(err) return next(err)
 		    if(!elt) return next();
 		    // on met en place les collections
-		    /* On compte les étapes et on délinie la fonction finale*/
+		    /* On compte les étapes et on définie la fonction finale*/
 		    var cpt = 0,
 			length = 2,
 			parentsKeywordsName,
 			oldName = elt.name,
 			removedParents,
 			addedParents;
-
 		    var atEnd = function(){
 			cpt++;
 			if(cpt == length){
@@ -253,15 +280,27 @@ module.exports = {
 				if(err) return next(err);
 				//on précise le id
 				values.id = id;
-				console.time('teste');	
+				console.time('mongo');	
 				MathElt.update(id,values,function(err){
-				    console.timeEnd('teste');	
+				    console.timeEnd('mongo');	
 				    if(err) return next(err);
+				    // on prévient qu'il y a une maj
+				    MathElt.publishUpdate(id,{name: values.name});
+				    
 				    afterUpdateElt(values,oldName,removedParents,addedParents,next);
 				});
 			    });
 			}
-		    } ;
+		    };
+
+		    /* mise à jour des versions */
+		    values.version_previous = (elt.version_previous)? elt.version_previous:[];
+		    // on sauve l'ancienne version
+		    values.version_previous.push(elt.toVersion());
+		    //on incrémente de numéro de version
+
+		    values.version_number = (typeof elt.version_number == 'number')? elt.version_number +1:0;
+		    
 		    /*ajout d'un ancien nom*/
 		    if(values.name != elt.name)
 			values.oldNames = (elt.oldNames)?elt.oldNames.concat([elt.name]): [elt.name];
@@ -275,6 +314,7 @@ module.exports = {
 			//Si il n'y a pas de problème de génération
 			if(eltAncestors.indexOf(elt.name) === -1){
 			    //on définit les ancetres
+
 			    values.ancestors = eltAncestors;
 			    //on actualise les parents
 			    values.parents = _.pluck(parents_updated,'id');
@@ -309,6 +349,35 @@ module.exports = {
 		    });
 		});
 	});
+    },
+    restore: function(id,version_number,next){
+	// cette fonction restaure la version numéro version_number de l'élément id, si les deux existent
+	// on récupére l'elt à restaurer
+	MathElt.findOne(id,function(err,elt){
+	    if(err) return next(err);
+	    if(!elt) return next();
+	    //on récupère l'index de la version
+	    var index = _.findIndex(elt.version_previous, {'version_number':version_number}),
+		version,
+		values = {};
+	    
+	    //s'il existe une telle version
+	    if(index != -1){
+		//on recopie les infos utiles à la maj
+		version = elt.version_previous[index];
+		values.name = version.name;
+		values.title = version.title;
+		values.type = version.type;
+		values.content = version.content;
+		//on met à jour avec ces infos
+		MathElt.updateElt(id,values,function(err){
+		    if(err) return next(err);
+		    //on peut supprimer la version de version_previous, mais non.
+		    next();
+		})
+	    }else
+		next();
+	})
     },
     completeName : function(beginName,next){
 	

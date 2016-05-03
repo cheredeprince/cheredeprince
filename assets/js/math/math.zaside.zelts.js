@@ -165,7 +165,7 @@ math.aside.elts = (function () {
 		    jqueryMap.$list.prepend(li);
 		}
 		box.initModule(li,function(){
-		    console.log('ou');
+
 		    configMap.scrollTo(firstInsert.name);
 		    return true;
 		});
@@ -270,10 +270,10 @@ math.aside.elts = (function () {
     onEltsUpdate = function(event, updateInfo, eventInfo){
 
 	var onlySelection = true;
-	console.log(updateInfo);
+
 	// fonction à lancer une fois que tous les éléments à supprimer le sont
 	var next = function(){
-	    console.log('ok')
+
 	    if(updateInfo.idsAdded){
 		onlySelection = false;
 		addEltsToPanel(updateInfo.idsAdded);

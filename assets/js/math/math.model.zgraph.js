@@ -87,7 +87,9 @@ math.model.Graph= ( function () {
 	    cpt,change;
 	for(cpt = 0; cpt<changes.length;cpt++){
 	    change = changes[cpt];
+
 	    switch(change.action){
+		// on ajoute un noeud
 	    case 'addNode':
 		graph.addNode({
 		    id     : change.arg.id,
@@ -98,6 +100,7 @@ math.model.Graph= ( function () {
 		    size   : (outNeighborsCount[change.arg.id])?outNeighborsCount[change.arg.id]+1:1
 		});
 		break;
+		//on ajoute une fleche
 	    case 'addEdge' :
 		graph.addEdge({
 		    id     : change.arg.id,
@@ -107,7 +110,10 @@ math.model.Graph= ( function () {
 		    size   : (outNeighborsCount[change.arg.target] + outNeighborsCount[change.arg.source] +1) / 2,
 		    color  : nodesIndex[change.arg.source].color
 		});
+		// on incremente la taille de la source
+		nodesIndex[change.arg.source].size ++;
 		break;
+		// on supprime quelque chose
 		default :  graph[change.action](change.arg);
 	    }
 	}

@@ -187,8 +187,8 @@ module.exports = {
 	       if(err) return res.serverError(err);
 	       console.timeEnd('up');
 	       Sitemap.updateMath(elt_map,old_elt);
-	       console.log(old_elt);
-	       MathElt.publishUpdate(id,{name:elt_map.name});
+//	       console.log(old_elt);
+	       //MathElt.publishUpdate(id,{name:elt_map.name});
 	       
 	       res.json("élément mis à jour");
 	   });  
