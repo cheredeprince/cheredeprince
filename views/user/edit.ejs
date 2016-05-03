@@ -1,6 +1,6 @@
 <div class="text-place">
   <div class="cadre">
-    <h1>Édite l'article: <%= user.name %> </h1>
+    <h1>Édite ton profile, <%= user.name %> </h1>
     <% if(flash && flash.err) {%>
       <ul class="place-info">
 	<% flash.err.forEach( function(error){%>
@@ -13,13 +13,13 @@
     <p>
       <form action="/user/update/<%= user.id%>" method="POST" class="form">
         <input name="name" placeholder="Nom" class="form-entry" value="<%= user.name %>"/>
-	<input name="email" placeholder="Email" class="form-entry" value="<%= user.email %>"/>
+	<input type="email" name="email" placeholder="Email" class="form-entry" value="<%= user.email %>"/>
+	<input type="password" name="password" placeholder="Mot de passe" class="form-entry" value=""/>
 	<% if(session.User.admin){%>
 	  <input type="hidden" name="admin" value="unchecked"/>
 	  <label for="admin">Administrateur</label>
 	  <input type="checkbox" name="admin" <%=(user.admin)?"checked":""%>/>
 	<%}%>
-        <!-- <input type="password" name="password" placeholder="Mot de passe"  class="form-entry"/> -->
         <div class="btn-space">
           <input type="submit" class="btn btn-green"/>
         </div>

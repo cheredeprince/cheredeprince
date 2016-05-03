@@ -71,7 +71,21 @@ module.exports = {
 		}
 	    })
 	}
+    },
+
+    beforeUpdate: function(values, next){
+	if(!values.password){
+	    next();
+	}else{
+	    require("bcrypt").hash(values.password,10, function(err,pass){
+		if(err){
+		    next(err);
+		}else{
+		    values.pass = pass;
+		    next();
+		}
+	    });
+	}
     }
-    
 };
 
