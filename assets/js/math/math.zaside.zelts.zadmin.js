@@ -90,7 +90,7 @@ math.aside.elts.admin = function($box,mini){
 		configMap.math_elts_model.find_by_name(elt_map.name);
 	    });
 	    createDataIo.on('error', function(err){
-		console.log(err+'dfdfd');
+		console.log(err);
 	    });
 	    createDataIo.emit('create',elt_map);
 	}
@@ -147,8 +147,8 @@ math.aside.elts.admin = function($box,mini){
 	    +'</span>'
 	    +'</div>'
 	    +'<div class="elt-title-container math-box-title">'
-	    +'<span class="elt-info-text"><input name="title" value="'+elt.title+'"></span>'
-	    +'<span class="elt-name elt-info-text"><input name="name" value="'+elt.name+'"></span>'
+	    +'<span class="elt-info-text"><input name="title" placeholder="Titre" value="'+elt.title+'"></span>'
+	    +'<span class="elt-name elt-info-text"><input name="name" placeholder="Nom (doit être unique, en snakeCase et < 20 caractères)" value="'+elt.name+'"></span>'
 	    +'</div>';
 
 	$innerPara = $(html);
@@ -179,10 +179,10 @@ math.aside.elts.admin = function($box,mini){
 	    elt.content = "@"+elt.parent+'\n';
 	}
 
-	html = '<textarea name="content" class="content">'+elt.content+'</textarea><textarea class="copy-content" style="display:none;position:absolute;height:0;border:none;"></textarea>';
+	html = '<textarea name="content" class="content" placeholder="Contenu de l\'énoncé">'+elt.content+'</textarea><textarea class="copy-content" style="display:none;position:absolute;height:0;border:none;"></textarea>';
 
 	$innerContent = $(html);
-		
+	
 	$content.append($innerContent);
 	// console.log($content.find('.content'));
 	// //on copie les événements
@@ -280,8 +280,10 @@ math.aside.elts.admin = function($box,mini){
 
     //Begin DOM method /checkName/
     checkName = function(){
-	var name = jqueryMap.$name;
-	if(name.val().length>20){
+	var name = jqueryMap.$name,
+	    nameVal = name.val();
+	var snakeCase  = math.util.snakeCase;
+	if(nameVal.length>20 || snakeCase(nameVal) != nameVal ){
 	    name.css('border-color','red');
 	}else
 	    name.css('border-color','black');
