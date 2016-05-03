@@ -8,13 +8,13 @@ math.aside.elts.box = function($box,mini){
 	    +'<div class="math-box-para">'
 	    +'</div>'
 
-	    +'<div class="math-box-delete-btn">'
+	    +'<div class="math-box-delete-btn" title="supprimer cet élément de la liste">'
 	    +'<svg class="math-box-icon">'
 	    +'<use xlink:href="#math-delete-icon"></use>'
 	    +'</svg>'
 	    +'</div>'
 	
-	    +'<div class="math-admin-edit-btn math-admin">'
+	    +'<div class="math-admin-edit-btn math-admin" title="éditer cet élément">'
 	    +'<svg class="math-box-icon">'
 	    +'<use xlink:href="#math-edit-icon"></use>'
 	    +'</svg>'
@@ -178,7 +178,7 @@ math.aside.elts.box = function($box,mini){
 	var $parentsmini_btn, $childrenmini_btn, $addchild_btn,html,$innerBottom;
 	html ='<div class="math-box-footer">'
 	      +'<div class="math-admin">'
-	        +'<div class="elt-parents-info-mini math-box-icon-mini math-box-addchild-btn">'
+	        +'<div class="elt-parents-info-mini math-box-icon-mini math-box-addchild-btn" title="ajouter un enfant à cet élément">'
 	          +'<svg class="math-box-icon">'
 	            +'<use xlink:href="#math-ajout-icon"></use>'
 	          +'</svg>'
@@ -264,7 +264,7 @@ math.aside.elts.box = function($box,mini){
 	    
 	    +'<div class="math-box-footer">'
 	      +'<div class="math-admin">'
-	        +'<div class="elt-parents-info-mini math-box-icon-mini math-box-addchild-btn">'
+	        +'<div class="elt-parents-info-mini math-box-icon-mini math-box-addchild-btn" title="ajouter un enfant à cet élément">'
 	          +'<svg class="math-box-icon">'
 	            +'<use xlink:href="#math-ajout-icon"></use>'
 	          +'</svg>'

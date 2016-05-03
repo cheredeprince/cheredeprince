@@ -158,7 +158,8 @@ module.exports = {
 		name    : elt.name,
 		title   : elt.title,
 		type    : elt.type,
-		content : elt.content	       
+		content : elt.content,
+		author  : (req.session.User)? req.session.User.id: ''
 	    };
 	console.time('create');
 	MathElt.createElt(elt_map,function(err){
@@ -170,14 +171,14 @@ module.exports = {
     },
 
    admin_update : function(req,res,next){
-       console.time('up');
 	var elt = req.param('elt'), 
 	    id = req.param('elt_id'),
  	    elt_map = {
 		name    : elt.name,
 		title   : elt.title,
 		type    : elt.type,
-		content : elt.content	       
+		content : elt.content,
+		author  : (req.session.User)? req.session.User.id: ''
 	    };
        MathElt.find(id, function(err,old_elt){
 	   if(err) return res.serverError(err);
@@ -185,7 +186,6 @@ module.exports = {
 	 
 	   MathElt.updateElt(id,elt_map,function(err){
 	       if(err) return res.serverError(err);
-	       console.timeEnd('up');
 	       Sitemap.updateMath(elt_map,old_elt);
 //	       console.log(old_elt);
 	       //MathElt.publishUpdate(id,{name:elt_map.name});

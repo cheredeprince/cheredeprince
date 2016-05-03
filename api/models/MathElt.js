@@ -57,6 +57,9 @@ module.exports = {
 	publishedAt:{
 	    type: 'date'  
 	},
+	author: {
+	    model: 'User'
+	},
 	content:{
 	    type: 'text',
 	    required :true
@@ -170,7 +173,7 @@ module.exports = {
 	    return_obj.version_number = (typeof obj.version_number == 'number')? obj.version_number: 0;
 	    // les infos ci-dessous ne sont pas necessaire pour la restauration
 	    return_obj.updatedAt = obj.updatedAt;
-
+	    return_obj.author = obj.author;
 	    
 	    return(return_obj)
 	},
@@ -350,7 +353,7 @@ module.exports = {
 		});
 	});
     },
-    restore: function(id,version_number,next){
+    restore: function(id,version_number, author_id,next){
 	// cette fonction restaure la version numéro version_number de l'élément id, si les deux existent
 	// on récupére l'elt à restaurer
 	MathElt.findOne(id,function(err,elt){
@@ -359,7 +362,8 @@ module.exports = {
 	    //on récupère l'index de la version
 	    var index = _.findIndex(elt.version_previous, {'version_number':version_number}),
 		version,
-		values = {};
+		values = {},
+		author = (author_id)? author_id : '';
 	    
 	    //s'il existe une telle version
 	    if(index != -1){
@@ -369,6 +373,7 @@ module.exports = {
 		values.title = version.title;
 		values.type = version.type;
 		values.content = version.content;
+		values.author = author;
 		//on met à jour avec ces infos
 		MathElt.updateElt(id,values,function(err){
 		    if(err) return next(err);
