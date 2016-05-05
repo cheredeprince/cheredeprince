@@ -224,7 +224,7 @@ module.exports = {
 			    if(err) return next(err);
 			    afterCreateElt(values,next);
 			});
-	    });
+		    });
 		}
 	    } ;
 	    /*mise en place des parents et ancetres */
@@ -424,15 +424,15 @@ var beforeCreateOrUpdate = function(values, next){
 
     afterUpdateElt= function(values,oldName,removedParents,addedParents,next){
 	next();
-	    //on met  jour le graphe de manière async
-	    MathGraph.updateElement(oldName,values.name,values.title,values.type,values.parentsNotAncestors,function(err){
+	//on met  jour le graphe de manière async
+	MathGraph.updateElement(oldName,values.name,values.title,values.type,values.parentsNotAncestors,function(err){
+	    if(err) throw err;
+	    if(oldName == values.name) return;
+	    //puis on met à jour le nom dans les éléments
+	    updateName(oldName,values.name,function(err){
 		if(err) throw err;
-		if(oldName == values.name) return;
-		//puis on met à jour le nom dans les éléments
-		updateName(oldName,values.name,function(err){
-		    if(err) throw err;
-		});
 	    });
+	});
     },
     updateName = function(oldName,name,next){
 	MathElt.find().exec(function(err,elts){
@@ -493,7 +493,7 @@ var beforeCreateOrUpdate = function(values, next){
 		    //suivant que le mot est composé ou non
 		    if(values.scorePerKeyword[kws[key].name])
 			values.scorePerKeyword[kws[key].name] +=
-			(kws[key].name.indexOf('_') == -1)? scorePerkw: 2*scorePerkw;
+		    (kws[key].name.indexOf('_') == -1)? scorePerkw: 2*scorePerkw;
 		    else
 			values.scorePerKeyword[kws[key].name] =
 			(kws[key].name.indexOf('_') == -1)? scorePerkw: 2*scorePerkw;
@@ -506,38 +506,38 @@ var beforeCreateOrUpdate = function(values, next){
 
 	ConvertString.dropParents(values.content,function(content,parents){
 	    ConvertString.dropTags(content,function(content,tags){
-//		MathKeyword.find({},function(err,keywords){
-//		    if(err) return next(err);
+		//		MathKeyword.find({},function(err,keywords){
+		//		    if(err) return next(err);
 
-		    var heritedExprs = _.compact(_.values(ConvertString.searchKeywords(content,parentsKeywordsName)));
+		var heritedExprs = _.compact(_.values(ConvertString.searchKeywords(content,parentsKeywordsName)));
 		//	contentExprs = _.compact(_.values(ConvertString.searchKeywords(content,_.pluck(keywords,"name"))));
 
-		    //mettre à jour les keys issue des parents		  
-		    subSetter(heritedExprs,300,function(err){
+		//mettre à jour les keys issue des parents		  
+		subSetter(heritedExprs,300,function(err){
+		    if(err) return next(err);
+		    //puis les tags
+		    subSetter(values.tagsName,500,function(err){
 			if(err) return next(err);
-			//puis les tags
-			subSetter(values.tagsName,500,function(err){
+			//puis les ems
+			subSetter(values.ems,500,function(err){
 			    if(err) return next(err);
-			    //puis les ems
-			    subSetter(values.ems,500,function(err){
+			    //puis les strongs
+			    subSetter(values.strongs,700,function(err){
 				if(err) return next(err);
-				//puis les strongs
-				subSetter(values.strongs,700,function(err){
+				//puis le titre
+				subSetter([values.title],1000,function(err){
 				    if(err) return next(err);
-				    //puis le titre
-				    subSetter([values.title],1000,function(err){
-					if(err) return next(err);
-					//on met les kw connus
-					//subSetter(contentExprs,200,function(err){
-					    if(err) return next(err);
-					    next(null);
-					//})
-				    })
+				    //on met les kw connus
+				    //subSetter(contentExprs,200,function(err){
+				    if(err) return next(err);
+				    next(null);
+				    //})
 				})
 			    })
 			})
 		    })
 		})
-//	    })
+	    })
+	    //	    })
 	})
     }
