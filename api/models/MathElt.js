@@ -494,7 +494,7 @@ beforeCreateOrUpdate = function(values, next){
         //on évite le cas de la boucle simple
 
         if(values.parentsName.indexOf(values.name) !== -1)
-            delete values.parentsName[values.parentsName.indexOf(values.name)]
+            values.parentsName[values.parentsName.indexOf(values.name)] = null;
 
         values.tagsName = obj.tags;
         values.ems = obj.ems;

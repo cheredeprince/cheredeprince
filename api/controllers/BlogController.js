@@ -599,7 +599,7 @@ module.exports = {
 		    };
 
 		    rmNext(null,function(){
-			delete art.images[imgName];
+			art.images[imgName] = null;
 			art.save(function(err,artUpdated){
 			    if(err) return next(err);
 			    res.redirect('/blog/edit/'+ art.name);

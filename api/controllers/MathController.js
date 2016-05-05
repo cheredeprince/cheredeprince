@@ -115,7 +115,7 @@ module.exports = {
 	MathGraph.find().limit(1).exec(function(err,graphs){
 	    if(err) return next(err);
 	    if(! graphs[0]) return res.json();
-	    delete graphs[0].changes;
+	    graphs[0].changes = null;
 	    
 	    res.json(graphs[0]);
 	})

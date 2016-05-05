@@ -48,7 +48,7 @@ module.exports = {
 			if(artPublishedNum>0 && cpt < sails.config.variables.blog.tag.howManyDisplay){
 			    tag.toObject();
 			    tag.weight = tag.articles.length / maxArt; 
-			    delete tag.articles;
+			    tag.articles = null;
 			    
 			    Tag.favoriteTags.push(tag)
 			}

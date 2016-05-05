@@ -81,7 +81,7 @@ module.exports = {
 		    values.admin = true
 	    }
 	}else if(typeof values.admin !== 'undefined') //si non-admin on supprime la valeur admin
-	    delete values.admin
+	    values.admin = null;
 	
 	User.update(req.param('id'),values,function(err,users){
 	    if(err){
