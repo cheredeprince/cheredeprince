@@ -21,9 +21,9 @@ module.exports = {
                 res.end();
         }else
             res.view({layout:'math/layout',elt:''});
-        
+
     },
-    
+
     //permet de charger un elt au chargement de la page
     elt: function(req,res,next){
 
@@ -40,10 +40,10 @@ module.exports = {
                         //ConvertString.latexToMathML(elt.contentHTML,function(html){
                         //	elt.contentHTML = html;
                         // responsable de trop d'erreurs
-                        
+
                         res.view('math/index.ejs',{layout:'math/layout',elt:elt.toOBJ()});
                         console.timeEnd('elt');
-                        
+
                         //  });
                     }else
                         res.redirect('/math/elt/'+elt.name);
@@ -51,10 +51,10 @@ module.exports = {
                     res.notFound();
             });
     },
-    
+
     completion : function(req,res,next) {
         var request = decodeURI(req.param('id'));
-        
+
         MathKeyword.search(request,false,function(err,elts,completions){
             if(err) return next(err)
 
@@ -121,11 +121,12 @@ module.exports = {
     },
 
     graph : function(req,res,next){
+        console.time('getGraph');
         MathGraph.find().limit(1).exec(function(err,graphs){
             if(err) return next(err);
             if(! graphs[0]) return res.json();
             graphs[0].changes = null;
-
+            console.timeEnd('getGraph');
             res.json(graphs[0]);
         })
     },

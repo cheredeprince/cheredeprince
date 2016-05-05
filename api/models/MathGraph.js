@@ -1,9 +1,9 @@
 /**
-* MathGraph.js
-*
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
+ * MathGraph.js
+ *
+ * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @docs        :: http://sailsjs.org/#!documentation/models
+ */
 
 var versionLifeDuration = 60*60;
 
@@ -20,11 +20,14 @@ module.exports = {
             defaultsTo: []
         }
     },
+
     updateElement: function(oldId,id,label,type,parentsId,next){
+
         console.time('graphUp');
         MathGraph.findOrCreate({sort:{createdAt:1}},{})
             .exec(function(err,g){
                 if(err) return next(err);
+
                 //on récupére le graphe
                 var parent,cpt,old_node,outNeighborsIndex;
 
@@ -32,8 +35,8 @@ module.exports = {
                     graph = G.graph;
                 //maintenant qu'on a le dernier graphe, on le met à jour
                 old_node = graph.getNode(oldId);
-                if(old_node){
 
+                if(old_node){
                     //si le sommet existe
                     // on récupère ses fils
                     outNeighborsIndex = graph.outNeighborsList(oldId);
@@ -47,16 +50,19 @@ module.exports = {
                         x     : old_node.x,
                         y     : old_node.y
                     });
+
                     // on ajoute les nouveaux parents
                     for(cpt=0; cpt<parentsId.length;cpt++){
                         parent = parentsId[cpt];
-                        console.log(parent);
+
                         graph.addEdge({
                             id     : parent+'>'+id,
                             source : parent,
                             target : id
                         });
+
                     }
+
                     // on ajoute les fils
                     for(cpt=0; cpt<outNeighborsIndex.length;cpt++){
                         parent = outNeighborsIndex[cpt];
@@ -67,16 +73,18 @@ module.exports = {
                             target : parent
                         });
                     }
+
                     //et on sauvegarde
                     MathGraph.update(g.id,{nodes:graph.nodes(),edges: simpleEdges(graph.edges())},function(err,updated){
                         if(err) return next(err);
+
                         G.sendChanges();
                         console.timeEnd('graphUp');
                         next();
                     });
                 }else
                     next();
-        });
+            });
     },
 
     newElement: function(id,label,type,parentsId,next){
@@ -171,6 +179,7 @@ module.exports = {
         });
     }
 };
+
 
 /* personalisation du graphe */
 
