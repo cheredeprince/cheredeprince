@@ -1,11 +1,11 @@
-module.exports= function(req,res,next){
+xmodule.exports= function(req,res,next){
 
     res.locals.flash= {};
 
     if(!req.session.flash)
-	return next();
+        return next();
     else
-	res.locals.flash = _.clone(req.session.flash)
+        res.locals.flash = _.clone(req.session.flash)
     req.session.flash ={};
     next();
 }

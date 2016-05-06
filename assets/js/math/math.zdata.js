@@ -157,7 +157,7 @@ math.data = (function(){
                 //      callback_map.error('Data is undefined '+ jwres)
                 //     }
                 // })
-                
+
                 $.getJSON( "/math/graph/", function( res ) {
                     if(res){
 

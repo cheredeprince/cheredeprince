@@ -7,7 +7,9 @@
 
 module.exports = {
     new: function(req,res){
-        res.view();
+        res.view({
+            page:{ title: 'Inscription'}
+        });
 
     },
     create: function(req,res, next){
@@ -45,7 +47,10 @@ module.exports = {
             if(err) return next(err);
             if(!user) return next('l\' utilisateur n\'existe pas');
             else{
-                res.view({user: user})
+                res.view({
+                    page:{ title: user.name},
+                    user: user
+                });
             }
         })
     },
@@ -55,6 +60,7 @@ module.exports = {
             if(err) next(err)
             else{
                 res.view({
+                    page:{ title: 'Utilisateurs'},
                     users: users
                 })
             }
@@ -65,8 +71,10 @@ module.exports = {
         User.findOne(req.param('id'),function(err,user){
             if(err) next(err)
             else{
-                res.locals.user = user
-                res.view()
+                res.locals.user = user;
+                res.view({
+                    page:{ title: 'Edition utilisateur'}
+                });
             }
         })
     },

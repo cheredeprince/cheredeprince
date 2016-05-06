@@ -13,79 +13,86 @@ module.exports = {
      * Custom validation types
      */
     types: {
-	uniqueName: function(value) {
-	    return uniqueName;	    
-	}
+        uniqueName: function(value) {
+            return uniqueName;
+        }
     },
-    
+
     attributes: {
       name:{
-	  type: 'string',
-	  required: true,
-	  unique: true,
-	  uniqueName: true
+          type: 'string',
+          required: true,
+          unique: true,
+          uniqueName: true
       },
       email:{
-	  type:'email'
+          type:'email'
       },
-	pass:{
-	  type:'string'
-	},
-	online: {
-	    type: 'boolean',
-	    defaultsTo: false
-	},
-	admin:{
-	    type: 'boolean',
-	    defaultsTo: false 
-	}
+        pass:{
+          type:'string'
+        },
+        online: {
+            type: 'boolean',
+            defaultsTo: false
+        },
+        admin:{
+            type: 'boolean',
+            defaultsTo: false
+        }
     },
     // toJSON: function(){
-    // 	var obj = this.toObject();
-    // 	delete obj._csrf;
-    // 	delete obj.password
-    // 	return obj;
+    //  var obj = this.toObject();
+    //  delete obj._csrf;
+    //  delete obj.password
+    //  return obj;
     // }
 
 
 
-    
+
     beforeValidate: function(values, next){
 
-	User.find({name: values.name}, function(err,records){
-	    uniqueName = !err && (records.length == 0 || records[0].id == values.id);
-	    next();
-	})
+        User.find({name: values.name}, function(err,records){
+            uniqueName = !err && (records.length == 0 || records[0].id == values.id);
+            next();
+        })
     },
-    
+
     beforeCreate: function(values, next){
-	if(!values.password){
-	    next([{name:"PasswordRequired",message:"Le mot de passe est absent"}])
-	}else{
-	    require("bcrypt").hash(values.password,10, function(err,pass){
-		if(err){
-		    next(err)
-		}else{
-		    values.pass = pass
-		    next();
-		}
-	    })
-	}
+        if(!values.password){
+            next([{name:"PasswordRequired",message:"Le mot de passe est absent"}]);
+        }else{
+            require("bcrypt").hash(values.password,10, function(err,pass){
+                if(err){
+                    next(err);
+                }else{
+
+                    // on supprime le mot de passe
+                    values.password = null;
+
+                    values.pass = pass;
+                    next();
+                }
+            });
+        }
     },
 
     beforeUpdate: function(values, next){
-	if(!values.password){
-	    next();
-	}else{
-	    require("bcrypt").hash(values.password,10, function(err,pass){
-		if(err){
-		    next(err);
-		}else{
-		    values.pass = pass;
-		    next();
-		}
-	    });
-	}
+        if(!values.password){
+            next();
+        }else{
+
+            require("bcrypt").hash(values.password,10, function(err,pass){
+                if(err){
+                    next(err);
+                }else{
+                    // on supprime le mot de passe
+                    values.password = null;
+
+                    values.pass = pass;
+                    next();
+                }
+            });
+        }
     }
 };
-
