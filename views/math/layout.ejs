@@ -31,13 +31,13 @@
       }
     </style>
     <%}%>
-    <!--NO ADMIN STYLE END--> 
+    <!--NO ADMIN STYLE END-->
 
     <!--CSRF -->
     <%if(typeof _csrf != 'undefined'){%>
       <script>
       window.cdp = {
-	      csrf: "<%=_csrf%>" 
+              csrf: "<%=_csrf%>"
       }
       </script>
     <%}%>
@@ -78,110 +78,110 @@
     <%  if(session.User && session.User.admin){%>
     <script></script>
     <%}%>
-    <!--NO ADMIN SCRIPTS--> 
+    <!--NO ADMIN SCRIPTS-->
 
     <script>
     var elt_to_load = <%if(elt){%>'<%=elt.name%>' <%}else{%>''<%}%>;
     $(function(){
-	    math.initModule($('#math'))})
+            math.initModule($('#math'))})
     </script>
-    
+
   </head>
   <body>
     <div style="display:none">
     <%if(elt){%>
       <div class="math-box math-elt">
-	<div class="object">
-	  <div class="math-box-para">
-	    <div class="elt-type-container">
-	      <span class="elt-dot-type" style="color:#2E6E2E">●</span>
-	      <span class="elt-type-name elt-info-text"><%=elt.typeDisplay%></span>
-	    </div>
-	    <div class="elt-title-container">
-	      
-	      <h1 class="elt-title"><%=elt.title%></h1>
-	      <span class="elt-name elt-info-text"><%=elt.name%></span>
-	    </div>
-	  </div>
-	  <div class="math-box-content math-elt-content text">
-	    <%-elt.content%>
-	  </div>
-	  <div class="math-box-bottom">
-	    <div class="math-box-related-info">
-	      <ul class="elt-tags elt-info-text inline-list">
-		<%elt.tags.forEach(function(tag){%>
-		  <li class="math-link-tag" data-name="<%=tag%>"><%=tag%></li>
-		<%})%>
-	      </ul>
-	      
-	      <div class="elt-family-info math-box-family">
-		<div class="math-box-family-result">
-		  <ul class="math-elt-list-mini math-box-family-list math-box-family-open">
-		    <%elt.children.forEach(function(child){%>
-		      <li class="math-elt-mini math-elt elt-title-container">
-			<a href="/math/elt/<%=child.name%>"><%=child.title%></a>
-		      </li>
-		    <%})%>
-		  </ul>
-		  <ul class="math-elt-list-mini math-box-family-list math-box-family-open">
-		    <%elt.parents.forEach(function(parent){%>
-		      <li class="math-elt-mini math-elt elt-title-container">
-			<a href="/math/elt/<%=parent.name%>"><%=parent.title%></a>
-		      </li>
-		    <%})%>
-		  </ul>
-		</div>
-	      </div>
-	      <p class="elt-date-info elt-info-text">
-		<%=elt.createdAt%>
-	      </p>
-	    </div>      
-	  </div>
-	</div>
+        <div class="object">
+          <div class="math-box-para">
+            <div class="elt-type-container">
+              <span class="elt-dot-type" style="color:#2E6E2E">●</span>
+              <span class="elt-type-name elt-info-text"><%=elt.typeDisplay%></span>
+            </div>
+            <div class="elt-title-container">
+
+              <h1 class="elt-title"><%=elt.title%></h1>
+              <span class="elt-name elt-info-text"><%=elt.name%></span>
+            </div>
+          </div>
+          <div class="math-box-content math-elt-content text">
+            <%-elt.content%>
+          </div>
+          <div class="math-box-bottom">
+            <div class="math-box-related-info">
+              <ul class="elt-tags elt-info-text inline-list">
+                <%elt.tags.forEach(function(tag){%>
+                  <li class="math-link-tag" data-name="<%=tag%>"><%=tag%></li>
+                <%})%>
+              </ul>
+
+              <div class="elt-family-info math-box-family">
+                <div class="math-box-family-result">
+                  <ul class="math-elt-list-mini math-box-family-list math-box-family-open">
+                    <%elt.children.forEach(function(child){%>
+                      <li class="math-elt-mini math-elt elt-title-container">
+                        <a href="/math/elt/<%=child.name%>"><%=child.title%></a>
+                      </li>
+                    <%})%>
+                  </ul>
+                  <ul class="math-elt-list-mini math-box-family-list math-box-family-open">
+                    <%elt.parents.forEach(function(parent){%>
+                      <li class="math-elt-mini math-elt elt-title-container">
+                        <a href="/math/elt/<%=parent.name%>"><%=parent.title%></a>
+                      </li>
+                    <%})%>
+                  </ul>
+                </div>
+              </div>
+              <p class="elt-date-info elt-info-text">
+                <%=elt.createdAt%>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     <%}%>
     </div>
     <svg style="display:none">
       <style>
       .math-icon:hover{
-	      fill: black;
-	      .cercle{
-		      
-	      }
+              fill: black;
+              .cercle{
+
+              }
       }
       </style>
       <symbol id="math-parents-icon" viewBox="0 0 70.866141 70.866141">
-	<g class="math-icon" stroke-linejoin="round" transform="translate(0 -981.5)" stroke="#eaffc1" stroke-linecap="round" fill="#787878">
-	  <circle cx="-56.209" transform="scale(-1 1)" cy="1016.9" r="12.5" stroke-width=".314"/>
-	  <path d="M1.578 1044.9s22.15-11.818 22.767-14.03c.616-2.21-7.797-8.97-5.678-10.166 2.117-1.202 20.632 3.536 21.96 5.887 1.327 2.352-4.184 20.65-6.304 21.846-2.12 1.193-3.56-9.5-5.772-10.115-2.21-.614-23.772 12.247-23.772 12.247l-3.2-5.666zM1.25 989.57s22.15 11.818 22.766 14.03c.615 2.21-7.798 8.97-5.678 10.166 2.117 1.202 20.632-3.536 21.96-5.887 1.326-2.352-4.185-20.65-6.304-21.846-2.122-1.193-3.562 9.5-5.773 10.115-2.21.614-23.772-12.247-23.772-12.247l-3.2 5.666z" fill-rule="evenodd" stroke-width=".811"/>
-	</g>
+        <g class="math-icon" stroke-linejoin="round" transform="translate(0 -981.5)" stroke="#eaffc1" stroke-linecap="round" fill="#787878">
+          <circle cx="-56.209" transform="scale(-1 1)" cy="1016.9" r="12.5" stroke-width=".314"/>
+          <path d="M1.578 1044.9s22.15-11.818 22.767-14.03c.616-2.21-7.797-8.97-5.678-10.166 2.117-1.202 20.632 3.536 21.96 5.887 1.327 2.352-4.184 20.65-6.304 21.846-2.12 1.193-3.56-9.5-5.772-10.115-2.21-.614-23.772 12.247-23.772 12.247l-3.2-5.666zM1.25 989.57s22.15 11.818 22.766 14.03c.615 2.21-7.798 8.97-5.678 10.166 2.117 1.202 20.632-3.536 21.96-5.887 1.326-2.352-4.185-20.65-6.304-21.846-2.122-1.193-3.562 9.5-5.773 10.115-2.21.614-23.772-12.247-23.772-12.247l-3.2 5.666z" fill-rule="evenodd" stroke-width=".811"/>
+        </g>
       </symbol>
       <symbol id="math-enfants-icon" viewBox="0 0 70.866141 70.866141">
-	<g class="math-icon" stroke-linejoin="round" transform="translate(0 -981.5)" stroke="#eaffc1" stroke-linecap="round" fill="#787878"><circle cx="13.5" cy="1016.9" r="12.5" stroke-width=".314"/><path d="M28.62 1026.2s22.556 11.028 23.25 13.216c.692 2.188-7.477 9.24-5.316 10.36 2.158 1.127 20.494-4.26 21.738-6.658 1.243-2.397-4.91-20.487-7.07-21.608-2.164-1.117-3.225 9.62-5.413 10.313-2.19.693-24.192-11.398-24.192-11.398l-2.997 5.776zM28.62 1007.6s22.556-11.028 23.25-13.216c.692-2.188-7.477-9.24-5.316-10.36 2.158-1.127 20.494 4.26 21.738 6.658 1.243 2.397-4.91 20.487-7.07 21.608-2.164 1.118-3.225-9.62-5.413-10.313-2.19-.693-24.192 11.398-24.192 11.398l-2.997-5.776z" fill-rule="evenodd" stroke-width=".811"/></g>
+        <g class="math-icon" stroke-linejoin="round" transform="translate(0 -981.5)" stroke="#eaffc1" stroke-linecap="round" fill="#787878"><circle cx="13.5" cy="1016.9" r="12.5" stroke-width=".314"/><path d="M28.62 1026.2s22.556 11.028 23.25 13.216c.692 2.188-7.477 9.24-5.316 10.36 2.158 1.127 20.494-4.26 21.738-6.658 1.243-2.397-4.91-20.487-7.07-21.608-2.164-1.117-3.225 9.62-5.413 10.313-2.19.693-24.192-11.398-24.192-11.398l-2.997 5.776zM28.62 1007.6s22.556-11.028 23.25-13.216c.692-2.188-7.477-9.24-5.316-10.36 2.158-1.127 20.494 4.26 21.738 6.658 1.243 2.397-4.91 20.487-7.07 21.608-2.164 1.118-3.225-9.62-5.413-10.313-2.19-.693-24.192 11.398-24.192 11.398l-2.997-5.776z" fill-rule="evenodd" stroke-width=".811"/></g>
       </symbol>
       <symbol id="math-ajout-icon" viewBox="0 0 70.866141 70.866141">
-	<g class="math-icon" stroke-linejoin="round" transform="translate(0 -981.5)" stroke="#eaffc1" stroke-linecap="round" fill="#787878"><circle class="cercle" cx="-19.36" transform="scale(-1 1)" cy="1033" r="17.15" stroke-width=".431"/><path d="M32.58 1015s19.86-19.31 19.83-21.84c-.025-2.532-11.01-7.12-9.13-9.036 1.875-1.922 22.95-2.57 25.08-.485 2.126 2.084 1.888 23.16.008 25.08-1.883 1.913-6.683-8.98-9.215-8.954s-21.45 20.26-21.45 20.26L32.578 1015z" fill-rule="evenodd" stroke-width=".895"/></g>
+        <g class="math-icon" stroke-linejoin="round" transform="translate(0 -981.5)" stroke="#eaffc1" stroke-linecap="round" fill="#787878"><circle class="cercle" cx="-19.36" transform="scale(-1 1)" cy="1033" r="17.15" stroke-width=".431"/><path d="M32.58 1015s19.86-19.31 19.83-21.84c-.025-2.532-11.01-7.12-9.13-9.036 1.875-1.922 22.95-2.57 25.08-.485 2.126 2.084 1.888 23.16.008 25.08-1.883 1.913-6.683-8.98-9.215-8.954s-21.45 20.26-21.45 20.26L32.578 1015z" fill-rule="evenodd" stroke-width=".895"/></g>
       </symbol>
       <symbol id="math-delete-icon" viewBox="0 0 70.866141 70.866141">
-	<path d="M63.622 10.89c0-1.663-2.495-4.158-4.158-4.158S36.18 31.678 34.518 31.678 11.235 6.732 9.572 6.732 5.415 9.227 5.415 10.89 30.36 34.173 30.34 35.933c-.023 1.76-24.97 23.38-24.97 25.043 0 1.663 2.495 4.158 4.158 4.158S32.81 40.188 34.474 40.188 57.757 65.134 59.42 65.134s4.158-2.495 4.158-4.158c0-1.663-24.946-23.283-24.923-25.043.022-1.76 24.968-23.38 24.968-25.043z" fill-rule="evenodd" stroke="#96c837" stroke-width="1.176" fill="#787878"/>
-	</symbol>
+        <path d="M63.622 10.89c0-1.663-2.495-4.158-4.158-4.158S36.18 31.678 34.518 31.678 11.235 6.732 9.572 6.732 5.415 9.227 5.415 10.89 30.36 34.173 30.34 35.933c-.023 1.76-24.97 23.38-24.97 25.043 0 1.663 2.495 4.158 4.158 4.158S32.81 40.188 34.474 40.188 57.757 65.134 59.42 65.134s4.158-2.495 4.158-4.158c0-1.663-24.946-23.283-24.923-25.043.022-1.76 24.968-23.38 24.968-25.043z" fill-rule="evenodd" stroke="#96c837" stroke-width="1.176" fill="#787878"/>
+        </symbol>
       <symbol id="math-save-icon" viewBox="0 0 70.866141 70.866141">
-	<g fill="#f9f9f9"><path d="M5 5.875v60h60V17.78L53.187 5.876H45v15H10v-15H5zM15.156 46h40v5h-40v-5zM15 55.875h40v5H15v-5z" opacity=".98"/><path opacity=".98" d="M35 7.866h8v11h-8z"/></g>
+        <g fill="#f9f9f9"><path d="M5 5.875v60h60V17.78L53.187 5.876H45v15H10v-15H5zM15.156 46h40v5h-40v-5zM15 55.875h40v5H15v-5z" opacity=".98"/><path opacity=".98" d="M35 7.866h8v11h-8z"/></g>
       </symbol>
       <symbol id="math-force-icon" viewBox="0 0 70.866141 70.866141">
 <g fill="#ececec"><path d="M50.943 18.023a15.51 15.5 0 1 1-31.02 0 15.51 15.5 0 1 1 31.02 0zM40.515 49.866c6-9 5-21 13.5-21s-7.5 19-13.5 21zM30.35 49.624c-6-9-5-21-13.5-21s7.5 19 13.5 21zM32.088 68.936c-6-9-5-21-13.5-21s7.5 19 13.5 21zM37.808 69.18c6-9 5-21 13.5-21s-7.5 19-13.5 21z" opacity=".98"/></g>
-	</symbol>
+        </symbol>
       <symbol id="math-drag-icon" viewBox="0 0 70.866141 70.866141">
 <path d="M69.69 21.417a21.328 20.025 0 1 1-42.656 0 21.328 20.025 0 1 1 42.656 0z" opacity=".98" fill="#ececec"/><path d="M12.695 43.756l33.38-26.952 2.472 2.246-13.6 13.476 1.237 1.123L29 39.865l7.184-6.217 2.473 2.245-7.418 6.738 7.417-6.738 2.472 2.246-7.418 6.74 7.417-6.74 2.472 2.247-17.308 16.845-13.6-13.476" fill="#333" stroke="#fff" stroke-width="1.178"/>
       </symbol>
       <symbol id="math-edit-icon" viewBox="0 0 70.866141 70.866141">
-	<path d="M1.842 9.82l7.353-7.355 51.478 51.478 7.354 14.707-14.708-7.353L1.84 9.82" fill="#b3b3b3" stroke="#007900" stroke-width="1.471" stroke-linejoin="round"/>
+        <path d="M1.842 9.82l7.353-7.355 51.478 51.478 7.354 14.707-14.708-7.353L1.84 9.82" fill="#b3b3b3" stroke="#007900" stroke-width="1.471" stroke-linejoin="round"/>
       </symbol>
 
       <symbol id="math-corbeille-icon" viewBox="0 0 70.866141 70.866141">
-	<g fill="#f9f9f9"><path d="M38.835 7.935H31.46l-.013 1.407c-5.584.366-11.78 1.55-18.29 4.096h44.247s-7.408-3.492-18.586-4.13l.017-1.373zM13.155 15.96l6.565 47.555h31.174l6.564-47.554H13.155zm9.16 44.494l-5.6-40.354h9.29l3.254 40.35-6.946.004zm15.632 0h-5.393L29.89 20.1h10.173l-2.116 40.354zm10.172.067H41.2l2.48-40.42h9.9l-5.46 40.42z"/><path d="M13.155 15.96l6.565 47.555h31.174l6.564-47.554H13.155zm9.16 44.494l-5.6-40.354h9.29l3.254 40.35-6.946.004zm15.632 0h-5.393L29.89 20.1h10.173l-2.116 40.354zm10.172.067H41.2l2.48-40.42h9.9l-5.46 40.42z"/></g><path fill="none" d="M0 .59h70.613v70.27H0z"/>
+        <g fill="#f9f9f9"><path d="M38.835 7.935H31.46l-.013 1.407c-5.584.366-11.78 1.55-18.29 4.096h44.247s-7.408-3.492-18.586-4.13l.017-1.373zM13.155 15.96l6.565 47.555h31.174l6.564-47.554H13.155zm9.16 44.494l-5.6-40.354h9.29l3.254 40.35-6.946.004zm15.632 0h-5.393L29.89 20.1h10.173l-2.116 40.354zm10.172.067H41.2l2.48-40.42h9.9l-5.46 40.42z"/><path d="M13.155 15.96l6.565 47.555h31.174l6.564-47.554H13.155zm9.16 44.494l-5.6-40.354h9.29l3.254 40.35-6.946.004zm15.632 0h-5.393L29.89 20.1h10.173l-2.116 40.354zm10.172.067H41.2l2.48-40.42h9.9l-5.46 40.42z"/></g><path fill="none" d="M0 .59h70.613v70.27H0z"/>
       </symbol>
-  
+
   <symbol id="math-loupe-icon" viewBox="0 0 70.866141 70.866141">
     <g transform="translate(0 -981.496)" stroke="#f6ffe5"><circle cx="23.182" cy="1004.675" r="18.963" fill="none" stroke-width="5.304"/><path d="M36.708 1025.37l7.028-7.03 25.197 27.318-4.774 4.774z" stroke-width=".53" fill="#f6ffe5"/></g>
   </symbol>
@@ -189,56 +189,54 @@
   <symbol id="math-nid-icon" viewBox="0 0 70.866141 70.866141">
     <path clip-rule="evenodd" d="M30.99 12.188c.04.777-.157 1.314-.41 1.794-1.425.495-2.517 1.323-3.69 2.07 1.236-.316 2.688-.414 3.28-1.38 3.028-.176 6.777 1.093 7.928-1.242 1.173.288 2.444.476 3.417.966 1.21-.573 3.28-.28 4.785-.552 1.776.597 2.745 2.012 5.194 1.93 1.292.72 2.382 1.644 3.828 2.208-.66-2.093-2.642-2.852-4.1-4.14.092-.41.543-.46 1.092-.413-.21-.2-.12-.707-.136-1.104.997.02 1.194 1.07 1.64 1.655.404.528 1.084.842 1.505 1.38 1.686 2.163 2.093 5.58 5.468 6.07 2.416 1.84 4.8 3.71 5.195 7.588.95-.258 1.24-1.318 1.23-2.07-.01-1.106-.618-1.516-.41-2.758.124-.74-.125-1.77.684-2.208.45.572.012 1.023 0 1.656-.037 1.63.71 3.732.273 4.966-.403 1.136-2.008 1.254-1.777 2.62.247.654.532-.277 1.093-.137.093.555-.132.787-.137 1.242 1.982.344 1.775-1.52 2.734-2.21 1.275.616 0 2.28-.547 2.76-4.692.353-2.106 6.01-3.417 9.934-.197-.032-.048-.412-.274-.415-.655 1.993-1.084 3.915-2.05 5.656-.812 1.46-2.635 1.624-4.24 2.62 1.416.66 2.6-1.335 4.102-1.104-.735.73-1.424 1.508-1.777 2.622-.422-.034-.773-.14-1.094-.276-2.206 1.682-5.815 1.947-8.338 3.31-.435-.02-.6-.312-1.093-.275-1.538 1.024-4.614.496-5.47 2.207.76.607 1.59-.072 2.598 0 .304.19.402 1.043.137 1.38-2.066-.717-4.657.448-6.152-.965-2.323.45-4.813.063-7.245.137-.73.022-1.552.347-2.324.414-3.314.292-6.892-.465-9.295.552-.578-.476-1.256-.85-1.64-1.518 1.826.367 5.03.49 6.833 0-2.05-.6-4.24-1.056-5.604-2.345-1.606-.13-2.74-.73-3.42-1.794-3.69-1.1-6.4-3.196-9.294-5.103.118-.34.952.04 1.093-.276-.424-2.15-3.135-2.714-2.87-5.102 1.788 1.55 3.06 3.624 4.51 5.517-.26-.932-.85-1.534-1.094-2.483-1.754-.667-1.96-2.895-3.417-3.863-.086-1.065-.286-2.012-.822-2.62.934-3.12-1.35-4.364-3.69-4.968-.06-.52.29-.628.546-.828-.753-1.126-2.1-1.65-2.597-3.035-.342-.472-1.49-.747-.957-1.656 1.716.456 1.85 2.58 2.87 3.725.747.837 1.833 1.077 2.735 1.792.393-2.587.325-5.17-.958-6.62.036-.563.617.1.82-.415.28-.776-.02-2.136.275-2.897.337.487.79.858 1.094 1.38-.098 1.025-1.144 1.76-.684 2.896 2.287-2.053 2.53-4.798 4.784-6.622.697-.563 1.648-.698 2.46-1.103 1.94-.967 4.043-2.427 5.605-3.724 1.202-.398 2.802-.394 3.556-1.242 2.776.64 1.765-2.54 3.69-2.76.375 1.078-.147 1.68-.683 2.208 2.317-.234 2.916-2.205 4.647-3.034zm25.972 17.934c1.838-2.47.556-4.55-1.503-6.346-2.17-1.89-6.034-3.693-9.844-4-5.92-.476-11.35 1.345-13.67 4.552 1.957 1.843 3.236 4.37 4.648 6.76 3.125-2.172 7.43-5.6 13.123-5.104 3.146.273 5.47 1.896 5.468 5.794.84-.145 1.312-1.03 1.777-1.656zM32.22 35.364c.77-1.134 3.154-2.513 3.28-3.724.106-1.01-1.503-3.006-2.05-3.863-1.828-2.87-4.042-6.053-7.518-6.484-6.443-.798-10.182 3.405-9.433 9.38.254 2.032 1.468 4.32 2.87 5.933 1.157 1.33 3.124 3.62 4.92 3.862 1.918.258 2.393-.652 3.965-1.24.804.43 1.37 1.1 2.735.965.224-2.112.254-3.39 1.23-4.83zm20.505-7.31c-.852-.742-2.196-1.02-3.28-1.105-5.6-.44-11.18 3.358-14.08 6.62-1.505 1.693-3.766 3.972-3.01 7.037 2.1.182 3.708.858 5.06 1.793 2.544-.79 5.56-2.837 8.748-1.655-1.32.187-2.752.258-3.69.827 4.565.654 6.536-1.31 9.432-2.344 1.195-2.56 3.663-8.702.82-11.175z" fill-rule="evenodd" fill="#f9f9f9"/>
   </symbol>
-  
+
   <symbol id="math-menu-icon" viewBox="0 0 70.866141 70.866141">
     <g stroke="#f6ffe5" fill="#f6ffe5"><g transform="translate(-229.554 -.36) scale(.53157)"><circle cx="444.75" cy="32.083" r="8.75"/><path d="M561 31.833c0 4.694-3.807 8.5-8.5 8.5H471c-4.695 0-8.5-3.806-8.5-8.5s3.805-8.5 8.5-8.5h81.5c4.694 0 8.5 3.806 8.5 8.5z"/></g><g transform="translate(-229.554 -.36) scale(.53157)"><circle cx="444.75" cy="67.333" r="8.75"/><path d="M561 67.083c0 4.694-3.807 8.5-8.5 8.5H471c-4.695 0-8.5-3.806-8.5-8.5s3.805-8.5 8.5-8.5h81.5c4.694 0 8.5 3.806 8.5 8.5z"/></g><g transform="translate(-229.554 -.36) scale(.53157)"><circle cx="444.75" cy="102.583" r="8.75"/><path d="M561 102.333c0 4.694-3.807 8.5-8.5 8.5H471c-4.695 0-8.5-3.806-8.5-8.5s3.805-8.5 8.5-8.5h81.5c4.694 0 8.5 3.806 8.5 8.5z"/></g></g>
   </symbol>
 
-  
+
   <symbol id="math-fleche-close-icon" viewBox="0 0 70.866141 70.866141">
     <path fill="#f9f9f9" d="M10.302 35.294l50.262 35.128L60.287.444"/>
   </symbol>
-      
+
     </svg>
 
-    
+
     <div id="math"></div>
 
-    <script type="text/x-mathjax-config">
+          <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
-	    extensions: ["tex2jax.js"],
-	    jax: ["input/TeX", "output/HTML-CSS"],
-	    tex2jax: {
-		    inlineMath: [ ['$','$'] ],
-		    displayMath: [ ['$$','$$'] ],
-		    processEscapes: true
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+            tex2jax: {
+                    inlineMath: [ ['$','$'] ],
+                    displayMath: [ ['$$','$$'] ],
+                    processEscapes: true
 
-		    
-	    },
-	    "HTML-CSS": {
-		    linebreaks: { automatic: true, width: "90%"},
-		    availableFonts: ["Tex"],
-		    styles:{
-			    ".MathJax":{"font-weigth": "100"}
 
-			    
-		    }
-		    
-	    },
-	    TeX: {
-		    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
-		    Macros: {
-			    prodscal : ["{\\left\\langle #1 ,#2 \\right\\rangle}",2]
+            },
+            "HTML-CSS": {
+                    linebreaks: { automatic: true, width: "90%"},
+                    availableFonts: ["Tex"],
+                    styles:{
+                            ".MathJax":{"font-weigth": "100"}
 
-			    
-		    }
 
-		    
-	    }    
+                    }
+
+            },
+            TeX: {
+                    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+                    Macros: {
+                            prodscal : ["{\\left\\langle #1 ,#2 \\right\\rangle}",2]
+
+
+                    }
+
+
+            }
     });
     </script>
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
-
-    
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js" async></script>
   </body>
 </html>

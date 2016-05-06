@@ -39,6 +39,7 @@ math.model.Graph= ( function () {
         for(cpt = 0; cpt<nodes.length; cpt++){
             node = nodes[cpt];
             node.color = math.typeColor(node.type);
+            node.mathType = node.type;
             node.size  = outNeighborsCount[node.id]+1;
             //node.x = Math.random();
             //node.y = Math.random();
@@ -78,7 +79,7 @@ math.model.Graph= ( function () {
             neighborsNodes.push(node);
         }
         return neighborsNodes;
-    })
+    });
 
     sigma.classes.graph.addMethod('change',function(changes){
         var graph = this,
@@ -97,6 +98,7 @@ math.model.Graph= ( function () {
                     x      : change.arg.x,
                     y      : change.arg.y,
                     color  : math.typeColor(change.arg.type),
+                    mathType : change.arg.type,
                     size   : (outNeighborsCount[change.arg.id])?outNeighborsCount[change.arg.id]+1:1
                 });
                 break;
@@ -134,17 +136,19 @@ math.model.Graph= ( function () {
             outNeighborsCount =  this.outNeighborsCount,
             borderedIds     = this.borderedIds,
             cpt,node;
+
         //on retire la bordure des anciennes
         for(cpt=0;cpt<borderedIds.length;cpt++){
             node = nodesIndex[borderedIds[cpt]];
             if(node){
-                delete node.type;
-                delete node.borderWidth;
-                delete node.borderColor;
+                node.type = null;
+                node.borderWidth = null;
+                node.borderColor = null;
             }
         }
 
         // on ajoute la bordure aux nouvelles
+
         for(cpt = 0; cpt<ids.length; cpt++){
 
             node = nodesIndex[ids[cpt]];
@@ -157,6 +161,73 @@ math.model.Graph= ( function () {
 
     });
 
+
+    
+    sigma.classes.graph.addMethod('setFocus',function(ids){
+
+        var nodes      = this.nodesArray,
+            edges      = this.edgesArray,
+            edgesIndex = this.edgesIndex,
+            nodesIndex = this.nodesIndex,
+            outNeighborsCount =  this.outNeighborsCount,
+            allNeighborsIndex = this.allNeighborsIndex,
+            borderedIds     = this.borderedIds,
+            getNeighbors = this.getNeighbors,
+            i,n,node,edge, e, id,ed, toKeep = [];
+
+        if(ids.length >0){
+            var grey = '#323232';
+            
+            //on initialise les couleurs
+            for(id in nodesIndex){
+                node = nodesIndex[id];
+                if(node){
+                    node.color = math.util.colorLuminance(math.typeColor(node.mathType),-0.5);
+                }
+            }
+
+            for(ed in edgesIndex){
+                edge = edgesIndex[ed];
+                if(edge){
+                    edge.color = math.util.colorLuminance(nodesIndex[edge.source].color,-0.5);;
+                }
+            }
+            
+            //on met les couleurs à ce que l'on garde
+            for( i=0;i<ids.length;i++){
+                nodesIndex[ids[i]].color = math.typeColor(nodesIndex[ids[i]].mathType);
+                for( n in allNeighborsIndex[ids[i]]){
+                    nodesIndex[n].color = math.typeColor(nodesIndex[n].mathType);
+                    for(e in allNeighborsIndex[ids[i]][n]){
+                        edgesIndex[e].color = math.typeColor(nodesIndex[ids[i]].mathType);
+                    }
+                }
+            }
+
+            
+        }else{
+            //on réinitialise les couleurs
+            for(id in nodesIndex){
+                node = nodesIndex[id];
+                if(node){
+                    node.color = math.typeColor(nodesIndex[id].mathType);;
+                }
+            }
+
+            for(ed in edgesIndex){
+                edge = edgesIndex[ed];
+                if(edge){
+                    edge.color = nodesIndex[edge.source].color;
+                }
+            }
+            
+        }
+            
+        
+    });
+
+
+    
     // ---------------------- END SIGMA METHODS --------------------------------
 
 

@@ -224,6 +224,7 @@ math.graph = (function(){
                 return elt.name;
             });
         s.graph.setBorder(names);
+        s.graph.setFocus(names);
         s.refresh();
     };
 
@@ -251,7 +252,7 @@ math.graph = (function(){
 
     resetCamera = function(){
         var s = configMap.sigma;
-        sigma.misc.animation.camera(s.camera,{x:0,y:0,ratio:1},{duration:800})
+        sigma.misc.animation.camera(s.camera,{x:0,y:0,ratio:1},{duration:800});
     }
 
     showLabel = function(name){
@@ -283,6 +284,7 @@ math.graph = (function(){
             nodes = s.graph.getNeighbors(name),
             extraNeighborhood = [],
             cpt;
+        
         // on a moins d'un certain nombre d'éléments dans le voisionnage du sommet
         // on ajoute le voisinage du voisinage
         if(nodes.length < configMap.neighborhood_min){
@@ -290,6 +292,7 @@ math.graph = (function(){
                 extraNeighborhood = extraNeighborhood.concat(s.graph.getNeighbors(nodes[cpt].id));
             }
         }
+        
         nodes = nodes.concat(extraNeighborhood);
         nodes.push(s.graph.getNode(name));
 

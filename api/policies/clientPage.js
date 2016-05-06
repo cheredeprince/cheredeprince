@@ -6,8 +6,6 @@ module.exports= function(req,res,next){
     if(pages.indexOf(ctrl) != -1)
         page = ctrl;
 
-    console.log(req.session);
-
 
     Leadin.findByPage(page,function(err,leadin){
         if(err) return next(err);
