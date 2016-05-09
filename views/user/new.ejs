@@ -3,13 +3,13 @@
     <h1>Formule ton inscription </h1>
     <% if(flash && flash.err) {%>
       <ul class="place-info">
-	
-	<%console.log(flash.err); flash.err.forEach( function(error){%>
-	  <li>
+
+        <%console.log(flash.err); flash.err.forEach( function(error){%>
+          <li>
             <%= error.message %>
-	</li>
+        </li>
       </ul>
-	<%})%>
+        <%})%>
     <% }%>
     <p>
       <form action="/user/create" method="POST" class="form">
@@ -19,7 +19,7 @@
         <div class="btn-space">
           <input type="submit" class="btn btn-green"/>
         </div>
-	<input type="hidden" name="_csrf" value="<%= _csrf%>"/>
+        <input type="hidden" name="_csrf" value="<%= _csrf%>"/>
       </form>
   </div>
 </div>
