@@ -100,14 +100,25 @@ module.exports = {
                 parentsId.forEach(function(parent_id,key){
                     var parent = graph.getNode(parent_id);
                     if(parent){
+
                         x_position += parent.x;
                         y_position += parent.y;
 
                         if(key +1 == parentsId.length){
-                            // on construit le sommet
+
+                            //on pose le sommet sur le barycentre de ses parents
                             x_position = x_position/parentsId.length;
                             y_position = y_position/parentsId.length;
 
+                            //s'il n'a qu'un parent ou le déplace un peu
+                            if(parentsId.length == 1){
+                                var theta = 2*Math.PI * Math.random();
+                                x_position += 2*Math.cos(theta);
+                                y_position += 2*Math.sin(theta);
+                            }
+
+
+                            // on construit le sommet
                             graph.addNode({
                                 id    : id,
                                 label : label,
@@ -126,6 +137,7 @@ module.exports = {
                                     target : id
                                 });
                             }
+
                             //on sauvegarde
                             MathGraph.update(g.id,{nodes:graph.nodes(),edges:simpleEdges(graph.edges())},function(err,updated){
                                 if(err) next(err);
