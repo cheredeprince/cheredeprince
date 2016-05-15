@@ -9,7 +9,7 @@ math.aside.elts = (function () {
     configMap = {
         main_html: String()
             +'<div class="math-admin math-admin-new">'
-            +'<button class="btn alt math-admin-btn math-admin-new-btn">Créer</button>'
+            +'<input type="button" class="btn alt math-admin-btn math-admin-new-btn" value="Créer"/>'
             +'</div>'
 
             +'<ul class="math-aside-elts-list">'

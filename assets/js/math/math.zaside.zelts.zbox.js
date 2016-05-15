@@ -2,7 +2,7 @@ math.aside.elts.box = function($box,mini){
     var
     configMap = {
         main_html: String()
-            +'<div class="math-box math-elt">'
+            +'<div class="math-box math-elt" itemscope itemtype="http://schema.org/CreativeWork">'
             +'<div class="object">'
 
             +'<div class="math-box-para">'
@@ -112,7 +112,7 @@ math.aside.elts.box = function($box,mini){
             +'<span class="elt-type-name elt-info-text">'+elt.typeDisp+'</span>'
             +'</div>'
             +'<div class="elt-title-container math-box-title" data-name="'+elt.name+'">'
-            +'<span class="elt-title">'+elt.title+'</span>'
+            +'<span class="elt-title" itemprop="name">'+elt.title+'</span>'
             +'<span class="elt-name elt-info-text">'+elt.name+'</span>'
             +'</div>';
 

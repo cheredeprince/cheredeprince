@@ -16,7 +16,7 @@
       <title>Math - Chère de Prince</title>
     <%}%>
     <!--STYLES-->
-    <link rel="stylesheet" href="/min/production.min.css">
+    <link rel="stylesheet" href="/styles/math/math.css">
     <!--STYLES END-->
 
 
@@ -43,7 +43,35 @@
     <%}%>
 
     <!--SCRIPTS-->
-    <script src="/min/production.min.js"></script>
+    <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/dependencies/autosize.js"></script>
+    <script src="/js/dependencies/jquery.js"></script>
+    <script src="/js/dependencies/jquery.scrollTo.js"></script>
+    <script src="/js/dependencies/jquery.textcomplete.js"></script>
+    <script src="/js/dependencies/jquery.ui.min.js"></script>
+    <script src="/js/dependencies/jquery.ui.touch-punch.js"></script>
+    <script src="/js/dependencies/jquery.uriAnchor.js"></script>
+    <script src="/js/dependencies/jquery.zevent.gevent.js"></script>
+    <script src="/js/dependencies/sigma.js"></script>
+    <script src="/js/dependencies/sigma.layout.forceAtlas2.min.js"></script>
+    <script src="/js/dependencies/sigma.plugins.dragNodes.min.js"></script>
+    <script src="/js/dependencies/sigma.plugins.relativeSize.min.js"></script>
+    <script src="/js/dependencies/sigma.renderers.borderNode.js"></script>
+    <script src="/js/dependencies/sigma.renderers.parallelEdges.min.js"></script>
+    <script src="/js/math/math.js"></script>
+    <script src="/js/math/math.model.js"></script>
+    <script src="/js/math/math.model.zgraph.js"></script>
+    <script src="/js/math/math.search.js"></script>
+    <script src="/js/math/math.shell.js"></script>
+    <script src="/js/math/math.util.js"></script>
+    <script src="/js/math/math.utilb.js"></script>
+    <script src="/js/math/math.zaside.js"></script>
+    <script src="/js/math/math.zaside.zelts.js"></script>
+    <script src="/js/math/math.zaside.zelts.zadmin.js"></script>
+    <script src="/js/math/math.zaside.zelts.zbox.js"></script>
+    <script src="/js/math/math.zdata.js"></script>
+    <script src="/js/math/math.zdata.zadmin.js"></script>
+    <script src="/js/math/math.zgraph.js"></script>
     <!--SCRIPTS END-->
 
     <!--NO ADMIN SCRIPTS-->
@@ -59,23 +87,28 @@
     </script>
 
   </head>
-  <body>
+  <body itemscope itemtype="http://schema.org/WebPage">
     <div style="display:none">
     <%if(elt){%>
-      <div class="math-box math-elt">
+    <div class="math-box math-elt" itemprop="mainEntity" itemscope itemtype="http://schema.org/CreativeWork">
+      <link itemprop="mainEntityOfPage" href="/math/elt/<%=elt.name%>" />
         <div class="object">
           <div class="math-box-para">
             <div class="elt-type-container">
               <span class="elt-dot-type" style="color:#2E6E2E">●</span>
-              <span class="elt-type-name elt-info-text"><%=elt.typeDisplay%></span>
+              <span class="elt-type-name elt-info-text" itemprop="genre" ><%=elt.typeDisplay%></span>
             </div>
             <div class="elt-title-container">
-
-              <h1 class="elt-title"><%=elt.title%></h1>
-              <span class="elt-name elt-info-text"><%=elt.name%></span>
+              <h1 class="elt-title" itemprop="name"><%=elt.title%></h1>
+              <span class="elt-name elt-info-text" itemprop="alternateName" ><%=elt.name%></span>
             </div>
           </div>
-          <div class="math-box-content math-elt-content text">
+
+          <span itemprop="keywords"><% elt.keywordsName.forEach(function(name){%>
+                                        <%=name%>, 
+                                        <%})%></span>
+          
+          <div class="math-box-content math-elt-content text" itemprop="text">
             <%-elt.content%>
           </div>
           <div class="math-box-bottom">
@@ -90,22 +123,27 @@
                 <div class="math-box-family-result">
                   <ul class="math-elt-list-mini math-box-family-list math-box-family-open">
                     <%elt.children.forEach(function(child){%>
-                      <li class="math-elt-mini math-elt elt-title-container">
-                        <a href="/math/elt/<%=child.name%>"><%=child.title%></a>
-                      </li>
+                    <li class="math-elt-mini math-elt elt-title-container" itemprop="isPartOf"  itemscope itemtype="http://schema.org/CreativeWork">
+                      <link itemprop="url" href="/math/elt/<%=child.name%>" />
+                      <a itemprop="mainEntityOfPage" href="/math/elt/<%=child.name%>" itemprop="name"><%=child.title%></a>
+                    </li>
                     <%})%>
                   </ul>
                   <ul class="math-elt-list-mini math-box-family-list math-box-family-open">
                     <%elt.parents.forEach(function(parent){%>
-                      <li class="math-elt-mini math-elt elt-title-container">
-                        <a href="/math/elt/<%=parent.name%>"><%=parent.title%></a>
-                      </li>
+                    <li class="math-elt-mini math-elt elt-title-container" itemprop="hasPart"  itemscope itemtype="http://schema.org/CreativeWork">
+                      <link itemprop="url" href="/math/elt/<%=parent.name%>" />
+                      <a itemprop="mainEntityOfPage" href="/math/elt/<%=parent.name%>" itemprop="name"><%=parent.title%></a>
+                    </li>
                     <%})%>
                   </ul>
                 </div>
               </div>
-              <p class="elt-date-info elt-info-text">
+              <p class="elt-date-info elt-info-text" itemprop="dateCreated">
                 <%=elt.createdAt%>
+              </p>
+              <p class="elt-date-info elt-info-text" itemprop="dateUpdated">
+                <%=elt.updatedAt%>
               </p>
             </div>
           </div>

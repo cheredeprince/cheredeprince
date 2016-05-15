@@ -148,16 +148,18 @@ module.exports = {
                 obj = this.toObject(),
                 return_obj = {};
 
-            return_obj.id = obj.id
-            return_obj.name = obj.name
-            return_obj.title = obj.title
-            return_obj.type = obj.type
-            return_obj.content = obj.contentHTML
-            return_obj.tags = obj.tagsName
-            return_obj.createdAt = obj.createdAt
+            return_obj.id = obj.id;
+            return_obj.name = obj.name;
+            return_obj.title = obj.title;
+            return_obj.type = obj.type;
+            return_obj.content = obj.contentHTML;
+            return_obj.tags = obj.tagsName;
+            return_obj.createdAt = obj.createdAt;
+            return_obj.updatedAt = obj.updatedAt;
+            return_obj.keywordsName = obj.keywordsName.sort(function(a,b){return obj.scorePerKeyword[a] - obj.scorePerKeyword[b]});
 
-            //mise en forme des parties de texte
-            return_obj.typeDisplay = types[elt.type]
+                //mise en forme des parties de texte
+                return_obj.typeDisplay = types[elt.type];
 
             return_obj.parents = [];
             return_obj.children = [];
@@ -170,7 +172,7 @@ module.exports = {
                         name : obj.parents[key].name,
                         title: obj.parents[key].title,
                         type : obj.parents[key].type
-                    })
+                    });
                 }
 
             if(obj.children && obj.children.length){
@@ -179,7 +181,7 @@ module.exports = {
                         name : obj.children[key].name,
                         title: obj.children[key].title,
                         type : obj.children[key].type
-                    })
+                    });
                 }
             }
 
