@@ -125,7 +125,7 @@
                     <%elt.children.forEach(function(child){%>
                     <li class="math-elt-mini math-elt elt-title-container" itemprop="isPartOf"  itemscope itemtype="http://schema.org/CreativeWork">
                       <link itemprop="url" href="/math/elt/<%=child.name%>" />
-                      <a itemprop="mainEntityOfPage" href="/math/elt/<%=child.name%>" itemprop="name"><%=child.title%></a>
+                      <a itemprop="mainEntityOfPage" href="/math/elt/<%=child.name%>"><span itemprop="name"><%=child.title%></span></a>
                     </li>
                     <%})%>
                   </ul>
@@ -133,7 +133,7 @@
                     <%elt.parents.forEach(function(parent){%>
                     <li class="math-elt-mini math-elt elt-title-container" itemprop="hasPart"  itemscope itemtype="http://schema.org/CreativeWork">
                       <link itemprop="url" href="/math/elt/<%=parent.name%>" />
-                      <a itemprop="mainEntityOfPage" href="/math/elt/<%=parent.name%>" itemprop="name"><%=parent.title%></a>
+                      <a itemprop="mainEntityOfPage" href="/math/elt/<%=parent.name%>"><span itemprop="name"><%=parent.title%></span></a>
                     </li>
                     <%})%>
                   </ul>
