@@ -12,7 +12,7 @@ math.search = (function(){
 	    +'<form id="math-search-form" action="#" method="post" class="inline-form search-form">'
 	    +'<fieldset>'
 	    +'<label for="math-search-input" class="is-vishidden">Rechercher dans le graphe</label>'
-	    +'<input type="search" placeholder="Rechercher dans le graphe" id="math-search-input" class="search-field" />'
+	    +'<input type="search" placeholder="Rechercher dans le graphe" id="math-search-input" class="search-field" autofocus />'
 	    +'<button class="search-submit btn sucess">'
 	    +'<span class="icon-search" aria-hidden="true">'
 	    +'<svg viewBox="0 0 780 780">'
