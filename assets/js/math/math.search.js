@@ -12,7 +12,7 @@ math.search = (function(){
 	    +'<form id="math-search-form" action="#" method="post" class="inline-form search-form">'
 	    +'<fieldset>'
 	    +'<label for="math-search-input" class="is-vishidden">Rechercher dans le graphe</label>'
-	    +'<input type="search" placeholder="Rechercher dans le graphe" id="math-search-input" class="search-field" autofocus />'
+	    +'<input type="search" placeholder="Rechercher dans le graphe" id="math-search-input" class="search-field" autofocus="autofocus" />'
 	    +'<button class="search-submit btn sucess">'
 	    +'<span class="icon-search" aria-hidden="true">'
 	    +'<svg viewBox="0 0 780 780">'
@@ -120,10 +120,10 @@ math.search = (function(){
 	//si item est un elt, on lance sa recherche
 	if(typeof item.label !== 'string'){
 	    math.model.Elts.find_by_name(item.name);
-	    //on ferme le menu
-	    jqueryMap.$input.mathcomplete('close');
-	    // on supprime le focus
+            // on supprime le focus
 	    jqueryMap.$input.blur();
+            //on ferme le menu
+	    setTimeout(function(){jqueryMap.$input.mathcomplete('close');},500);
 	}else{
 	    jqueryMap.$input.val(item.label.trim());
 	    // on supprime le focus

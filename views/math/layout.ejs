@@ -43,7 +43,38 @@
     <%}%>
 
     <!--SCRIPTS-->
-    <script src="/min/production.min.js"></script>
+
+    <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/dependencies/autosize.js"></script>
+    <script src="/js/dependencies/jquery.js"></script>
+    <script src="/js/dependencies/jquery.scrollTo.js"></script>
+    <script src="/js/dependencies/jquery.textcomplete.js"></script>
+    <script src="/js/dependencies/jquery.ui.min.js"></script>
+    <script src="/js/dependencies/jquery.ui.touch-punch.js"></script>
+    <script src="/js/dependencies/jquery.uriAnchor.js"></script>
+    <script src="/js/dependencies/jquery.zevent.gevent.js"></script>
+    <script src="/js/dependencies/sigma.js"></script>
+    <script src="/js/dependencies/sigma.layout.forceAtlas2.min.js"></script>
+    <script src="/js/dependencies/sigma.plugins.dragNodes.min.js"></script>
+    <script src="/js/dependencies/sigma.plugins.relativeSize.min.js"></script>
+    <script src="/js/dependencies/sigma.renderers.borderNode.js"></script>
+    <script src="/js/dependencies/sigma.renderers.parallelEdges.min.js"></script>
+    <script src="/js/math/math.js"></script>
+    <script src="/js/math/math.model.js"></script>
+    <script src="/js/math/math.model.zgraph.js"></script>
+    <script src="/js/math/math.search.js"></script>
+    <script src="/js/math/math.shell.js"></script>
+    <script src="/js/math/math.util.js"></script>
+    <script src="/js/math/math.utilb.js"></script>
+    <script src="/js/math/math.zaside.js"></script>
+    <script src="/js/math/math.zaside.zelts.js"></script>
+    <script src="/js/math/math.zaside.zelts.zadmin.js"></script>
+    <script src="/js/math/math.zaside.zelts.zbox.js"></script>
+    <script src="/js/math/math.zdata.js"></script>
+    <script src="/js/math/math.zdata.zadmin.js"></script>
+    <script src="/js/math/math.zdata.zcomment.js"></script>
+    <script src="/js/math/math.zgraph.js"></script>
+
     <!--SCRIPTS END-->
 
     <!--NO ADMIN SCRIPTS-->
@@ -97,7 +128,7 @@
                     <%elt.children.forEach(function(child){%>
                     <li class="math-elt-mini math-elt elt-title-container" itemprop="isPartOf"  itemscope itemtype="http://schema.org/CreativeWork">
                       <link itemprop="url" href="/math/elt/<%=child.name%>" />
-                      <a itemprop="mainEntityOfPage" href="/math/elt/<%=child.name%>" itemprop="name"><%=child.title%></a>
+                      <a itemprop="mainEntityOfPage" href="/math/elt/<%=child.name%>"><span itemprop="name"><%=child.title%></span></a>
                     </li>
                     <%})%>
                   </ul>
@@ -105,7 +136,7 @@
                     <%elt.parents.forEach(function(parent){%>
                     <li class="math-elt-mini math-elt elt-title-container" itemprop="hasPart"  itemscope itemtype="http://schema.org/CreativeWork">
                       <link itemprop="url" href="/math/elt/<%=parent.name%>" />
-                      <a itemprop="mainEntityOfPage" href="/math/elt/<%=parent.name%>" itemprop="name"><%=parent.title%></a>
+                      <a itemprop="mainEntityOfPage" href="/math/elt/<%=parent.name%>"><span itemprop="name"><%=parent.title%></span></a>
                     </li>
                     <%})%>
                   </ul>
@@ -186,29 +217,17 @@
 
     <div id="math"></div>
 
-          <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-            extensions: ["tex2jax.js"],
-            jax: ["input/TeX", "output/HTML-CSS"],
-            tex2jax: {
-                    inlineMath: [ ['$','$'] ],
-                    displayMath: [ ['$$','$$'] ],
-                    processEscapes: true
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+          inlineMath: [ ['$','$'] ],
+          displayMath: [ ['$$','$$'] ],
+        },
 
-
-            },
-            "HTML-CSS": {
-                    linebreaks: { automatic: true, width: "90%"},
-                    availableFonts: ["Tex"],
-                    styles:{
-                            ".MathJax":{"font-weigth": "100"}
-
-
-                    }
-
-            },
             TeX: {
-                    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+
                     Macros: {
                             prodscal : ["{\\left\\langle #1 ,#2 \\right\\rangle}",2]
 
@@ -219,6 +238,6 @@
             }
     });
     </script>
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js" async></script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
   </body>
 </html>

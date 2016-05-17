@@ -81,10 +81,11 @@ module.exports = {
             MathElt.find(eltsId).limit(60).populate('children').populate('parents').exec(function(err,elts){
                 if(err) return next(err);
                 ModelAssets.arraytoOBJ(elts,function(OBJelts){
+                    MathElt.subscribe(req,_.pluck(elts,'id'));
                     res.json(OBJelts);
-                })
-            })
-        })
+                });
+            });
+        });
     },
 
     find : function(req,res,next) {
@@ -96,12 +97,12 @@ module.exports = {
             .exec(function(err,elt){
                 if(err) return next(err);
                 if(!elt) return res.end();
+                MathElt.subscribe(req,elt.id);
                 res.json(elt.toOBJ());
             });
     },
 
     load : function(req,res,next) {
-
 
         var names = req.param('names')
 
@@ -114,6 +115,7 @@ module.exports = {
                     //on les trie dans le meme ordre que names
                     elts.sort(function(a,b){ return names.indexOf(a.name) - names.indexOf(b.name)});
 
+                    MathElt.subscribe(req,_.pluck(elts,'id'));
                     res.json(elts);
 
                 });
@@ -134,7 +136,6 @@ module.exports = {
     saveGraph : function(req,res,next){
         var position_map = req.param('position_map');
         MathGraph.savePosition(position_map,function(err){
-            console.log(err);
             if(err) next();
             MathGraph.find().limit(1).exec(function(err,graphs){
                 if(err) return next(err);
@@ -198,7 +199,6 @@ module.exports = {
                 if(err) return res.serverError(err);
                 Sitemap.updateMath(elt_map,old_elt);
                 //             console.log(old_elt);
-                //MathElt.publishUpdate(id,{name:elt_map.name});
 
                 res.json("élément mis à jour");
             });
@@ -234,10 +234,12 @@ module.exports = {
             MathGraph.subscribe(req.socket, graphs);
         });
 
-        MathElt.find().exec(function(err,elts){
-            if(err) return next(err);
+        // MathElt.find().exec(function(err,elts){
+        //     if(err) return next(err);
 
-            MathElt.subscribe(req.socket,elts);
-        });
+        //     MathElt.subscribe(req.socket,elts);
+        // });
+        
+        MathElt.watch(req);
     }
 };

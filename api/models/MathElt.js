@@ -131,6 +131,11 @@ module.exports = {
             type: 'array'
         },
 
+        flux:{
+            collection: 'MathFlux',
+            via: 'elements'
+        },
+        
         version_previous: {
             type: 'array',
             defaultsTo: []
@@ -156,7 +161,7 @@ module.exports = {
             return_obj.tags = obj.tagsName;
             return_obj.createdAt = obj.createdAt;
             return_obj.updatedAt = obj.updatedAt;
-            return_obj.keywordsName = obj.keywordsName.sort(function(a,b){return obj.scorePerKeyword[a] - obj.scorePerKeyword[b]});
+            return_obj.keywordsName = obj.keywordsName.sort(function(a,b){return obj.scorePerKeyword[b] - obj.scorePerKeyword[a]; });
 
                 //mise en forme des parties de texte
                 return_obj.typeDisplay = types[elt.type];
@@ -343,13 +348,13 @@ module.exports = {
 
                                 console.time('mongo');
 
-                                MathElt.update(id,values,function(err){
+                                MathElt.update(id,values,function(err,updated){
 
                                     console.timeEnd('mongo');
                                     if(err) return next(err);
 
                                     // on prévient qu'il y a une maj
-                                    MathElt.publishUpdate(id,{name: values.name});
+                                    MathElt.publishUpdate(id,updated[0].toOBJ());
 
                                     afterUpdateElt(values,oldName,removedParents,addedParents,next);
 

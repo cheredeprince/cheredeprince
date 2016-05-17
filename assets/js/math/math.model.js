@@ -201,7 +201,7 @@ math.model= ( function () {
         //----------------------- BEGIN PUBLIC MODEL --------------------------------
         Elts = (function(){
             var get_elts, get_elt_names, get_selected_elts, get_by_name,
-                get_by_id,get_before_id, select_by_name, deselect_by_name,
+                get_by_id,get_before_id, select_by_name, deselect_by_name, update_elt,
                 search, find_by_name, is_loaded, load, remove_by_name ,reset;
 
             // récupére les éléments dans l'ordre
@@ -320,6 +320,17 @@ math.model= ( function () {
                 return true;
             };
 
+            // met à jour le contenu de elt.name en le placant apres relatibe
+            update_elt = function(elt,relativeName){
+                var updateInfo;
+                
+                updateInfo = insertAfter(elt,relativeName);
+                selectElt(elt.name);
+                console.log(updateInfo);
+                $.gevent.publish('math-elts-update',[updateInfo]);
+                $.gevent.publish('math-elts-changes',[Elts.get_elts()]);
+            };
+            
             search = function(query){
                 var SearchIo = math.data.getSearchIo();
 
@@ -380,7 +391,7 @@ math.model= ( function () {
                 var names = Object.keys(names_selected_map);
                 var loadNamesIo = math.data.getLoadNamesIo();
 
-                loadNamesIo.on('error', console.error)
+                loadNamesIo.on('error', console.error);
 
                 loadNamesIo.on('timeout',function(){
                     $.gevent.publish('math-elts-refresh')
@@ -398,19 +409,20 @@ math.model= ( function () {
 
                     pushElts(elts);
 
-                    $.gevent.publish('math-elts-refresh')
-                    $.gevent.publish('math-elts-changes',[Elts.get_elts()])
+                    $.gevent.publish('math-elts-refresh');
+                    $.gevent.publish('math-elts-changes',[Elts.get_elts()]);
                 });
 
-                loadNamesIo.emit('load', {names : names})
+                loadNamesIo.emit('load', {names : names});
 
             };
 
             reset = function(){
 
                 resetElts();
-                $.gevent.publish('math-elts-refresh')
-                $.gevent.publish('math-elts-changes', [Elts.get_elts()])
+
+                $.gevent.publish('math-elts-refresh');
+                $.gevent.publish('math-elts-changes', [Elts.get_elts()]);
                 return true;
             };
 
@@ -424,6 +436,7 @@ math.model= ( function () {
                 select_by_name    : select_by_name,
                 deselect_by_name  : deselect_by_name,
                 remove_by_name    : remove_by_name,
+                update_elt        : update_elt,
                 search            : search,
                 find_by_name      : find_by_name,
                 is_loaded         : is_loaded,
@@ -443,7 +456,7 @@ math.model= ( function () {
             if(old_elt){
                 var elt_before = Elts.get_before_id(obj.id);
                 if(elt_before) //il y a un élément avant
-                    Elts.find_by_name(obj.data.name,elt_before.name);
+                    Elts.update_elt(obj.data,elt_before.name);
                 else //c'est le premier de la liste
                     Elts.find_by_name(obj.data.name);
             }

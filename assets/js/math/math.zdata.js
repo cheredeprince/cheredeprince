@@ -21,7 +21,7 @@ math.data = (function(){
 
         on = function(event, callback){
             callback_map[event] = callback;
-        }
+        };
 
         emit = function(event,data){
             if(event == 'search'){
@@ -29,18 +29,17 @@ math.data = (function(){
                     if(res){
                         callback_map.search(res);
                     }else{
-                        callback_map.error('Data is undefined '+ jwres)
+                        callback_map.error('Data is undefined '+ jwres);
                     }
-                })
+                });
             }
-        }
+        };
 
         return {
             on   : on,
             emit : emit
-        }
-    }
-
+        };
+    };
 
     getFindByNameIo = function(){
         var on, emit, callback_map = {};
@@ -97,13 +96,16 @@ math.data = (function(){
         }
     }
 
+    /* 
+     * chercher une liste de noms
+     */
 
     getLoadNamesIo = function(){
         var on, emit, callback_map = {};
 
         on = function(event, callback){
             callback_map[event] = callback;
-        }
+        };
 
         emit = function(event,data){
             if(event == 'load'){
@@ -113,7 +115,7 @@ math.data = (function(){
                     if(callback_map.timeout){
                         callback_map.timeout();
                     }
-                },configMap.loadingTime)
+                },configMap.loadingTime);
 
                 io.socket.get('/math/load',{names:data.names},function(res,jwres){
                     clearTimeout(timeout);
@@ -122,16 +124,16 @@ math.data = (function(){
                             callback_map.load(res);
                         }
                     }else{
-                        callback_map.error('Data is undefined '+ jwres)
+                        callback_map.error('Data is undefined '+ jwres);
                     }
-                })
+                });
             }
-        }
+        };
 
         return {
             on   : on,
             emit : emit
-        }
+        };
     },
 
     getGetGraphIo = function(){
@@ -176,13 +178,13 @@ math.data = (function(){
                     }
                 });
             }
-        }
+        };
 
         return {
             on   : on,
             emit : emit
-        }
-    }
+        };
+    };
 
     getPostGraphIo = function(){
         var on, emit, callback_map = {};
@@ -214,9 +216,9 @@ math.data = (function(){
         return {
             on   : on,
             emit : emit
-        }
+        };
 
-    }
+    };
 
     getWatchIo = function(){
         var on, init, subscribe, callback_map = {};
@@ -236,8 +238,15 @@ math.data = (function(){
                 });
             }
             if(event == 'elt'){
+                // on s'attend ici à une mise à jour d'un élément chargé
                 io.socket.on('mathelt',function(obj){
-                    callback_map['elt'](obj);
+                    switch(obj.verb){
+                        case 'updated':
+                        callback_map['elt'](obj);
+                        break;
+
+                    default: 
+                    }
                 });
             }
         };
@@ -246,10 +255,39 @@ math.data = (function(){
             on   : on,
             init : init,
             subscribe : subscribe
-        }
+        };
 
-    }
+    };
 
+        /*
+         * Gère la souscription des éléments mathématiques chargés
+         */
+    
+    // getSubscribeIo = function(){
+    //     var on, init,callback_map = {};
+
+        
+    //     on = function(event, callback){
+    //         callback_map[event] = callback;
+    //     };
+
+    //     init = function(event){
+            
+    //         if(event == 'subscribe'){
+    //             io.socket.get('mathelt',function(obj){
+    //                 console.log(obj);
+    //                 callback_map['elt'](obj);
+    //             });
+    //         }
+    //     };
+
+    //     return {
+    //         on   : on,
+    //         init : init,
+    //         subscribe : subscribe
+    //     };
+        
+    // }
 
 
         return {

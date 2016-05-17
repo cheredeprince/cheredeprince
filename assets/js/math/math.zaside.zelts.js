@@ -138,11 +138,13 @@ math.aside.elts = (function () {
 
     //Begin DOM method /insertEltsToPanel/
     insertEltsToPanel = function(idsInserted){
+
         var cpt,li,box,before_elt,$before,is_edited,
             firstInsert = configMap.math_elts_model.get_by_id(idsInserted[0]) || {name:''};
         for(cpt = 0;cpt<idsInserted.length;cpt++){
             is_edited = stateMap.boxsMap[idsInserted[cpt]] && stateMap.boxsMap[idsInserted[cpt]].is_edited;
             if(!is_edited){
+
                 li = $('<li>');
                 box = math.aside.elts.box(),
                 before_elt = configMap.math_elts_model.get_before_id(idsInserted[cpt]);
@@ -165,10 +167,11 @@ math.aside.elts = (function () {
                     jqueryMap.$list.prepend(li);
                 }
                 box.initModule(li,function(){
-
+                    
                     configMap.scrollTo(firstInsert.name);
                     return true;
                 });
+
                 stateMap.boxsMap[idsInserted[cpt]] = box;
             }
         }
@@ -191,8 +194,8 @@ math.aside.elts = (function () {
             is_edited = stateMap.boxsMap[idsRemoved[cpt]] && stateMap.boxsMap[idsRemoved[cpt]].is_edited;
             if(!is_edited){
                 stateMap.boxsMap[idsRemoved[cpt]].remove(function(){
+                    stateMap.boxsMap[idsRemoved[cpt]] = null;
                     next();
-                    delete stateMap.boxsMap[idsRemoved[cpt]];
                 });
             }else
                 next();
