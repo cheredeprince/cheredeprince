@@ -229,15 +229,15 @@ math.shell = (function(){
                     math.model.Elts.load(_elts_proposed);
 
                     if(_s_elts_previous){
-                        anchor_map_proposed.elts = anchor_map_previous.elts
-                        anchor_map_proposed._elts = anchor_map_previous._elts
-                        anchor_map_proposed._s_elts = anchor_map_previous._s_elts
+                        anchor_map_proposed.elts = anchor_map_previous.elts;
+                        anchor_map_proposed._elts = anchor_map_previous._elts;
+                        anchor_map_proposed._s_elts = anchor_map_previous._s_elts;
 
                         stateMap.anchor_map = anchor_map_proposed;
                         //$.uriAnchor.setAnchor( anchor_map_proposed,null,true );
                     }else{
                         anchor_map_proposed.elts = 'empty';
-                        delete anchor_map_proposed._elts
+                        delete anchor_map_proposed._elts;
                         delete anchor_map_proposed._s_elts;
 
                         stateMap.anchor_map = anchor_map_proposed;
@@ -245,7 +245,7 @@ math.shell = (function(){
                     }
                 }
             }else if(s_elts_proposed == 'empty'){
-                math.model.Elts.reset()
+                math.model.Elts.reset();
             }
             //End adjust elts component if changed
         }
@@ -263,7 +263,7 @@ math.shell = (function(){
         stateMap.resize_idto = setTimeout(function(){
             stateMap.resize_idto = null;
 
-        },configMap.resize_interval)
+        },configMap.resize_interval);
     }
     //End Event handler /onResize/
 
@@ -277,8 +277,8 @@ math.shell = (function(){
         }
         returned_URI = (elts.length !== 0)? { elts: 'set' ,_elts: stateEltsURI }:{elts:'empty'};
 
-        return changeAnchorPart(returned_URI)
-    }
+        return changeAnchorPart(returned_URI);
+    };
     //End Event handle /onEltsChanges/
 
 
