@@ -105,12 +105,7 @@
               <h1 class="elt-title" itemprop="name"><%=elt.title%></h1>
               <span class="elt-name elt-info-text" itemprop="alternateName" ><%=elt.name%></span>
             </div>
-          </div>
-
-          <span itemprop="keywords"><% elt.keywordsName.forEach(function(name){%>
-                                        <%=name%>, 
-                                        <%})%></span>
-          
+          </div>          
           <div class="math-box-content math-elt-content text" itemprop="text">
             <%-elt.content%>
           </div>
@@ -142,10 +137,13 @@
                   </ul>
                 </div>
               </div>
-              <p class="elt-date-info elt-info-text" itemprop="dateCreated">
+              <span itemprop="keywords"><% elt.keywordsName.forEach(function(name){%>
+                <%=name%>, 
+                <%})%></span>
+              <p class="elt-date-info elt-info-text" itemprop="dateCreated" datetime="<%=elt.createdAt%>" >
                 <%=elt.createdAt%>
               </p>
-              <p class="elt-date-info elt-info-text" itemprop="dateModified">
+              <p class="elt-date-info elt-info-text" itemprop="dateModified" datetime="<%=elt.createdAt%>">
                 <%=elt.updatedAt%>
               </p>
             </div>
