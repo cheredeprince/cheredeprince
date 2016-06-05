@@ -231,29 +231,33 @@ module.exports = {
      */
 
     latexToMathML: function(html,next){
-        var aux = function(html,symbol,char,is_inline,end){
+        
+        var aux = function(html,symbol,charac,is_inline,end){
             var latexs = [],
-                bout = ConvertString.deleteBetween(html,symbol,char,latexs),
-                format = (is_inline)?'inline-TeX':'inline-TeX',
+                bout = ConvertString.deleteBetween(html,symbol,charac,latexs),
+                format = (is_inline)?'TeX':'TeX',
                 cpt,i=0;
 
             if(latexs.length == 0)
                 end(html);
 
             for(cpt=0;cpt<latexs.length;cpt++){
-                Mathjax.typeset({math: latexs[cpt],
-                                 format: format,
-                                 mml:true},function(data){
-                                     latexs[i] = data.mml;
-                                     i++;
-                                     //console.log(i,latexs);
-                                     if(i==latexs.length)
-                                         end(ConvertString.insertDeleted(bout,'',char,latexs,true));
-                                 });
+                Mathjax.typeset({
+                    math: Lodash.unescape(latexs[cpt]),
+                    format: format,
+                    mml: true
+                }, function(data){
+                    latexs[i] = data.mml;
+                    i++;
+                    //console.log(i,latexs);
+                    if(i==latexs.length)
+                        end(ConvertString.insertDeleted(bout,'',charac,latexs,true));
+                });
             }
         };
+        
         aux(html,'$$','©',true,function(pre_html){
-
+            
             aux(pre_html,'$','¶',false,next);
         });
     },
