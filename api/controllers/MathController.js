@@ -37,14 +37,14 @@ module.exports = {
                     //si on avait le bon nom
                     if(elt.name == name){
 
-                        //ConvertString.latexToMathML(elt.contentHTML,function(html){
-                        //	elt.contentHTML = html;
+                        ConvertString.latexToMathML(elt.contentHTML,function(html){
+                        	elt.contentHTML = html;
                         // responsable de trop d'erreurs
 
                         res.view('math/index.ejs',{layout:'math/layout',elt:elt.toOBJ()});
                         console.timeEnd('elt');
 
-                        //  });
+                          });
                     }else
                         res.redirect('/math/elt/'+elt.name);
                 }else
