@@ -82,3 +82,14 @@
     background: $green;
     border: 1px solid $green-dark;
 }
+
+
+.icon-button-blink{
+    animation: blink 1s cubic-bezier(1, 0, 0, 1) infinite;
+}
+
+@keyframes blink {
+    100% { background:#970A06 ;
+           border-color: #970A06;
+         }
+}

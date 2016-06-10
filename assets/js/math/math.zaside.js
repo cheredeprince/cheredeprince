@@ -135,7 +135,7 @@ math.aside = (function () {
                 },
     jqueryMap = {},
 
-    setJqueryMap, configModule, setSliderPosition, setPanel,
+    setJqueryMap, configModule, setSliderPosition, setPanel, setTongueBlink,
     onClickHomeTongue, onClickEltsTongue, onClickLeftBtn, initModule,lockSliderOpened,
     handleResize, scrollTo;
 
@@ -180,6 +180,30 @@ math.aside = (function () {
     //End dom method /lockSliderPositon/
 
 
+    //Begin dom method /setTongueBlink/
+    //Purpose  : faire clignoter la languette elts
+    // arg : boolean
+    // return : true
+    setTongueBlink = function( is_blinking ){
+        console.log(is_blinking,stateMap.current_panel,stateMap.position_type);
+
+        if(is_blinking){
+            // on lance le clignottement si le panel n'est ouvert sur les elts
+            if(stateMap.current_panel != 'elts' || stateMap.position_type == 'closed'){ 
+                jqueryMap.$elts_tongue.children().addClass('icon-button-blink');
+            }
+            
+        }else{
+            //on arrete le clignottement si le panel ouvert sur les elts
+            if(stateMap.current_panel == 'elts' && stateMap.position_type == 'opened'){ 
+                jqueryMap.$elts_tongue.children().removeClass('icon-button-blink');
+            }
+        }
+            
+        return true;
+    }
+    //End dom method /setTongueBlink/
+    
     //Begin public method /setSliderPosition/
     // args : * position type : 'closed', 'opened'
     //        * callback (optional)
@@ -202,7 +226,7 @@ math.aside = (function () {
             }
         }
 
-        //prepare les paramètres d'animations
+        //prepare les paramètres d'animations 
         switch( position_type ){
         case 'opened' :
             animate_time = configMap.slider_open_time;
@@ -239,9 +263,12 @@ math.aside = (function () {
                 search_visible = (stateMap.current_panel == 'elts'
                                   || position_type == 'closed' );
                 math.search.setVisibility( search_visible );
-
+                
                 stateMap.position_type = position_type;
-                if( cb ){ cb(jqueryMap.$slider)}
+                //et on coupe le clignotement de languette pour l'ouverture
+                setTongueBlink(false);
+                
+                if( cb ){ cb(jqueryMap.$slider);}
             })
         return true;
     }
@@ -314,6 +341,10 @@ math.aside = (function () {
         math.search.setVisibility(search_visible);
 
         stateMap.current_panel = panel_name;
+
+        //et on coupe le clignotement de languette si nécessaire
+        setTongueBlink(false);
+        
         return true;
 
     }
@@ -330,9 +361,9 @@ math.aside = (function () {
     }
 
     onClickEltsTongue = function( event ) {
-        configMap.set_panel_anchor( 'elts', 'opened' )
+        configMap.set_panel_anchor( 'elts', 'opened' );
         return false;
-    }
+    };
 
     onClickLeftBtn = function( event ){
         var set_aside_anchor = configMap.set_aside_anchor;
@@ -396,7 +427,8 @@ math.aside = (function () {
         math.aside.elts.configModule({
             math_elts_model : configMap.math_elts_model,
             show_elt        : configMap.show_elt,
-            scrollTo        : scrollTo
+            scrollTo        : scrollTo,
+            setTongueBlink  : setTongueBlink
         })
 
         math.aside.elts.initModule(jqueryMap.$elts_panel,jqueryMap.$rightbtn)

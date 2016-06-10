@@ -20,14 +20,16 @@ math.aside.elts = (function () {
             show_elt        : true,
             scrollTo        : true,
             normallight_elt : true,
-            highlight_elt   : true
+            highlight_elt   : true,
+            setTongueBlink  : true
         },
 
         math_elts_model : null,
         show_elt        : null,
         scrollTo        : null,
         normallight_elt : null,
-        highlight_elt   : null
+        highlight_elt   : null,
+        setTongueBlink  : null
     },
 
     stateMap  = { $panel           : null,
@@ -104,7 +106,14 @@ math.aside.elts = (function () {
 
     //Begin DOM method /addEltsToPanel/
     addEltsToPanel = function(idsAdded){
+
+        //si on ajoute au moins un élément on fait un clignottement
+        if (idsAdded.length >0){
+            configMap.setTongueBlink(true);
+        }
+
         var cpt,lastAdded, is_edited;
+
         for(cpt = 0;cpt<idsAdded.length;cpt++){
             is_edited = stateMap.boxsMap[idsAdded[cpt]] && stateMap.boxsMap[idsAdded[cpt]].is_edited;
             if(!is_edited){
@@ -139,6 +148,11 @@ math.aside.elts = (function () {
     //Begin DOM method /insertEltsToPanel/
     insertEltsToPanel = function(idsInserted){
 
+        //si on insert au moins un élément on fait un clignottement
+        if (idsInserted.length >0){
+            configMap.setTongueBlink(true);
+        }
+        
         var cpt,li,box,before_elt,$before,is_edited,
             firstInsert = configMap.math_elts_model.get_by_id(idsInserted[0]) || {name:''};
         for(cpt = 0;cpt<idsInserted.length;cpt++){
