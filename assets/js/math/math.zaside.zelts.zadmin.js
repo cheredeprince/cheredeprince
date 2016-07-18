@@ -147,7 +147,7 @@ math.aside.elts.admin = function($box,mini){
             +'</span>'
             +'</div>'
             +'<div class="elt-title-container math-box-title">'
-            +'<span class="elt-info-text"><input name="title" placeholder="Titre" value="'+elt.title+'"></span>'
+            +'<span class="elt-info-text"><input name="title" placeholder="Titre" value="'+elt.title+'" /></span>'
             +'<span class="elt-name elt-info-text"><input name="name" placeholder="Nom (doit être unique, en snakeCase et < 20 caractères)" value="'+elt.name+'"></span>'
             +'</div>';
 
@@ -165,6 +165,7 @@ math.aside.elts.admin = function($box,mini){
 
         $title.keyup(onKeyupTitle);
         $name.keyup(onKeyupName);
+        $title.focus();
     };
     //End DOM method /setPara/
 

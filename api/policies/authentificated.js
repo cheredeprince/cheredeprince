@@ -6,6 +6,9 @@ if(req.session.authentificated)
 	req.session.flash ={
 	    err: [{name:"requireLogin",message:"Tu dois être connecté !"}]
 	};
-	res.redirect('/session/new')
+        if(res.redirect)
+	    res.redirect('/session/new');
+        else
+            res.json({err: [{name:"requireLogin",message:"Tu dois être connecté !"}]});
     }
 }

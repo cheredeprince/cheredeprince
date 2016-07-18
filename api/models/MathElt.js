@@ -131,6 +131,11 @@ module.exports = {
             type: 'array'
         },
 
+        flux:{
+            collection: 'MathFlux',
+            via: 'elements'
+        },
+        
         version_previous: {
             type: 'array',
             defaultsTo: []
@@ -148,16 +153,18 @@ module.exports = {
                 obj = this.toObject(),
                 return_obj = {};
 
-            return_obj.id = obj.id
-            return_obj.name = obj.name
-            return_obj.title = obj.title
-            return_obj.type = obj.type
-            return_obj.content = obj.contentHTML
-            return_obj.tags = obj.tagsName
-            return_obj.createdAt = obj.createdAt
+            return_obj.id = obj.id;
+            return_obj.name = obj.name;
+            return_obj.title = obj.title;
+            return_obj.type = obj.type;
+            return_obj.content = obj.contentHTML;
+            return_obj.tags = obj.tagsName;
+            return_obj.createdAt = obj.createdAt;
+            return_obj.updatedAt = obj.updatedAt;
+            return_obj.keywordsName = obj.keywordsName.sort(function(a,b){return obj.scorePerKeyword[b] - obj.scorePerKeyword[a]; });
 
-            //mise en forme des parties de texte
-            return_obj.typeDisplay = types[elt.type]
+                //mise en forme des parties de texte
+                return_obj.typeDisplay = types[elt.type];
 
             return_obj.parents = [];
             return_obj.children = [];
@@ -170,7 +177,7 @@ module.exports = {
                         name : obj.parents[key].name,
                         title: obj.parents[key].title,
                         type : obj.parents[key].type
-                    })
+                    });
                 }
 
             if(obj.children && obj.children.length){
@@ -179,7 +186,7 @@ module.exports = {
                         name : obj.children[key].name,
                         title: obj.children[key].title,
                         type : obj.children[key].type
-                    })
+                    });
                 }
             }
 
@@ -341,13 +348,13 @@ module.exports = {
 
                                 console.time('mongo');
 
-                                MathElt.update(id,values,function(err){
+                                MathElt.update(id,values,function(err,updated){
 
                                     console.timeEnd('mongo');
                                     if(err) return next(err);
 
                                     // on prévient qu'il y a une maj
-                                    MathElt.publishUpdate(id,{name: values.name});
+                                    MathElt.publishUpdate(id,updated[0].toOBJ());
 
                                     afterUpdateElt(values,oldName,removedParents,addedParents,next);
 
