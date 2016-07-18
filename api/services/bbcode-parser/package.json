@@ -1,0 +1,72 @@
+{
+  "_args": [
+    [
+      "bbcode-parser@^1.0.8",
+      "/home/paul/creations/chere_de_prince/cheredeprince"
+    ]
+  ],
+  "_from": "bbcode-parser@>=1.0.8 <2.0.0",
+  "_id": "bbcode-parser@1.0.10",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/bbcode-parser",
+  "_nodeVersion": "0.12.0",
+  "_npmUser": {
+    "email": "anton_jansson@live.se",
+    "name": "svenslaggare"
+  },
+  "_npmVersion": "2.5.1",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "bbcode-parser",
+    "raw": "bbcode-parser@^1.0.8",
+    "rawSpec": "^1.0.8",
+    "scope": null,
+    "spec": ">=1.0.8 <2.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/bbcode-parser/-/bbcode-parser-1.0.10.tgz",
+  "_shasum": "51311cf83bdb05cd287ffede0e9244d7c201a081",
+  "_shrinkwrap": null,
+  "_spec": "bbcode-parser@^1.0.8",
+  "_where": "/home/paul/creations/chere_de_prince/cheredeprince",
+  "author": {
+    "email": "anton_jansson@live.se",
+    "name": "Anton Jansson"
+  },
+  "bugs": {
+    "url": "https://github.com/svenslaggare/BBCodeParser/issues"
+  },
+  "dependencies": {},
+  "description": "An extensibile BBCode parser for Node.js and browser",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "51311cf83bdb05cd287ffede0e9244d7c201a081",
+    "tarball": "http://registry.npmjs.org/bbcode-parser/-/bbcode-parser-1.0.10.tgz"
+  },
+  "homepage": "https://github.com/svenslaggare/BBCodeParser",
+  "keywords": [
+    "bbcode",
+    "bbcode parser"
+  ],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "email": "anton_jansson@live.se",
+      "name": "svenslaggare"
+    }
+  ],
+  "name": "bbcode-parser",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/svenslaggare/BBCodeParser.git"
+  },
+  "scripts": {},
+  "version": "1.0.10"
+}

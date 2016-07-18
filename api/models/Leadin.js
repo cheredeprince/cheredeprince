@@ -5,8 +5,6 @@
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
-var BBCodeParser = require('bbcode-parser'),
-    BBCodeParseTree = require('bbcode-parser');
 
 module.exports = {
 
