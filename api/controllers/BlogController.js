@@ -503,26 +503,26 @@ module.exports = {
                         {
                             name: ConvertString.simply(params.name)+'-little',
                             ext:'png',
-                            width: 600,
+                            width: 460,
                             ifOrignFormat:['png','svg']
                         },
                         {
                             name: ConvertString.simply(params.name)+'-medium',
                             ext:'png',
-                            width: 1200,
+                            width: 720,
                             ifOrignFormat:['png','svg']
                         },
                         {
                             name: ConvertString.simply(params.name)+'-little',
                             ext: 'jpg',
-                            width: 600,
+                            width: 460,
 			    quality: 70,
                             ifOrignFormat: ['jpg']
                         },
                         {
                             name: ConvertString.simply(params.name)+'-medium',
                             ext: 'jpg',
-                            width: 1200,
+                            width: 720,
 			    quality: 70,
                             ifOrignFormat:['jpg']
                         },
