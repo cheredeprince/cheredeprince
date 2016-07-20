@@ -516,17 +516,20 @@ module.exports = {
                             name: ConvertString.simply(params.name)+'-little',
                             ext: 'jpg',
                             width: 600,
-                            ifOrignFormat:['jpg']
+			    quality: 70,
+                            ifOrignFormat: ['jpg']
                         },
                         {
                             name: ConvertString.simply(params.name)+'-medium',
                             ext: 'jpg',
                             width: 1200,
+			    quality: 70,
                             ifOrignFormat:['jpg']
                         },
                         {
                             name: ConvertString.simply(params.name)+'-light',
                             ext: 'jpg',
+			    quality: 70,
                             ifOrignFormat:['jpg']
                         },
                         {
@@ -690,12 +693,15 @@ function UploadImg(req,res,upFile,dir,formats,desName,formLink,options,next){
                                         }else
                                             return next([{name:"unvalidParameter",message:"Impossible de transformer le svg en quelque chose d'autre que png"}]);
                                     }else if(supportedFormats.indexOf(option.ext)>-1){
-                                        imageObj.resize(opts.width).write(opts.dstPath,function(err,stdout,stderr){
-                                            if(err) return next(err);
-                                            cptCall ++;
-                                            if(cptCall == options.length)
-                                                return next(null,ext);
-                                        });
+                                        imageObj
+					    .resize(opts.width)
+					    .interlace('line')
+					    .write(opts.dstPath,function(err,stdout,stderr){
+						if(err) return next(err);
+						cptCall ++;
+						if(cptCall == options.length)
+                                                    return next(null,ext);
+                                            });
                                     }else
                                         return next([{name:"unvalidParameter",message:"Fomat de sortie non supporté"}])
                                 }else{
