@@ -30,8 +30,8 @@ function textToken(content) {
 //var attrNameChars = "[a-zA-Z0-9\\.\\-_:;/]";
 //var attrNameChars = "\\w";
 //var attrValueChars = attrNameChars;
-var attrNameChars = "[a-zA-Z0-9\\.\\-_:;/]";
-var attrValueChars = "[a-zA-Z0-9/\-_.!~*'():@&=+,$]";
+var attrNameChars = "[a-zA-Z0-9.\\-_:;/]";
+var attrValueChars = "[a-zA-Z0-9/\\\-_.!~*'():@&=+,$]";
 //Creates a new tag token
 function tagToken(match) {
     if (match[1] == undefined) {
