@@ -104,7 +104,7 @@ module.exports = {
 
         Blog.create(values,function(err,art){
             if(err){
-                console.log(err)
+                console.error(err)
                 req.session.flash= {
                     err: [{message: JSON.stringify(err)}]
                 }
@@ -145,7 +145,7 @@ module.exports = {
 
             Blog.update(req.param('id'),values, function(err,art){
                 if(err){
-                    console.log(err)
+                    console.error(err)
                     req.session.flash = {
                         err:[{message: JSON.stringify(err)}]
                     }
@@ -724,6 +724,6 @@ var makePublicLink = function(filePath,publicDir){
         var fileName = require('path').basename(filePath),
             publicPath = require('path').join(publicDir,fileName);
         require('fs').symlink(filePath,publicPath,function(err){
-            console.log(err);
+            console.error(err);
         });},1000);
 };

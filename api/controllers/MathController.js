@@ -27,7 +27,6 @@ module.exports = {
     //permet de charger un elt au chargement de la page
     elt: function(req,res,next){
 
-        console.time('elt');
         var name = req.param('id');
 
         MathElt.findOne({or:[{name:name},{oldNames:{contains: name}}]}).populate('parents')
@@ -42,7 +41,6 @@ module.exports = {
                         // responsable de trop d'erreurs
 
                         res.view('math/index.ejs',{layout:'math/layout',elt:elt.toOBJ()});
-                        console.timeEnd('elt');
 
                           });
                     }else
@@ -123,12 +121,10 @@ module.exports = {
     },
 
     graph : function(req,res,next){
-        console.time('getGraph');
         MathGraph.find().limit(1).exec(function(err,graphs){
             if(err) return next(err);
             if(! graphs[0]) return res.json();
             graphs[0].changes = null;
-            console.timeEnd('getGraph');
             res.json(graphs[0]);
         })
     },
@@ -172,10 +168,9 @@ module.exports = {
                 content : elt.content,
                 author  : (req.session.User)? req.session.User.id: ''
             };
-        console.time('create');
+
         MathElt.createElt(elt_map,function(err){
             if(err) return res.serverError(err);
-            console.timeEnd('create');
             Sitemap.addMath(elt_map);
             res.json("élément créé");
         });
@@ -198,7 +193,6 @@ module.exports = {
             MathElt.updateElt(id,elt_map,function(err){
                 if(err) return res.serverError(err);
                 Sitemap.updateMath(elt_map,old_elt);
-                //             console.log(old_elt);
 
                 res.json("élément mis à jour");
             });
@@ -239,7 +233,7 @@ module.exports = {
 
         //     MathElt.subscribe(req.socket,elts);
         // });
-        
+
         MathElt.watch(req);
     }
 };
