@@ -39,7 +39,8 @@
   <h3>Les images</h3>
   <a href="/blog/newImage/<%=art.name%>" class="text-btn">Ajouter une Image</a>
   <% if(art.images){
-	  Object.keys(art.images).forEach(function(image){%>
+	  Object.keys(art.images).forEach(function(image){
+		  if(art.images[image] != null){ %>
     <div class="entry">
       <figure style="max-width:20em;">
 	<picture>
@@ -66,7 +67,8 @@
 	  </form>
 
 	</div>
-<%})}%>
+  <% }}
+	  )}%>
 
 
 <div class="entry">

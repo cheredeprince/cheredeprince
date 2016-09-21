@@ -1,0 +1,1 @@
+{ "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "begin.mathelt_tags__mathtag_elements", "name" : "_id_" } ] }

@@ -5,9 +5,7 @@
  * @docs        :: http://sailsjs.org/#!documentation/models
  */
 
-var BBCodeParser = require('bbcode-parser'),
-    BBCodeParseTree = require('bbcode-parser'),
-    Mkdirp = require('mkdirp')
+var    Mkdirp = require('mkdirp');
 
 module.exports = {
 

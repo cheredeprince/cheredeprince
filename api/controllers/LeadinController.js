@@ -30,7 +30,7 @@ module.exports = {
 	    pagesUp = new Array(pages)
 	else
 	    pagesUp = pages
-	
+
 	// on récupère les valeurs utiles à la création
 	var values = {
 	    contentBB: req.param('contentBB'),
@@ -76,13 +76,13 @@ module.exports = {
 	else
 	    pagesUp = pages
 
-	
+
 	var values = {
 	    id: req.param('id'),
 	    contentBB: req.param('contentBB'),
 	    pages: pagesUp
 	}
-	
+
 	Leadin.update(req.param('id'),values, function(err,leadin){
 	    if(err){
 		console.log(err)
@@ -95,9 +95,9 @@ module.exports = {
 	    }
 	})
     },
-    
+
     destroy:function(req,res,next){
-		
+
 	Leadin.findOne(req.param('id'),function(err, leadin){
 	    if(err) return next(err)
 	    if(!leadin){
@@ -116,6 +116,5 @@ module.exports = {
 	    }
 	})
     }
-    
-};
 
+};

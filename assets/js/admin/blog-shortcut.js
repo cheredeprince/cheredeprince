@@ -171,7 +171,7 @@ $(document).ready(function(){
 		key: 71,
 		letter: 'g',
 		value: '[h2][/h2]',
-		cursIndent: -6
+		cursIndent: -5
 	    },
 	    'ol':{
 		key: 74,
@@ -230,6 +230,7 @@ $(document).ready(function(){
 	}else if( typeof wordsInfos[e.keyCode] !== 'undefined' && actionKeyDown){
 	    insertWord(wordsInfos[e.keyCode]);
 	    e.preventDefault();
+	    actionKeyDown = false;
 	}
 	
     })

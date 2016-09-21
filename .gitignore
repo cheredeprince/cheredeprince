@@ -40,7 +40,7 @@
 ################################################
 
 config/local.js
-assets/images/blog/*
+
 
 
 
@@ -80,7 +80,7 @@ bower_components
 ################################################
 .tmp
 dump.rdb
-dump
+
 
 
 
@@ -116,4 +116,3 @@ npm-debug.log
 nbproject
 .idea
 .node_history
-.sass-cache

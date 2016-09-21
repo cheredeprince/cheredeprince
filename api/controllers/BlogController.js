@@ -57,7 +57,6 @@ module.exports = {
 
     show: function(req,res,next){
 
-        console.log(req.params,req.param('id'),req.param('p'));
         var query={}
         if(req.param('id'))
             query = {name:req.param('id')}
@@ -352,10 +351,9 @@ module.exports = {
         })
     },
     uploadBanner: function(req,res,next){
-        res.locals['_csrf'] = ''
-        var params = req.allParams()
-        console.log(params)
-        params.id = params.id.slice(1)
+        res.locals['_csrf'] = '';
+        var params = req.allParams();
+        params.id = params.id.slice(1);
         Blog.findOne(params.id,function(err,art){
             if(err) return next(err)
             if(!art){
@@ -503,30 +501,33 @@ module.exports = {
                         {
                             name: ConvertString.simply(params.name)+'-little',
                             ext:'png',
-                            width: 600,
+                            width: 460,
                             ifOrignFormat:['png','svg']
                         },
                         {
                             name: ConvertString.simply(params.name)+'-medium',
                             ext:'png',
-                            width: 1200,
+                            width: 720,
                             ifOrignFormat:['png','svg']
                         },
                         {
                             name: ConvertString.simply(params.name)+'-little',
                             ext: 'jpg',
-                            width: 600,
-                            ifOrignFormat:['jpg']
+                            width: 460,
+			    quality: 70,
+                            ifOrignFormat: ['jpg']
                         },
                         {
                             name: ConvertString.simply(params.name)+'-medium',
                             ext: 'jpg',
-                            width: 1200,
+                            width: 720,
+			    quality: 70,
                             ifOrignFormat:['jpg']
                         },
                         {
                             name: ConvertString.simply(params.name)+'-light',
                             ext: 'jpg',
+			    quality: 70,
                             ifOrignFormat:['jpg']
                         },
                         {
@@ -690,12 +691,15 @@ function UploadImg(req,res,upFile,dir,formats,desName,formLink,options,next){
                                         }else
                                             return next([{name:"unvalidParameter",message:"Impossible de transformer le svg en quelque chose d'autre que png"}]);
                                     }else if(supportedFormats.indexOf(option.ext)>-1){
-                                        imageObj.resize(opts.width).write(opts.dstPath,function(err,stdout,stderr){
-                                            if(err) return next(err);
-                                            cptCall ++;
-                                            if(cptCall == options.length)
-                                                return next(null,ext);
-                                        });
+                                        imageObj
+					    .resize(opts.width)
+					    .interlace('line')
+					    .write(opts.dstPath,function(err,stdout,stderr){
+						if(err) return next(err);
+						cptCall ++;
+						if(cptCall == options.length)
+                                                    return next(null,ext);
+                                            });
                                     }else
                                         return next([{name:"unvalidParameter",message:"Fomat de sortie non supporté"}])
                                 }else{

@@ -5,9 +5,7 @@
  * @docs        :: http://sailsjs.org/#!documentation/models
  */
 
-var BBCodeParser = require('bbcode-parser'),
-    BBCodeParseTree = require('bbcode-parser'),
-    Gravatar = require('gravatar');
+var Gravatar = require('gravatar');
 
 module.exports = {
 
