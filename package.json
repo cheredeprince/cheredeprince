@@ -7,6 +7,7 @@
   "dependencies": {
     "bbcode-parser": "^1.0.8",
     "bcrypt": "^0.8.3",
+    "console-stamp": "^0.2.2",
     "ejs": "~0.8.4",
     "escape-html": "^1.0.3",
     "gm": "^1.18.1",

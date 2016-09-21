@@ -20,6 +20,8 @@ module.exports.bootstrap = function(cb) {
     Tag.findFavoriteTags();
     // Générer le sitemap des maths
     Sitemap.initMath();
+    //Ajouter la date aux logs
+    require('console-stamp')(console, '[HH:MM:ss.l]');
 
 
 
