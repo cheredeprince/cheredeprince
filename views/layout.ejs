@@ -10,11 +10,13 @@
     <link rel="icon" type="image/png" href="http://cheredeprince.net/favicon.png" />
     <link rel="apple-touch-icon" href="http://cheredeprince.net/favicon.png" />
 
+    <link rel="alternate" type="application/rss+xml" title="Chère de Prince &raquo; Flux" href="http://cheredeprince.net/rss/rss.xml" />
+    
     <%if(typeof page !== 'undefined'){%>
+    
+    <title><%=page.title%> - Chère de Prince</title>
 
-      <title><%=page.title%> - Chère de Prince</title>
-
-      <%if(page.section == 'blog' && page.name=='show'){%>
+    <%if(page.section == 'blog' && page.name=='show'){%>
     <!-- Blog show head -->
 
     <link rel="alternate" type="application/rss+xml" title="Chère de Prince - RSS" href="http://cheredeprince.net/rss/rss.xml" />
