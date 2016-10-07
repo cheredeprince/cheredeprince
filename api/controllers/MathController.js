@@ -171,6 +171,9 @@ module.exports = {
 
         MathElt.createElt(elt_map,function(err){
             if(err) return res.serverError(err);
+
+	    console.log('math create '+elt_map.name);
+	    
             Sitemap.addMath(elt_map);
 	    elt_map.authorName = req.session.User.name;
 
@@ -195,6 +198,9 @@ module.exports = {
 
             MathElt.updateElt(id,elt_map,function(err){
                 if(err) return res.serverError(err);
+
+		console.log('math update '+elt_map.name);
+		
                 Sitemap.updateMath(elt_map,old_elt);
 
 		elt_map.authorName = req.session.User.name;
@@ -244,6 +250,7 @@ module.exports = {
     },
 
     rss: function(req,res,next){
+	console.log('math get RSS');
 	res.end(RSS.getMathRSS());
     }
 };
