@@ -52,6 +52,7 @@ module.exports.routes = {
     'GET /math/completion_tag': 'MathController.completion_tag',
     'GET /math/completion_mention': 'MathController.completion_mention',
     'GET /math/subscribe': 'MathController.subscribe',
+    'GET /math/rss': 'MathController.rss',
     'GET /math/:id': 'MathController.index',
 
 

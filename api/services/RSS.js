@@ -10,6 +10,15 @@ var BlogFeed = new Rss({
     language: 'fr-FR'
 })
 
+var MathFeed = new Rss({
+    title: "La math de Chère de Prince",
+    description: "Les sorties des nouveaux éléments mathématiques",
+    feed_url: sails.config.variables.general.host+"math/rss",
+    site_url: sails.config.variables.general.host+"/math",
+    images_url: sails.config.variables.general.host+"/favicon.png",
+    language: 'fr-FR'
+})
+
 module.exports= {
 
     addArticle : function(art){
@@ -30,6 +39,46 @@ module.exports= {
 	    fs.closeSync(fd)
 	}, 10000)
 
+    },
+
+    mathCreation : function(mathElt){
+	MathFeed.item({
+	    title: mathElt.title,
+	    description:
+	    '<h2>'+
+		'Création de ' +
+		'<a href='+sails.config.variables.general.host+'"/math/elt/'+mathElt.name+'">'+
+		mathElt.title+
+		'</a>'+
+		'</h2><br/>'+
+		mathElt.contentHTML,
+	    url: sails.config.variables.general.host+'/math/elt/'+mathElt.name,
+	    categories : mathElt.tags,
+	    author: (mathElt.authorName)?mathElt.authorName:'becasse',
+	    date: mathElt.publishedAt  
+	})
+    },
+
+        mathUpdate : function(mathElt){
+	MathFeed.item({
+	    title: mathElt.title,
+	    description:
+	    '<h2>'+
+		'Mise à jour de ' +
+		'<a href='+sails.config.variables.general.host+'"/math/elt/'+mathElt.name+'">'+
+		mathElt.title+
+		'</a>'+
+		'</h2><br/>'+
+		mathElt.contentHTML,
+	    url: sails.config.variables.general.host+'/math/elt/'+mathElt.name,
+	    categories : mathElt.tags,
+	    author: (mathElt.authorName)?mathElt.authorName:'becasse',
+	    date: mathElt.publishedAt  
+	})
+    },
+
+    getMathRSS : function(){
+	return MathFeed.xml()
     }
     
 }
