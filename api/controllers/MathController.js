@@ -251,6 +251,7 @@ module.exports = {
 
     rss: function(req,res,next){
 	console.log('math get RSS');
+	res.type('application/rss+xml');
 	res.end(RSS.getMathRSS());
     }
 };

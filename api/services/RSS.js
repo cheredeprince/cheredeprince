@@ -78,7 +78,6 @@ module.exports= {
     },
 
     getMathRSS : function(){
-	res.type('application/rss+xml');
 	return MathFeed.xml()
     }
     
