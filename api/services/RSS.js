@@ -29,7 +29,7 @@ module.exports= {
 	    guid: sails.config.variables.general.host+'/blog/show/?p='+art.id,
 	    categories : art.tags,
 	    author: (art.author)?art.author.name:'La Bécasse',
-	    date: art.publishedAt    
+	    pubDate: art.publishedAt    
 	})
 
 	var fd = fs.openSync(sails.config.appPath+'/assets/rss/rss.xml', 'w')
@@ -43,37 +43,26 @@ module.exports= {
 
     mathCreation : function(mathElt){
 	MathFeed.item({
-	    title: mathElt.title,
-	    description:
-	    '<h2>'+
-		'Création de ' +
-		'<a href='+sails.config.variables.general.host+'"/math/elt/'+mathElt.name+'">'+
-		mathElt.title+
-		'</a>'+
-		'</h2><br/>'+
-		mathElt.contentHTML,
+	    title:'Création de : ' + mathElt.title,
+	    description: '@'+mathElt.name
+		+ mathElt.contentHTML,
 	    url: sails.config.variables.general.host+'/math/elt/'+mathElt.name,
 	    categories : mathElt.tags,
 	    author: (mathElt.authorName)?mathElt.authorName:'becasse',
-	    date: mathElt.publishedAt  
+	    date: new Date().toJSON()  
 	})
     },
 
-        mathUpdate : function(mathElt){
+    mathUpdate : function(mathElt){
+	console.log(mathElt);
 	MathFeed.item({
-	    title: mathElt.title,
-	    description:
-	    '<h2>'+
-		'Mise à jour de ' +
-		'<a href='+sails.config.variables.general.host+'"/math/elt/'+mathElt.name+'">'+
-		mathElt.title+
-		'</a>'+
-		'</h2><br/>'+
+	    title: 'Mise à jour de : ' +mathElt.title,
+	    description: '@'+mathElt.name+
 		mathElt.contentHTML,
 	    url: sails.config.variables.general.host+'/math/elt/'+mathElt.name,
 	    categories : mathElt.tags,
 	    author: (mathElt.authorName)?mathElt.authorName:'becasse',
-	    date: mathElt.publishedAt  
+	    date: new Date().toJSON()
 	})
     },
 
