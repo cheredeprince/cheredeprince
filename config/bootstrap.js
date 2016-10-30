@@ -21,7 +21,7 @@ module.exports.bootstrap = function(cb) {
     // Générer le sitemap des maths
     Sitemap.initMath();
     //Ajouter la date aux logs
-    require('console-stamp')(console, '[HH:MM:ss.l]');
+    require('console-stamp')(console,  { pattern : "dd/mm/yyyy HH:MM:ss.l" });
 
 
 
