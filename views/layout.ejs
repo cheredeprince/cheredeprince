@@ -16,26 +16,6 @@
     
     <title><%=page.title%> - Chère de Prince</title>
 
-    <%if(page.section == 'blog' && page.name=='show'){%>
-    <!-- Blog show head -->
-
-    <link rel="alternate" type="application/rss+xml" title="Chère de Prince - RSS" href="http://cheredeprince.net/rss/rss.xml" />
-    <!--Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:creator" content="@CheredePrince">
-    <meta name="twitter:site" content="@CheredePrince">
-    <meta name="twitter:title" content="<%=art.title%>">
-    <meta name="twitter:description" content="<%=art.presentation%>">
-    <meta name="twitter:image:src" content="http://cheredeprince.net/images/blog/<%=art.name%>/s/original.png">
-
-    <meta property="og:url"                content="http://cheredeprince.net" />
-    <meta property="og:site_name"          content="http://cheredeprince.net" />
-    <meta property="og:type"               content="website" />
-    <meta property="og:title"              content="<%=art.title%>" />
-    <meta property="og:description"        content="<%=art.presentation%>" />
-    <meta property="og:image"              content="http://cheredeprince.net/images/blog/<%=art.name%>/s/original.png" />
-    <%}%>
-
     <%}else{%>
     <title>Chère de Prince</title>
     <%}%>
@@ -96,15 +76,6 @@
           <a href="/user">Utilisateurs</a>
         </li>
         <li>
-          <a href="/blog/list">Blog</a>
-        </li>
-        <li>
-          <a href="/leadin">Accroches</a>
-        </li>
-        <li>
-          <a href="/comment">Commentaires</a>
-        </li>
-        <li>
           <img src="/images/admin/io-ok.png" id="io-status-icon" width="20px" style="display:inline"/>
         </li>
       </ul>
@@ -114,18 +85,6 @@
         <a href="/user/show/<%- session.User.id%>"><%= session.User.name %></a>
         <a href="/session/destroy">Déconnection</a>
       </div>
-      <%}%>
-      <% if(session.User.admin){%>
-      <ul class="admin-option nudedList info-text">
-        <%if(session.modelUse == 'blog'){%>
-        <li><a href="/blog/new">Créer un article</a></li>
-        <li><a href="/tag/">Liste des tags</a></li>
-        <li><a href="/tag/new">Créer un tag</a></li>
-        <%}%>
-      </ul>
-      <ul id="admin-shortcuts" class="nudedList inline-list info-text">
-
-      </ul>
       <%}%>
 
         <div id="page" class="paper-background">

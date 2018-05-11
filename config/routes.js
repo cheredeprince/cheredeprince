@@ -21,57 +21,39 @@
  */
 
 module.exports.routes = {
+  /***************************************************************************
+   *                                                                          *
+   * Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, *
+   * etc. depending on your default view engine) your home page.              *
+   *                                                                          *
+   * (Alternatively, remove this and add an `index.html` file in your         *
+   * `assets` directory)                                                      *
+   *                                                                          *
+   ***************************************************************************/
+  'GET /': 'MathController.index',
+
+  'GET /elt/:id': 'MathController.elt',
+  'GET /completion': 'MathController.completion',
+  'GET /search': 'MathController.search',
+  'GET /find': 'MathController.find',
+  'GET /load': 'MathController.load',
+  'GET /graph': 'MathController.graph',
+  'GET /admin_data': 'MathController.admin_data',
+  'GET /completion_tag': 'MathController.completion_tag',
+  'GET /completion_mention': 'MathController.completion_mention',
+  'GET /subscribe': 'MathController.subscribe',
+  'GET /rss': 'MathController.rss',
+  'GET /user': 'UserController.index',
+
+  'GET /:id': 'MathController.index'
 
   /***************************************************************************
-  *                                                                          *
-  * Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, *
-  * etc. depending on your default view engine) your home page.              *
-  *                                                                          *
-  * (Alternatively, remove this and add an `index.html` file in your         *
-  * `assets` directory)                                                      *
-  *                                                                          *
-  ***************************************************************************/
-
-    'GET /': 'IndexController',
-
-    'GET /blog/list': 'BlogController.list',
-    'GET /blog/show': 'BlogController.show',
-    'GET /blog/new': 'BlogController.new',
-    'GET /blog/category/:id/page/:page': 'BlogController.category',
-    'GET /blog/tag/:id/page/:page': 'BlogController.tag',
-    'GET /blog/page/:page': 'BlogController.index',
-    'GET /blog/:id': 'BlogController.show',
-
-    'GET /math/elt/:id': 'MathController.elt',
-    'GET /math/completion': 'MathController.completion',
-    'GET /math/search': 'MathController.search',
-    'GET /math/find': 'MathController.find',
-    'GET /math/load': 'MathController.load',
-    'GET /math/graph': 'MathController.graph',
-    'GET /math/admin_data': 'MathController.admin_data',
-    'GET /math/completion_tag': 'MathController.completion_tag',
-    'GET /math/completion_mention': 'MathController.completion_mention',
-    'GET /math/subscribe': 'MathController.subscribe',
-    'GET /math/rss': 'MathController.rss',
-    'GET /math/:id': 'MathController.index',
-
-
-    'GET /images/blog/:name/:file': 'ImagesController.blog',
-    'GET /images/blog/:name/b/:file': 'ImagesController.banner',
-    'GET /images/blog/:name/s/:file': 'ImagesController.sticker',
-    '/rss': '/rss/rss.xml',
-    '/feed': '/rss/rss.xml',
-    'GET /sitemap': 'SitemapController.index'
-
-
-  /***************************************************************************
-  *                                                                          *
-  * Custom routes here...                                                    *
-  *                                                                          *
-  * If a request to a URL doesn't match any of the custom routes above, it   *
-  * is matched against Sails route blueprints. See `config/blueprints.js`    *
-  * for configuration options and examples.                                  *
-  *                                                                          *
-  ***************************************************************************/
-
-};
+   *                                                                          *
+   * Custom routes here...                                                    *
+   *                                                                          *
+   * If a request to a URL doesn't match any of the custom routes above, it   *
+   * is matched against Sails route blueprints. See `config/blueprints.js`    *
+   * for configuration options and examples.                                  *
+   *                                                                          *
+   ***************************************************************************/
+}

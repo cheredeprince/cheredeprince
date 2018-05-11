@@ -5,29 +5,25 @@
       <a href="/">
 	<picture class="logo">
 	  <source type="image/svg+xml" srcset="/images/global/logo.svg">
-	  <img src="/images/global/logo.png" alt="Chère de Prince, le site officiel de la Bécasse">
+	    <img src="/images/global/logo.png" alt="Chère de Prince, le site officiel de la Bécasse">
 	</picture>
       </a>
       <%if(typeof leadInPage !== 'undefined'){%>
-	<div class="lead-in-container">
-	  <p class="lead-in text">
-	    <%-leadInPage.contentHTML%>
-	  </p>
-	  <div class="stroke sprite-icon">
-	  </div>
+      <div class="lead-in-container">
+	<p class="lead-in text">
+	  <%-leadInPage.contentHTML%>
+	</p>
+	<div class="stroke sprite-icon">
 	</div>
+      </div>
       <%}%>
     </div>
   </div>
   <nav id="nav" class="nav">
     <ul class="nav-list inline-list">
-      <li><a href="/" <%if(page_name == ''){%>class="active"<%}%> >Accueil</a></li>
-      <li><a href="/math"  <%if(page_name == 'math'){%>class="active"<%}%> >Math</a></li>
-      <li><a href="/blog"  <%if(page_name == 'blog'){%>class="active"<%}%> >Blog</a></li>
-      <li><a href="/contact"  <%if(page_name == 'contact'){%>class="active"<%}%> >Contact</a></li>
+      <li><a href="/" class="active">Math</a></li>
     </ul>
   </nav><!--end .nav-->
 
 </header>
 <!-- End .header -->
-
