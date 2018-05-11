@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta charset="UTF-8">
     <!-- favicon -->
-    <link rel="shortcut icon" href="http://cheredeprince.net/favicon.ico" />
-    <link rel="icon" type="image/x-icon" href="http://cheredeprince.net/favicon.ico" />
-    <link rel="icon" type="image/png" href="http://cheredeprince.net/favicon.png" />
-    <link rel="apple-touch-icon" href="http://cheredeprince.net/favicon.png" />
-    <link rel="alternate" type="application/rss+xml" title="Chère de Prince - Math &raquo; Flux" href="http://cheredeprince.net/math/rss" />
+    <link rel="shortcut icon" href="https://math.cheredeprince.net/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="https://math.cheredeprince.net/favicon.ico" />
+    <link rel="icon" type="image/png" href="https://math.cheredeprince.net/favicon.png" />
+    <link rel="apple-touch-icon" href="https://math.cheredeprince.net/favicon.png" />
+    <link rel="alternate" type="application/rss+xml" title="Chère de Prince - Math &raquo; Flux" href="https://math.cheredeprince.net/rss" />
     <!-- title -->
     <%if(elt){%>
       <title><%= elt.title +' - '%>Math - Chère de Prince</title>
@@ -93,7 +93,7 @@
     <div style="display:none">
     <%if(elt){%>
     <div class="math-box math-elt" itemprop="mainEntity" itemscope itemtype="http://schema.org/CreativeWork">
-      <link itemprop="mainEntityOfPage" href="/math/elt/<%=elt.name%>" />
+      <link itemprop="mainEntityOfPage" href="/elt/<%=elt.name%>" />
         <div class="object">
           <div class="math-box-para">
             <div class="elt-type-container">
@@ -121,16 +121,16 @@
                   <ul class="math-elt-list-mini math-box-family-list math-box-family-open">
                     <%elt.children.forEach(function(child){%>
                     <li class="math-elt-mini math-elt elt-title-container" itemprop="isPartOf"  itemscope itemtype="http://schema.org/CreativeWork">
-                      <link itemprop="url" href="/math/elt/<%=child.name%>" />
-                      <a itemprop="mainEntityOfPage" href="/math/elt/<%=child.name%>"><span itemprop="name"><%=child.title%></span></a>
+                      <link itemprop="url" href="/elt/<%=child.name%>" />
+                      <a itemprop="mainEntityOfPage" href="/elt/<%=child.name%>"><span itemprop="name"><%=child.title%></span></a>
                     </li>
                     <%})%>
                   </ul>
                   <ul class="math-elt-list-mini math-box-family-list math-box-family-open">
                     <%elt.parents.forEach(function(parent){%>
                     <li class="math-elt-mini math-elt elt-title-container" itemprop="hasPart"  itemscope itemtype="http://schema.org/CreativeWork">
-                      <link itemprop="url" href="/math/elt/<%=parent.name%>" />
-                      <a itemprop="mainEntityOfPage" href="/math/elt/<%=parent.name%>"><span itemprop="name"><%=parent.title%></span></a>
+                      <link itemprop="url" href="/elt/<%=parent.name%>" />
+                      <a itemprop="mainEntityOfPage" href="/elt/<%=parent.name%>"><span itemprop="name"><%=parent.title%></span></a>
                     </li>
                     <%})%>
                   </ul>
