@@ -12,7 +12,7 @@ module.exports = {
       // on coupe le nom à 20 caractères
       name = require('lodash').snakeCase(name.slice(0, 20))
       if (res.redirect) {
-        res.redirect('/elt/' + name)
+        res.redirect('elt/' + name)
       } else {
         res.end()
       }
@@ -38,7 +38,7 @@ module.exports = {
               res.view('math/index.ejs', {layout: 'math/layout', elt: elt.toOBJ()})
             })
           } else {
-            res.redirect('/elt/' + elt.name)
+            res.redirect('elt/' + elt.name)
           }
         } else {
           res.notFound()
